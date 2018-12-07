@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  background-image: url("../res/background.jpg");
-  background-size: 100%;
+  background: url("../res/background.jpg") no-repeat center center fixed;
+  background-size: cover;
   height: 100%;
 }
 
@@ -26,12 +26,8 @@ h2 {
   color: white;
 }
 
-body > div:first-child {
+#login {
   height: 100%;
-  margin: 0px;
-  margin-left: 2%;
-  padding: 1%;
-  text-align: center;
   background-color: rgba(255,255,255,0.6);
 }
 
@@ -51,8 +47,9 @@ input[type="password"], input[type="text"] {
   background-color: rgba(255,255,255,0.5);
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    background-image: none;
+@media screen and (max-width: 576px) {
+  #login {
+    margin: 0 0 0 0;
+    background-color:  rgba(255,255,255,0.4);
   }
 }

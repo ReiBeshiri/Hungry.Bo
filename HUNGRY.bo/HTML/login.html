@@ -17,35 +17,33 @@
     <title>login</title>
   </head>
   <body>
-    <div class="col-12 col-md-5 col-xl-5">
-      <img src="../res/icona.png" alt="logo"/>
+    <div class="col-12 col-md-5 col-xl-5 text-center align-middle" id="login">
+        <img src="../res/icona.png" alt="logo"/>
+        <div class="title">
+          <h1>HUNGRY.bo</h1>
+          <h2>Enjoy your lunchtime</h2>
+        </div>
 
-      <div class="title">
-        <h1>HUNGRY.bo</h1>
-        <h2>Enjoy your lunchtime</h2>
-      </div>
-
-      <div class="">
-        <section>
-          <form action="../PHP/login.php" method="post">
-            <label>Username: <br/>
-              <input class="form-control" type="text" name="username" required/>
-            </label> <br/>
-            <label>Password: <br/>
-              <input class="form-control" type="password" name="password" required/>
-            </label> <br/>
-            <input class="btn btn-primary mb-2" type="submit" value="Login"/>
-          </form>
+        <div>
           <section>
-      </div>
+            <form action="../PHP/login.php" method="post">
+              <label>Username: <br/>
+                <input class="form-control" type="text" name="username" required/>
+              </label> <br/>
+              <label>Password: <br/>
+                <input class="form-control" type="password" name="password" required/>
+              </label> <br/>
+              <input class="btn btn-primary mb-2" type="submit" value="Login"/>
+            </form>
+            <section>
+        </div>
     </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="login.js"></script>
+    <script src="../JS/login.js"></script>
   </body>
 </html>
