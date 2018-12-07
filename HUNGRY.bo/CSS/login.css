@@ -1,5 +1,11 @@
 @font-face {
+  src: url("../font/YellowTail-Regular.otf");
+  font-family: YellowTail;
+}
 
+@font-face {
+  src: url("../font/LagueSpartan-Bold.otf");
+  font-family: LagueSpartan;
 }
 
 html {
@@ -18,11 +24,12 @@ div.title {
 }
 
 h1 {
-
+  font-family: LagueSpartan;
 }
 
 h2 {
-  font-size: 16px;
+  font-family: YellowTail;
+  font-size: 20px;
   color: white;
 }
 
@@ -37,7 +44,7 @@ img {
 }
 
 input[type="submit"] {
-  width: 20%;
+  width: 25%;
   margin-top: 3%;
   font-weight: bold;
 }
@@ -49,7 +56,6 @@ input[type="password"], input[type="text"] {
 
 @media screen and (max-width: 576px) {
   #login {
-    margin: 0 0 0 0;
-    background-color:  rgba(255,255,255,0.4);
+    background-color: rgba(255,255,255,0.4);
   }
 }
