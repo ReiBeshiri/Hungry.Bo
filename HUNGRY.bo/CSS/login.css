@@ -4,8 +4,8 @@
 }
 
 @font-face {
-  src: url("../font/LagueSpartan-Bold.otf");
-  font-family: LagueSpartan;
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
 }
 
 html {
@@ -24,7 +24,8 @@ div.title {
 }
 
 h1 {
-  font-family: LagueSpartan;
+  font-size: 30px;
+  font-family: LeagueSpartan;
 }
 
 h2 {
@@ -52,6 +53,10 @@ input[type="submit"] {
 input[type="password"], input[type="text"] {
   margin-top: 3%;
   background-color: rgba(255,255,255,0.5);
+}
+
+label {
+  font-family: LeagueSpartan;
 }
 
 @media screen and (max-width: 576px) {
