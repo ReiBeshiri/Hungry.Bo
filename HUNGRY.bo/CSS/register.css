@@ -1,0 +1,73 @@
+@font-face {
+  src: url("../font/YellowTail-Regular.otf");
+  font-family: YellowTail;
+}
+
+@font-face {
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: url("../res/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
+
+div.title {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+h1 {
+  font-size: 30px;
+  font-family: LeagueSpartan;
+}
+
+h2 {
+  font-family: YellowTail;
+  font-size: 20px;
+  color: rgba(255,255,255,1);
+}
+
+#register {
+  height: 100%;
+  background-color: rgba(255,255,255,0.6);
+  max-height: 100%;
+}
+
+img {
+  margin-top: 6%;
+  width: 40%;
+}
+
+input[type="password"],
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="radio"] {
+  margin-top: 1%;
+  background-color: rgba(255,255,255,0.5);
+}
+
+input[type="submit"] {
+  width: 25%;
+  margin-top: 1%;
+  font-weight: bold;
+}
+
+label {
+  font-family: LeagueSpartan;
+  padding: 1%;
+}
+
+
+@media screen and (max-width: 576px) {
+  #register {
+    background-color: rgba(255,255,255,0.4);
+  }
+}
