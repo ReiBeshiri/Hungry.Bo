@@ -88,7 +88,7 @@
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
                     <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#">Scrivi una recensione</a></small>
+                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
                 </div>
               </a>
             </div>
@@ -104,7 +104,7 @@
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
                     <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#">Scrivi una recensione</a></small>
+                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
                 </div>
               </a>
             </div>
@@ -120,7 +120,7 @@
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
                     <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#">Scrivi una recensione</a></small>
+                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
                 </div>
               </a>
             </div>
@@ -136,7 +136,7 @@
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
                     <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#">Scrivi una recensione</a></small>
+                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
                 </div>
               </a>
             </div>
@@ -152,7 +152,7 @@
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
                     <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#">Scrivi una recensione</a></small>
+                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
                 </div>
               </a>
             </div>
@@ -160,6 +160,39 @@
         </div>
       </div>
     </div>
+
+
+                  <!-- popup -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><small>Scrivi una recensione!</small></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                      <div class="modal-body">
+                       <form class="" action="" method="post">
+                         <div class="form-group">
+                           <div class="form-group">
+                             <label for="comment">Commento:</label>
+                               <textarea class="form-control" rows="5" id="comment"></textarea>
+                           </div>
+                          <label class="" for="voto">voto:
+                           <input class="form-control" type="number" name="voto" min="1" max="10" required />
+                          </label>
+                         </div>
+                         <input class="btn btn-primary mb-2 text-center" type="submit" value="Invia Recensione" id="submit"/>
+                        </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- fine popup -->
+
+
+
 
     <footer>
       <p> HUNGRY.bo </p>
