@@ -1,0 +1,31 @@
+@font-face {
+  src: url("../font/YellowTail-Regular.otf");
+  font-family: YellowTail;
+}
+
+@font-face {
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
+}
+
+figcaption {
+  font-family: LeagueSpartan;
+}
+
+h6 {
+  font-family: Helvetica;
+  font-weight: lighter;
+}
+
+.nomelocale {
+  font-family: Helvetica;
+  font-weight: lighter;
+}
+
+#greed {
+  padding: 20px;
+}
+
+.card {
+  height: 100%;
+}
