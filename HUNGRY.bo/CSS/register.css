@@ -45,6 +45,13 @@ img {
   width: 40%;
 }
 
+p {
+  margin-top: 10px;
+  font-style: italic;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+
 input[type="password"],
 input[type="text"],
 input[type="email"],
