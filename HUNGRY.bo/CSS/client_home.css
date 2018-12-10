@@ -8,16 +8,7 @@
   font-family: LeagueSpartan;
 }
 
-figcaption {
-  font-family: LeagueSpartan;
-}
-
-h6 {
-  font-family: Helvetica;
-  font-weight: lighter;
-}
-
-.nomelocale {
+h6, small {
   font-family: Helvetica;
   font-weight: lighter;
 }
@@ -28,4 +19,18 @@ h6 {
 
 .card {
   height: 100%;
+}
+
+img.icon {
+  width: 100px;
+  padding: 10px;
+}
+
+#recensione {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#voto {
+  font-size: 13px;
 }
