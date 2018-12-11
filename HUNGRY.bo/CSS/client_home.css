@@ -67,6 +67,11 @@ footer>p:first-child {
   nav {
     display: flex;
     flex-direction: row;
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1); 
   }
 
   a.navbar-brand {
