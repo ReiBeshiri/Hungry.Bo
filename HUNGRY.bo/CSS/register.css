@@ -67,7 +67,7 @@ input[type="submit"] {
   font-weight: bold;
 }
 
-label {
+label, legend {
   font-family: LeagueSpartan;
   padding: 1%;
 }

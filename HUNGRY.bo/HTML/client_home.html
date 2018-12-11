@@ -23,7 +23,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <!--<a class="navbar-brand" href="#">Hungry.bo</a> -->
       <a class="navbar-brand d-inline-block" href="#">
-        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icona" alt=""/>
+        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icona" alt="icon"/>
       </a>
 
       <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,25 +46,27 @@
           <li class="nav-item">
             <a class="nav-link" href="#">
               Notifiche
-              <i class="fa fa-envelope-o">
+              <em class="fa fa-envelope-o">
                 <span class="badge badge-danger">2</span>
-              </i>
+              </em>
             </a>
           </li>
         </ul>
         <ul class="navbar-nav">
-          <!--<li class="nav-item active">
+          <li class="nav-item active">
+            <!--
             <a class="nav-link" href="#">
               <i class="fa fa-home"></i>
               Logout
               <span class="sr-only">(current)</span>
-              </a>
-          </li> -->
-          <button type="button" class="btn btn-outline-info">Logout</button>
+            </a> -->
+            <button type="button" class="btn btn-outline-info">Logout</button>
+          </li>
         </ul>
       </div>
       <ul class="navbar-nav btn-cart">
-        <!-- <li class="nav-item active">
+        <li class="nav-item active">
+          <!--
           <a class="nav-link" href="#">
             <i class="fa fa-home"></i>
             Logout
@@ -83,120 +85,61 @@
           <div class="card">
             <div class="view overlay hm-white-slight">
               <a href="#">
-                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt=""/>
-                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt=""/>
+                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/>
+                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/>
                 <div class="card-body">
                     <h6 class="card-title text-center">Nome locale</h6>
-                    <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
+                    <p class="card-text text-muted text-center voto">Voto: <span class="media-voto"></span></p>
                 </div>
               </a>
+              <div class="card-footer text-right">
+                <small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 mb-4 col-xl-3">
-          <div class="card">
-            <div class="view overlay hm-white-slight">
-              <a href="#">
-                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt=""/>
-                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt=""/>
-                <div class="card-body">
-                    <h6 class="card-title text-center">Nome locale</h6>
-                    <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-lg-4 col-md-6 mb-4 col-xl-3">
-          <div class="card">
-            <div class="view overlay hm-white-slight">
-              <a href="#">
-                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt=""/>
-                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt=""/>
-                <div class="card-body">
-                    <h6 class="card-title text-center">Nome locale</h6>
-                    <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4 col-xl-3">
-          <div class="card">
-            <div class="view overlay hm-white-slight">
-              <a href="#">
-                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt=""/>
-                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt=""/>
-                <div class="card-body">
-                    <h6 class="card-title text-center">Nome locale</h6>
-                    <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4 col-xl-3">
-          <div class="card">
-            <div class="view overlay hm-white-slight">
-              <a href="#">
-                <img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt=""/>
-                <img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt=""/>
-                <div class="card-body">
-                    <h6 class="card-title text-center">Nome locale</h6>
-                    <p class="card-text text-muted text-center" id="voto">Voto: <span id="media-voto"></span></p>
-                    <small class="card-text text-muted float-right text-right" id="recensione"><a href="#" data-toggle="modal" data-target="#exampleModalCenter">Scrivi una recensione</a></small>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
 
-                  <!-- popup -->
-                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle"><small>Scrivi una recensione!</small></h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                      <div class="modal-body">
-                       <form class="" action="" method="post">
-                         <div class="form-group">
-                           <div class="form-group">
-                             <label for="comment">Commento:</label>
-                               <textarea class="form-control" rows="5" id="comment"></textarea>
-                           </div>
-                          <label class="" for="voto">voto:
-                           <input class="form-control" type="number" name="voto" min="1" max="10" required />
-                          </label>
-                         </div>
-                         <input class="btn btn-primary mb-2 text-center" type="submit" value="Invia Recensione" id="submit"/>
-                        </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <!-- fine popup -->
+    <!-- popup -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><small>Scrivi una recensione!</small></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="../PHP/client_home.php" method="post">
+              <div class="form-group">
+                <div class="form-group">
+                  <label>Commento:
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                  </label>
+                </div>
+                <label>Voto:
+                  <input class="form-control" type="number" name="voto" min="1" max="10" required />
+                </label>
+              </div>
+              <input class="btn btn-primary mb-2 text-center" type="submit" value="Invia Recensione" id="submit"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fine popup -->
 
 
 
 
     <footer>
       <p> HUNGRY.bo </p>
-      <p> Mattia Vincenzi 792970 </br>
+      <p> Mattia Vincenzi 792970 <br/>
           Rei Beshiri     789973
       </p>
     </footer>

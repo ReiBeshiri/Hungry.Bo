@@ -30,12 +30,12 @@ img.icon {
   padding: 10px;
 }
 
-#recensione {
+.comment {
   font-style: italic;
   text-decoration: underline;
 }
 
-#voto {
+.voto {
   font-size: 13px;
 }
 
