@@ -70,6 +70,7 @@ input[type="submit"] {
 label, legend {
   font-family: LeagueSpartan;
   padding: 1%;
+  font-size: 16px;
 }
 
 
