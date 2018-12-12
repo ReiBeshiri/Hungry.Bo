@@ -25,6 +25,10 @@ div.tables {
   padding: 20px;
 }
 
+div.table-header>p {
+  font-family: LeagueSpartan;
+  font-style: italic;
+}
 div.dumb-container {
   display: inline-block;
   width: 100%;

@@ -1,4 +1,4 @@
-$().ready(function () {
+$(document).ready(function () {
   $(window).bind("resize", function () {
       if ($(this).width() < 981) {
           $("ul.btn-cart").empty();
