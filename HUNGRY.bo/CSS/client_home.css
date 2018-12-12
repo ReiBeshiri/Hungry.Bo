@@ -35,7 +35,7 @@ img.icon {
   text-decoration: underline;
 }
 
-.voto {
+.vote {
   font-size: 13px;
 }
 
@@ -71,7 +71,7 @@ footer>p:first-child {
   }
 
   nav > *{
-    transform: scaleX(-1); 
+    transform: scaleX(-1);
   }
 
   a.navbar-brand {
@@ -82,7 +82,7 @@ footer>p:first-child {
     order: 3;
   }
 
-  #carrello {
+  #cart {
     order: 1;
   }
 }
