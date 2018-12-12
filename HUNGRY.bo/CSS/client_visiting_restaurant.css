@@ -1,0 +1,109 @@
+@font-face {
+  src: url("../font/YellowTail-Regular.otf");
+  font-family: YellowTail;
+}
+
+@font-face {
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
+}
+
+h6, small {
+  font-family: Helvetica;
+  font-weight: lighter;
+}
+
+h6 {
+  color: #343a40;
+}
+
+#greed {
+  margin-top: 20px;
+}
+
+.card {
+  height: 100%;
+}
+
+img.icon {
+  width: 100px;
+  padding: 10px;
+}
+
+.comment {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.qnt {
+  font-size: 13px;
+}
+
+button {
+  margin: 10px;
+}
+
+footer {
+  padding: 20px;
+  background-color: #343a40;
+  color: #FFFF;
+  font-family: Helvetica;
+}
+
+footer>p:last-child {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 13px;
+  text-align: right;
+}
+
+footer>p:first-child {
+  font-weight: bold;
+  font-size: 15px;
+  float: left;
+}
+
+@media screen and (max-width: 981px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1); 
+  }
+
+  a.navbar-brand {
+    order: 2;
+  }
+
+  #toggler {
+    order: 3;
+  }
+
+  #carrello {
+    order: 1;
+  }
+}
+
+#tabelle{
+  padding: 1%;
+  width: 100%;
+}
+
+#comment{
+  width: 100%;
+}
+
+#comment{
+  width: 180%;
+}
+
+#primacolonnaprodotti{
+  width: 20%;
+}
+
+#colonnaprezzo{
+  width: 20%;
+}
