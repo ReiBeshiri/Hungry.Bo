@@ -84,64 +84,78 @@
 
     <!-- TABLES -->
     <div class="row tables">
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-8">
         <div class="table-header">
           <p>Secondi Piatti</p>
         </div>
 				<table class="table table-hover table-editable">
 				  <thead class="thead-dark">
 					<tr>
-					  <th>Prodotto</th>
-					  <th>Prezzo</th>
-            <th>Remove</th>
+            <th id="prduct-id" hidden>id</th>
+					  <th id="product">Prodotto</th>
+					  <th id="price">Prezzo</th>
+            <th id="modify">Modifica</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<tr>
-            <td contenteditable="true">Hamburger <br/>
+            <td headers="id" hidden>1</th>
+            <td headers="product">Hamburger <br/>
             (Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</td>
-            <td contenteditable="true">6 €</td>
+            <td headers="price">6 €</td>
             <td>
-              <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+              <span class="table-modify">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+              </span>
             </td>
 					</tr>
 					<tr>
-            <td contenteditable="true">Panino <br/>
+            <td headers="id" hidden>2</th>
+            <td headers="product">Panino <br/>
             (Prosciutto, Formaggio, Pane di sesamo ...)</td>
-					  <td contenteditable="true">5 €</td>
+					  <td headers="price">5 €</td>
             <td>
-              <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+              <span class="table-modify">
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+              </span>
             </td>
 					</tr>
   			  </tbody>
   			</table>
   		</div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="table-header">
             <p>Bevande</p>
           </div>
   				<table class="table table-hover table-editable">
   				  <thead class="thead-dark">
   					<tr>
-  					  <th>Prodotto</th>
-  					  <th>Prezzo</th>
-              <th>Remove</th>
+              <th id="prduct-id" hidden>id</th>
+  					  <th id="product">Prodotto</th>
+  					  <th id="price">Prezzo</th>
+              <th id="modify">Modifica</th>
   					</tr>
   				  </thead>
   				  <tbody>
   					<tr>
-              <td contenteditable="true">Coca Cola </td>
-              <td contenteditable="true">2 €</td>
+              <td headers="id" hidden>3</th>
+              <td headers="product">Coca Cola</td>
+              <td headers="price">2 €</td>
               <td>
-                <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                <span class="table-modify">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                </span>
               </td>
   					</tr>
   					<tr>
-              <td contenteditable="true">Fanta </td>
-  					  <td contenteditable="true">3 €</td>
+              <td headers="id" hidden>4</th>
+              <td headers="product">Fanta</td>
+  					  <td headers="proce">3 €</td>
               <td>
-                <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                <span class="table-modify">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                </span>
               </td>
   					</tr>
     			  </tbody>
@@ -149,6 +163,50 @@
     		</div>
   	</div>
     <!-- END TABLES -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modify-popup" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><small>Modifica Prodotto</small></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <form action="../PHP/supplier_home.php" method="post">
+                  <label hidden>ID:
+                    <input class="form-control" type="text" name="id" hidden />
+                  </label>
+                  <label>Nome:
+                    <input class="form-control" type="text" name="nome"/>
+                  </label> <br/>
+                  <label>Ingredienti:
+                    <textarea class="form-control" rows="5" cols="42" name="ingredienti" > </textarea>
+                  </label> <br/>
+                  <label>Prezzo:
+                    <input class="form-control" type="number" name="prezzo" min="1" max="90" />
+                  </label> <br/>
+                  <label>Tipologia:
+                    <select class="form-control" id="plate-type">
+                      <option>Primo Piatto</option>
+                      <option>Secondo Piatto</option>
+                      <option>Bevanda</option>
+                    </select>
+                  </label> <br/>
+                  <label>Tempo di Preparazione:
+                    <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
+                  </label> <br/>
+                  <div class="text-center">
+                    <input class="btn btn-primary mb-2 text-center" type="submit" id="submit"/>
+                    <input class="btn btn-danger mb-2 text-center" type="submit" value="Rimuovi" id="remove"/>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <footer>
       <p> HUNGRY.bo <br/>
