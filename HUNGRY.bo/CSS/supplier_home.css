@@ -81,6 +81,10 @@ input[type="submit"] {
   width: 25%;
 }
 
+input[type="time"]{
+  margin-right: 10px;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;
@@ -93,6 +97,3 @@ input[type="submit"] {
   }
 }
 
-.form-control{
-
-}
