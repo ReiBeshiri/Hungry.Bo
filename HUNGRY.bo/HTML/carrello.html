@@ -68,52 +68,52 @@
     </div>
     <!--NAVBAR END-->
 
-  <div class="container col-8">
-  <table id="cart" class="table table-hover table-condensed">
-            <thead>
-            <tr>
-              <th style="width:25%">Fornitore 1</th>
-              <th style="width:10%">Prezzo</th>
-              <th style="width:4%">Quantità</th>
+  <!-- ORDER TABLE -->
+  <div class="container">
+    <div class="col-12">
+      <table id="cart" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Prodotto</th>
+            <th>Prezzo</th>
+            <th>Quantità</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-sm-2 hidden-xs"><span>Margherita</span></div>
+              </div>
+            </td>
+            <td data-th="Price" class="prod-price">1.99</td>
+            <td data-th="Quantity">
+              <input type="number" class="form-control text-center prod-qnt" value="1" name="qnt-prod1"/>
+            </td>
+          </tr>
+          <tr>
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-sm-2 hidden-xs"><span>Diavola</span></div>
+              </div>
+            </td>
+            <td data-th="Price" class="prod-price">2.99</td>
+            <td data-th="Quantity">
+              <input type="number" class="form-control text-center prod-qnt" value="6" name="qnt-prod2"/>
+            </td>
             </tr>
-          </thead>
-          <tbody>
+        </tbody>
+        <tfoot class="footer">
             <tr>
-              <td data-th="Product">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><span>Margherita</span></div>
-                </div>
-              </td>
-              <td data-th="Price" class="prod-price">1.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center prod-qnt" value="1" name="qnt-prod1"/>
-              </td>
+              <td hidden></td>
+              <td class="align-center"><strong class="totalcart">Totale 1.99</strong></td>
+              <td class="text-right"><a href="#" class="btn btn-warning">Ordina e paga</a></td>
             </tr>
-            <tr>
-              <td data-th="Product">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><span>Diavola</span></div>
-                </div>
-              </td>
-              <td data-th="Price" class="prod-price">2.99</td>
-              <td data-th="Quantity">
-                <input type="number" class="form-control text-center prod-qnt" value="6" name="qnt-prod2"/>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Ordina e paga</a></td>
-              <td class="hidden-xs text-center"><strong id="totalcart">Totale 1.99</strong></td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-</div>
-
-
-
-
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <!-- END ORDER TABLE -->
 
 
 <!-- popup -->
