@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	  <!-- Stile Personalizzato -->
-	  <link rel="stylesheet" href="../CSS/supplier_home.css">
+	  <link rel="stylesheet" href="../CSS/client_restaurant.css">
 
     <!-- JS file -->
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
 
-    <title>home_fornitore</title>
+    <title>restaurant</title>
   </head>
   <body>
 
@@ -22,7 +22,7 @@
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand d-inline-block" href="#">
-        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icon" alt="icon"/>
+        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icona" alt="icon"/>
       </a>
 
       <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,27 +32,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-local">
-              Gestisci Locale
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorie
             </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Pizze</a>
+              <a class="dropdown-item" href="#">Piadine</a>
+              <a class="dropdown-item" href="#">Giapponese</a>
+              <a class="dropdown-item" href="#">Fast Food</a>
+            </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item">
             <a class="nav-link" href="#">
-              Gestisci Ordini
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#add-product">
-              Aggiungi Prodotto
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-hours">
-              Modifica Orari
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#manage-notify">
               Notifiche
               <em class="fa fa-envelope-o">
                 <span class="badge badge-danger">2</span>
@@ -62,10 +53,27 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item active">
+            <!--
+            <a class="nav-link" href="#">
+              <i class="fa fa-home"></i>
+              Logout
+              <span class="sr-only">(current)</span>
+            </a> -->
             <button type="button" class="btn btn-outline-info">Logout</button>
           </li>
         </ul>
       </div>
+      <ul class="navbar-nav btn-cart">
+        <li class="nav-item active">
+          <!--
+          <a class="nav-link" href="#">
+            <i class="fa fa-home"></i>
+            Logout
+            <span class="sr-only">(current)</span>
+          </a> -->
+          <button id="cart" type="button" class="btn btn-outline-info">Carrello</button>
+        </li>
+      </ul>
     </nav>
     </div>
     <!-- END NAVBAR -->
@@ -417,6 +425,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../JS/supplier_home.js"></script>
+    <script src="../JS/client_restaurant.js"></script>
   </body>
 </html>

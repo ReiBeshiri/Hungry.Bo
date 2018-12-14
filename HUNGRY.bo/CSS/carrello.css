@@ -92,6 +92,15 @@ th:last-child, td:last-child {
   width: 4%;
 }
 
+p {
+  font: 30px;
+  font-weight: bold;
+}
+
+p>img.cart {
+  width: 50px;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;

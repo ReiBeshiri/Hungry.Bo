@@ -1,0 +1,95 @@
+@font-face {
+  src: url("../font/YellowTail-Regular.otf");
+  font-family: YellowTail;
+}
+
+@font-face {
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
+}
+
+#container {
+  width: 100%;
+  display: inline-block;
+  background-image: url("../res/background.jpg");
+  background-size: cover;
+  position: relative;
+  background-position: center center;
+  /*height: 100%; background-image: url("/public/businesses/86.9e10cb9a-e482-4a68-9a77-251b81109bd1.jpg"); background-repeat: no-repeat; background-position: center center; background-size: cover; position: relative;*/
+}
+
+#container > div.dumb-container > p {
+  color: rgb(255, 255, 255);
+  font-family: LeagueSpartan;
+}
+
+table tr {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+div.tables {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+div[class="row tables"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+div.table-header>p {
+  font-family: LeagueSpartan;
+}
+
+div.dumb-container {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6));
+  border-bottom: solid 2px rgb(0, 0, 0);
+}
+
+img.local-icon {
+  margin-top: 110px;
+  width: 200px;
+  height: 200px;
+}
+
+footer {
+  padding: 20px;
+  background-color: #343a40;
+  color: #FFFF;
+  font-family: Helvetica;
+}
+
+footer>p:last-child {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 13px;
+  text-align: right;
+}
+
+footer>p:first-child {
+  font-weight: bold;
+  font-size: 15px;
+  float: left;
+}
+
+input[type="submit"] {
+  width: 25%;
+}
+
+
+@media screen and (max-width: 981px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1);
+  }
+}
