@@ -81,6 +81,7 @@ input[type="submit"] {
   width: 25%;
 }
 
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;
