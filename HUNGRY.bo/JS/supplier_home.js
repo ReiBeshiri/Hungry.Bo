@@ -6,7 +6,6 @@ $(document).ready(function(){
   }
 
   function handler() {
-    console.log("row left!");
   }
 
   $('.table-remove').click(function () {
@@ -16,4 +15,13 @@ $(document).ready(function(){
   $('.table-add').click(function () {
 
   });
+
+  $(window).bind("resize", function () {
+      if ($(this).width() < 981) {
+        $("tr>td>span.ingredients-in-table").attr("hidden", "true");
+      } else {
+        $("tr>td>span.ingredients-in-table").removeAttr("hidden");
+      }
+  }).trigger('resize');
+
 });
