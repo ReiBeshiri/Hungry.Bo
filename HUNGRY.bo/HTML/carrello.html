@@ -77,7 +77,8 @@
               <tr>
                 <th>Prodotto</th>
                 <th>Prezzo</th>
-                  <th>Quantità</th>
+                <th>Quantità</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -89,7 +90,11 @@
                 </td>
                 <td data-th="Price" class="prod-price">3</td>
                 <td data-th="Quantity">
-                  <input type="number" class="form-control text-center prod-qnt" value="1" name="qnt-prod1"/>
+                  <input type="number" class="form-control text-center prod-qnt" value="1" min="0" max="90" name="qnt-prod1"/>
+                </td>
+                <td>
+                  <label hidden for="cancel">Elimina:</label>
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
                 </td>
               </tr>
               <tr>
@@ -100,7 +105,11 @@
                 </td>
                 <td data-th="Price" class="prod-price">4</td>
                 <td data-th="Quantity">
-                  <input type="number" class="form-control text-center prod-qnt" value="6" name="qnt-prod2"/>
+                  <input type="number" class="form-control text-center prod-qnt" value="6"  min="0" max="90" name="qnt-prod2"/>
+                </td>
+                <td>
+                  <label hidden for="cancel">Elimina:</label>
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
                 </td>
               </tr>
             </tbody>
@@ -127,7 +136,7 @@
               <tr>
                 <th>Prodotto</th>
                 <th>Prezzo</th>
-                  <th>Quantità</th>
+                <th>Quantità</th>
               </tr>
             </thead>
             <tbody>
@@ -139,7 +148,11 @@
                 </td>
                 <td data-th="Price" class="prod-price">1</td>
                 <td data-th="Quantity">
-                  <input type="number" class="form-control text-center prod-qnt" value="1" name="qnt-prod1"/>
+                  <input type="number" class="form-control text-center prod-qnt" value="1" min="0" max="90" name="qnt-prod1"/>
+                </td>
+                <td>
+                  <label hidden for="cancel">Elimina:</label>
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
                 </td>
               </tr>
               <tr>
@@ -150,7 +163,11 @@
                 </td>
                 <td data-th="Price" class="prod-price">2</td>
                 <td data-th="Quantity">
-                  <input type="number" class="form-control text-center prod-qnt" value="2" name="qnt-prod2"/>
+                  <input type="number" class="form-control text-center prod-qnt" value="2"  min="0" max="90" name="qnt-prod2"/>
+                </td>
+                <td>
+                  <label hidden for="cancel">Elimina:</label>
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
                 </td>
               </tr>
             </tbody>

@@ -73,7 +73,9 @@ img.local-icon {
   margin-bottom: 20px;
 }
 
-div.supllier-cart {
+.cancel {
+  width: 15px;
+  height: 15px;
 }
 
 .table>tbody>tr>td, .table>tfoot>tr>td{
