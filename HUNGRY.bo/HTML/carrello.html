@@ -19,8 +19,8 @@
   <body>
 
   <!-- NAVBAR -->
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <!--<a class="navbar-brand" href="#">Hungry.bo</a> -->
       <a class="navbar-brand d-inline-block" href="#">
         <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icona" alt="icon"/>
@@ -59,7 +59,7 @@
         </ul>
       </div>
     </nav>
-    </div>
+  </div>
     <!--NAVBAR END-->
 
   <!-- ORDER TABLE FIRST FORNITURE-->
@@ -180,29 +180,46 @@
   </div>
   <!-- END ORDER TABLE -->
 
-
-<!-- popup -->
-<!-- Modal -->
-<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <!-- popup -->
+  <!-- Modal -->
+  <div class="modal fade" id="order-pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ordina & Paga</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="../PHP/carrello.php" method="post">
+            <div class="form-group">
+              <label>Orario di consegna:
+                <input class="form-control" type="time" name="ora-consegna" min="11:00" max="15:00" required/>
+              </label><br/>
+              <label>Luogo di Consegna:
+                <select class="form-control">
+                  <option selected></option>
+                  <option value="1">Atrio</option>
+                  <option value="2">Aula 3.7</option>
+                </select>
+              </label><br/>
+              <label>Numero carta:
+                <input class="form-control" type="text" name="numero-carta"/>
+              </label><br/>
+              <label>CVV:
+                <input class="form-control" type="text" name="cvv"/>
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-outline-info mb-2">Effettua Ordine</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- fine popup -->
+  <!-- fine popup -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
