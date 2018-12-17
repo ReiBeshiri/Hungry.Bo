@@ -21,7 +21,6 @@
   <!-- NAVBAR -->
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <!--<a class="navbar-brand" href="#">Hungry.bo</a> -->
       <a class="navbar-brand d-inline-block" href="#">
         <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icona" alt="icon"/>
       </a>
@@ -32,17 +31,6 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Categorie
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Pizze</a>
-              <a class="dropdown-item" href="#">Piadine</a>
-              <a class="dropdown-item" href="#">Giapponese</a>
-              <a class="dropdown-item" href="#">Fast Food</a>
-            </div>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               Notifiche
@@ -60,7 +48,7 @@
       </div>
     </nav>
   </div>
-    <!--NAVBAR END-->
+  <!--NAVBAR END-->
 
   <!-- ORDER TABLE FIRST FORNITURE-->
   <div class="container">
@@ -75,41 +63,42 @@
           <table class="table table-hover table-condensed">
             <thead>
               <tr>
-                <th>Prodotto</th>
-                <th>Prezzo</th>
-                <th>Quantità</th>
-                <th></th>
+                <th id="idF1" hidden>ID</th>
+                <th id="productF1">Prodotto</th>
+                <th id="priceF1">Prezzo</th>
+                <th id="qntF1">Quantità</th>
+                <th id="removeF1" hidden>Remove</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td data-th="Product">
+                <td headers="idF1" hidden>1</td>
+                <td headers="productF1">
                   <div class="row">
                     <span>Margherita</span>
                   </div>
                 </td>
-                <td data-th="Price" class="prod-price">3</td>
-                <td data-th="Quantity">
+                <td class="prod-price" headers="priceF1">3</td>
+                <td headers="qntF1">
                   <input type="number" class="form-control text-center prod-qnt" value="1" min="0" max="90" name="qnt-prod1"/>
                 </td>
-                <td>
-                  <label hidden for="cancel">Elimina:</label>
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
+                <td headers="removeF1">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
                 </td>
               </tr>
               <tr>
-                <td data-th="Product">
+                <td headers="idF1" hidden>2</td>
+                <td headers="productF1">
                   <div class="row">
                     <span>Diavola</span>
                   </div>
                 </td>
-                <td data-th="Price" class="prod-price">4</td>
-                <td data-th="Quantity">
+                <td class="prod-price" headers="priceF1">4</td>
+                <td headers="qntF1">
                   <input type="number" class="form-control text-center prod-qnt" value="6"  min="0" max="90" name="qnt-prod2"/>
                 </td>
-                <td>
-                  <label hidden for="cancel">Elimina:</label>
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
+                <td headers="removeF1">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
                 </td>
               </tr>
             </tbody>
@@ -122,11 +111,12 @@
   </div>
   <!-- END ORDER TABLE -->
 
-  <!-- ORDER TABLE FIRST FORNITURE-->
+  <!-- ORDER TABLE SECOND FORNITURE-->
   <div class="container">
+    <p class="text-center">Carrello <img src="../res/cart-dark.png" class="img-fluid cart" alt="cart"/></p>
     <div class="card text-center supplier-cart">
       <div class="card-body">
-        Fornitore1
+        Fornitore2
         <div class="text-center">
           <img class="d-inline-block img-fluid rounded-circle local-icon" src="../res/icona.png" alt="local icon"/>
         </div>
@@ -134,40 +124,42 @@
           <table class="table table-hover table-condensed">
             <thead>
               <tr>
-                <th>Prodotto</th>
-                <th>Prezzo</th>
-                <th>Quantità</th>
+                <th id="idF2" hidden>ID</th>
+                <th id="productF2">Prodotto</th>
+                <th id="priceF2">Prezzo</th>
+                <th id="qntF2">Quantità</th>
+                <th id="removeF2" hidden>Remove</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td data-th="Product">
+                <td headers="idF2" hidden>1</td>
+                <td headers="productF2">
                   <div class="row">
                     <span>Margherita</span>
                   </div>
                 </td>
-                <td data-th="Price" class="prod-price">1</td>
-                <td data-th="Quantity">
+                <td class="prod-price" headers="priceF2">3</td>
+                <td headers="qntF2">
                   <input type="number" class="form-control text-center prod-qnt" value="1" min="0" max="90" name="qnt-prod1"/>
                 </td>
-                <td>
-                  <label hidden for="cancel">Elimina:</label>
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
+                <td headers="removeF2">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
                 </td>
               </tr>
               <tr>
-                <td data-th="Product">
+                <td headers="idF2" hidden>2</td>
+                <td headers="productF2">
                   <div class="row">
                     <span>Diavola</span>
                   </div>
                 </td>
-                <td data-th="Price" class="prod-price">2</td>
-                <td data-th="Quantity">
-                  <input type="number" class="form-control text-center prod-qnt" value="2"  min="0" max="90" name="qnt-prod2"/>
+                <td class="prod-price" headers="priceF2">4</td>
+                <td headers="qntF2">
+                  <input type="number" class="form-control text-center prod-qnt" value="6"  min="0" max="90" name="qnt-prod2"/>
                 </td>
-                <td>
-                  <label hidden for="cancel">Elimina:</label>
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" />
+                <td headers="removeF2">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
                 </td>
               </tr>
             </tbody>
@@ -181,7 +173,6 @@
   <!-- END ORDER TABLE -->
 
   <!-- popup -->
-  <!-- Modal -->
   <div class="modal fade" id="order-pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -199,7 +190,6 @@
               </label><br/>
               <label>Luogo di Consegna:
                 <select class="form-control">
-                  <option selected></option>
                   <option value="1">Atrio</option>
                   <option value="2">Aula 3.7</option>
                 </select>
@@ -219,7 +209,15 @@
       </div>
     </div>
   </div>
-  <!-- fine popup -->
+  <!-- END popup -->
+
+  <footer>
+    <p> HUNGRY.bo <br/>
+        <small> 2018/2019 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna </small> </p>
+    <p> Mattia Vincenzi 792970 <br/>
+        Rei Beshiri     789973
+    </p>
+  </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
