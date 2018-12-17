@@ -81,6 +81,9 @@ input[type="submit"] {
   width: 25%;
 }
 
+div.notify {
+  margin-bottom: 10px;
+}
 
 @media screen and (max-width: 981px) {
   nav {
@@ -93,4 +96,3 @@ input[type="submit"] {
     transform: scaleX(-1);
   }
 }
-

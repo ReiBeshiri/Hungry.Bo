@@ -21,52 +21,52 @@
     <!-- NAVBAR -->
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand d-inline-block" href="#">
-        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icon" alt="icon"/>
-      </a>
+        <a class="navbar-brand d-inline-block" href="#">
+          <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icon" alt="icon"/>
+        </a>
 
-      <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#">
-              Gestisci Ordini
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-local">
-              Gestisci Locale
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#add-product">
-              Aggiungi Prodotto
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-hours">
-              Modifica Orari
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#manage-notify">
-              Notifiche
-              <em class="fa fa-envelope-o">
-                <span class="badge badge-danger">2</span>
-              </em>
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <button type="button" class="btn btn-outline-info">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#">
+                Gestisci Ordini
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-local">
+                Gestisci Locale
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#add-product">
+                Aggiungi Prodotto
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#modify-hours">
+                Modifica Orari
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#manage-notify">
+                Notifiche
+                <em class="fa fa-envelope-o">
+                  <span class="badge badge-danger">2</span>
+                </em>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <button type="button" class="btn btn-outline-info">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
     <!-- END NAVBAR -->
 
@@ -84,92 +84,92 @@
 
     <!-- TABLES -->
     <div class="row tables">
-			<div class="col-12 col-md-8">
+  		<div class="col-12 col-md-8">
         <div class="table-header">
           <p>Secondi Piatti</p>
         </div>
-				<table class="table table-hover table-editable">
-				  <thead class="thead-dark">
-					<tr>
-            <th id="prduct-id" hidden>id</th>
-					  <th id="product">Prodotto</th>
-					  <th id="price">Prezzo</th>
-            <th id="modify">Modifica</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-            <td headers="id" hidden>1</th>
-            <td headers="product">Hamburger <br/>
-              <span class="ingredients-in-table">(Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</span></td>
-            <td headers="price">6 €</td>
-            <td>
-              <span class="table-modify">
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-              </span>
-            </td>
-					</tr>
-					<tr>
-            <td headers="id" hidden>2</th>
-            <td headers="product">Panino <br/>
-              <span class="ingredients-in-table">(Prosciutto, Formaggio, Pane di sesamo ...)</span></td>
-					  <td headers="price">5 €</td>
-            <td>
-              <span class="table-modify">
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-              </span>
-            </td>
-					</tr>
-  			  </tbody>
-  			</table>
-  		</div>
+  			<table class="table table-hover table-editable">
+  			  <thead class="thead-dark">
+    				<tr>
+              <th id="id-p1" hidden>id</th>
+    				  <th id="product-p1">Prodotto</th>
+    				  <th id="price-p1">Prezzo</th>
+              <th id="modify-p1">Modifica</th>
+    				</tr>
+  			  </thead>
+  			  <tbody>
+    				<tr>
+              <td headers="id-p1" hidden>1</td>
+              <td headers="product-p1">Hamburger <br/>
+                <span class="ingredients-in-table">(Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</span></td>
+              <td headers="price-p1">6 €</td>
+              <td headers="modify-p1">
+                <span class="table-modify">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                </span>
+              </td>
+    				</tr>
+    				<tr>
+              <td headers="id-p1" hidden>2</td>
+              <td headers="product-p1">Panino <br/>
+                <span class="ingredients-in-table">(Prosciutto, Formaggio, Pane di sesamo ...)</span></td>
+    				  <td headers="price-p1">5 €</td>
+              <td headers="modify-p1">
+                <span class="table-modify">
+                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                  </span>
+              </td>
+    				</tr>
+    	   </tbody>
+    	</table>
+    </div>
 
-        <div class="col-12 col-md-4">
-          <div class="table-header">
-            <p>Bevande</p>
-          </div>
-  				<table class="table table-hover table-editable">
-  				  <thead class="thead-dark">
-  					<tr>
-              <th id="prduct-id" hidden>id</th>
-  					  <th id="product">Prodotto</th>
-  					  <th id="price">Prezzo</th>
-              <th id="modify">Modifica</th>
+    <div class="col-12 col-md-4">
+      <div class="table-header">
+        <p>Bevande</p>
+      </div>
+  		<table class="table table-hover table-editable">
+  		    <thead class="thead-dark">
+  			    <tr>
+              <th id="id-p2" hidden>id</th>
+  					  <th id="product-p2">Prodotto</th>
+  					  <th id="price-p2">Prezzo</th>
+              <th id="modify-p2">Modifica</th>
   					</tr>
-  				  </thead>
-  				  <tbody>
+  				</thead>
+  				<tbody>
   					<tr>
-              <td headers="id" hidden>3</th>
-              <td headers="product">Coca Cola</td>
-              <td headers="price">2 €</td>
-              <td>
+              <td headers="id-p2" hidden>3</td>
+              <td headers="product-p2">Coca Cola</td>
+              <td headers="price-p2">2 €</td>
+              <td headers="modify-p2">
                 <span class="table-modify">
                   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
                 </span>
               </td>
   					</tr>
   					<tr>
-              <td headers="id" hidden>4</th>
-              <td headers="product">Fanta</td>
-  					  <td headers="proce">3 €</td>
-              <td>
+              <td headers="id-p2" hidden>4</td>
+              <td headers="product-p2">Fanta</td>
+  					  <td headers="price-p2">3 €</td>
+              <td headers="modify-p2">
                 <span class="table-modify">
                   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
                 </span>
               </td>
   					</tr>
-    			  </tbody>
-    			</table>
-    		</div>
+    			</tbody>
+    		</table>
+    	</div>
   	</div>
     <!-- END TABLES -->
 
     <!-- Modal Modifica Prodotto-->
-    <div class="modal fade" id="modify-popup" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
+    <div class="modal fade" id="modify-popup" tabindex="-1" aria-labelledby="product-title" role="dialog" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Modifica Prodotto</small></h5>
+            <h5 class="modal-title" id="product-title">Modifica Prodotto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -202,9 +202,9 @@
                   <label>Tempo di Preparazione:
                     <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
                   </label> <br/>
-                  <div class="text-center">
-                    <input class="btn btn-primary mb-2 text-center" type="submit" id="submit"/>
-                    <input class="btn btn-danger mb-2 text-center" type="submit" value="Rimuovi" id="remove"/>
+                  <div class="modal-footer">
+                    <input class="btn btn-primary" type="submit" id="submit"/>
+                    <input class="btn btn-danger" type="submit" value="Rimuovi" id="remove"/>
                   </div>
               </form>
             </div>
@@ -214,11 +214,11 @@
       <!-- FINE Modal Modifica Prodotto -->
 
       <!-- Modal Modifica Orario-->
-      <div class="modal fade" id="modify-hours" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal fade" id="modify-hours" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Modifica Prodotto</small></h5>
+            <h5 class="modal-title" id="hour-title">Modifica Prodotto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -232,8 +232,8 @@
                     <label>Chiusura:
                       <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" required/>
                     </label>
-                    </div>
-              </form>
+                  </div>
+                </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary">Salva</button>
@@ -244,26 +244,28 @@
       <!-- FINE Modal Modifica Orario-->
 
       <!-- Modal Gestisci Locale-->
-      <div class="modal fade" id="modify-local" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal fade" id="modify-local" tabindex="-1" role="dialog" aria-labelledby="manage-title" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Gestisci Locale</small></h5>
+            <h5 class="modal-title" id="manage-title">Gestisci Locale</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
-                    <div class="custom-file mb-2">
-                        <input type="file" class="custom-file-input" id="customFile"/>
-                        <label class="custom-file-label" for="customFile">Aggiungi icona</label>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile"/>
-                        <label class="custom-file-label" for="customFile">Aggiungi immagine</label>
-                    </div>
-              </form>
+                  <div class="custom-file mb-2">
+                    <label class="custom-file-label">Aggiungi icona:
+                      <input type="file" class="custom-file-input" id="custom-icon"/>
+                    </label>
+                  </div>
+                  <div class="custom-file">
+                    <label class="custom-file-label">Aggiungi Immagine:
+                      <input type="file" class="custom-file-input" id="custom-img"/>
+                    </label>
+                  </div>
+                </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary">Salva</button>
@@ -274,50 +276,46 @@
       <!-- FINE Modal Gestisci Locale-->
 
       <!-- Modal Aggiunngi prodotto-->
-      <div class="modal fade" id="add-product" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modaladd"><small>Aggiungi Prodotto</small></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+      <div class="modal fade" id="add-product" tabindex="-1" aria-labelledby="add-title" role="dialog" data-toggle="modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="add-title">Aggiungi Prodotto</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group">
-                    <label for="text-input" class="col-form-label">Nome</label>
-                    <div>
-                      <input class="form-control" type="text" value="Inserisci nome prodotto" id="text-input">
-                    </div>
+                    <label>Nome:
+                      <input class="form-control" name="nome" type="text" value="Inserisci nome prodotto"/>
+                    </label>
                   </div>
                   <div class="form-group">
-                     <label for="textarea-desc">Descrizione</label>
-                     <textarea class="form-control" id="textarea-desc"></textarea>
+                     <label>Descrizione:
+                       <textarea class="form-control" name="descrizione" rows="5" cols="55" id="textarea-desc"></textarea>
+                     </label>
                   </div>
                   <div class="form-group">
-                    <label for="preparation-time-input" class="col-form-label">Tempo di preparazione</label>
-                    <div class="">
-                      <input class="form-control" type="number" value="1" min="1" max="90" id="preparation-time-input">
-                    </div>
+                    <label class="col-form-label">Tempo di preparazione:
+                      <input class="form-control" name="tempo-preparazione" type="number" value="1" min="1" max="90"/>
+                    </label>
                   </div>
                   <div class="form-group">
-                    <label for="prezzo-input" class="col-form-label">Prezzo</label>
-                    <div class="">
-                      <input class="form-control" type="number" value="1" min="1" max="90" id="prezzo-input">
-                    </div>
+                    <label class="col-form-label">Prezzo:
+                      <input class="form-control" name="prezzo" type="number" value="1" min="1" max="90"/>
+                    </label>
                   </div>
                   <div class="form-group">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Tipologia</label>
-                    <div class="text-right align-right">
-                      <select class="custom-select" id="inlineFormCustomSelect">
-                        <option selected></option>
-                        <option value="1">Antipasti</option>
-                        <option value="2">Primi piatti</option>
-                        <option value="3">Secondi</option>
-                        <option value="4">Dolce</option>
-                      </select>
-                    </div>
+                      <label class="mr-sm-2" >Tipologia:
+                        <select name="tipologia" class="custom-select">
+                          <option value="1">Antipasti</option>
+                          <option value="2">Primi piatti</option>
+                          <option value="3">Secondi</option>
+                          <option value="4">Dolce</option>
+                        </select>
+                      </label>
                   </div>
               </form>
             </div>
@@ -331,68 +329,68 @@
 
 
       <!-- Modal Gestisci Notifiche-->
-      <div class="modal fade" id="manage-notify" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Notifiche</small></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+      <div class="modal fade" id="manage-notify" tabindex="-1" aria-labelledby="notify-title" role="dialog" data-toggle="modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="notify-title">Notifiche</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 1</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 2</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 3</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 4</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 5</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card notify">
                       <div class="card-body">
                         <h6 class="card-title">Notifica 6</h6>
                         <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
                         <div class="text-right">
-                          <a href="#" class="btn btn-dark btn-sm">Segnala come letta</a>
+                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
                         </div>
                       </div>
                     </div>

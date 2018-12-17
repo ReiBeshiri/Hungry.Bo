@@ -43,11 +43,7 @@ img.icon {
   font-size: 13px;
 }
 
-.popup-footer {
-  width: 100%;
-}
-
-button {
+button:not(.footer-button) {
   margin: 10px;
 }
 
