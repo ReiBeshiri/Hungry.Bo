@@ -21,6 +21,10 @@ h6 {
   margin-top: 20px;
 }
 
+form.checkbox-form {
+  padding: 0px 5px 0px 5px;
+}
+
 .card {
   height: 100%;
 }
@@ -37,6 +41,10 @@ img.icon {
 
 .vote {
   font-size: 13px;
+}
+
+.popup-footer {
+  width: 100%;
 }
 
 button {
