@@ -177,8 +177,8 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group">
-                    <label hidden>ID:
-                      <input class="form-control" type="text" name="id" hidden/>
+                    <label for="id" hidden>ID:
+                      <input class="form-control" type="text" name="id" id="id" hidden />
                     </label>
                   </div>
                   <div class="form-group">
@@ -187,7 +187,7 @@
                     </label>
                   </div>
                   <div class="form-group">
-                    <label id="insert-ingredients-prod">Ingredienti:
+                    <label for="insert-ingredients-prod">Ingredienti:
                       <textarea class="form-control" rows="5" cols="42" name="ingredienti" id="insert-ingredients-prod"> </textarea>
                     </label>
                   </div>
@@ -234,11 +234,11 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group row p-2">
-                    <label for="open-time-rest">Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" id="open-time-rest" required/>
+                    <label for="open-time">Apertura:
+                      <input class="form-control col-sm-11" type="time" name="open" min="10:00" max="13:00" id="open-time" required/>
                     </label>
-                    <label for="close-time-rest">Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" id="close-time-rest" required/>
+                    <label for="close-time">Chiusura:
+                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="15:00" id="close-time" required/>
                     </label>
                   </div>
                 </form>
@@ -264,7 +264,7 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="custom-file mb-2">
-                    <label class="custom-file-label">Aggiungi icona:
+                    <label for="custom-icon" class="custom-file-label">Aggiungi icona:
                       <input type="file" class="custom-file-input" id="custom-icon"/>
                     </label>
                   </div>
