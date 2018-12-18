@@ -161,38 +161,9 @@
   	</div>
     <!-- END TABLES -->
 
-    <!-- Modal Seleziona Prodotto-->
-    <div class="modal fade" id="order-popup" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Ordina Prodotto</small></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-            <div class="modal-body">
-                <form action="../PHP/client_restaurant.php" method="post">
-                  <label id="ingredients">Ingredienti: <br/>Salame ecc...</label>
-                  <br/>
-                  <label>Presonalizza:
-                    <textarea class="form-control" rows="5" cols="42" name="descrizione" > </textarea>
-                  </label> <br/>
-                  <div>
-                    <label class="float-left">Quantità:
-                      <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
-                    </label> <br/>
-                    <input class="float-right btn btn-outline-info" value="Aggiungi al carrello" type="submit" id="submit"/>
-                  </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- FINE Modal Modifica Prodotto -->
 
-      <!-- Modal Modifica Orario-->
-      <div class="modal fade" id="modify-hours" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
+      <!-- Modal Seleziona Prodotto-->
+      <div class="modal fade" id="order-popup" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -202,111 +173,25 @@
             </button>
           </div>
             <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
-                  <div class="form-group row p-2">
-                    <label>Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" required/>
+                <form action="../PHP/client_restaurant.php" method="post">
+                  <div>
+                    <label id="ingredients">Ingredienti: Salame ecc...</label>
+                    <label>Presonalizza:
+                      <textarea class="form-control" rows="5" cols="42" name="descrizione" > </textarea>
                     </label>
-                    <label>Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" required/>
-                    </label>
-                    </div>
+                  </div>
+                  <label class="float-left">Quantità:
+                      <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
+                  </label>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Salva</button>
+              <input class="float-right btn btn-outline-info" value="Aggiungi al carrello" type="submit" id="submit"/>
             </div>
           </div>
         </div>
       </div>
-      <!-- FINE Modal Modifica Orario-->
-
-      <!-- Modal Gestisci Locale-->
-      <div class="modal fade" id="modify-local" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle"><small>Gestisci Locale</small></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-            <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
-                    <div class="custom-file mb-2">
-                        <input type="file" class="custom-file-input" id="customFile"/>
-                        <label class="custom-file-label" for="customFile">Aggiungi icona</label>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile"/>
-                        <label class="custom-file-label" for="customFile">Aggiungi immagine</label>
-                    </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Salva</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- FINE Modal Gestisci Locale-->
-
-      <!-- Modal Aggiunngi prodotto-->
-      <div class="modal fade" id="add-product" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modaladd"><small>Aggiungi Prodotto</small></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-            <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
-                  <div class="form-group">
-                    <label for="text-input" class="col-form-label">Nome</label>
-                    <div>
-                      <input class="form-control" type="text" value="Inserisci nome prodotto" id="text-input">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                     <label for="textarea-desc">Descrizione</label>
-                     <textarea class="form-control" id="textarea-desc"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="preparation-time-input" class="col-form-label">Tempo di preparazione</label>
-                    <div class="">
-                      <input class="form-control" type="number" value="1" min="1" max="90" id="preparation-time-input">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="prezzo-input" class="col-form-label">Prezzo</label>
-                    <div class="">
-                      <input class="form-control" type="number" value="1" min="1" max="90" id="prezzo-input">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Tipologia</label>
-                    <div class="text-right align-right">
-                      <select class="custom-select" id="inlineFormCustomSelect">
-                      <option selected></option>
-                      <option value="1">Antipasti</option>
-                      <option value="2">Primi piatti</option>
-                      <option value="3">Secondi</option>
-                      <option value="4">Dolce</option>
-                    </select>
-                    </div>
-                  </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Salva</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- FINE Modal Aggiungi prodotto-->
-
+      <!-- FINE Modal Seleziona Prodotto-->
 
       <!-- Modal Gestisci Notifiche-->
       <div class="modal fade" id="manage-notify" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
