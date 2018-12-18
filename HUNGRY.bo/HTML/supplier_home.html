@@ -178,30 +178,38 @@
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group">
                     <label hidden>ID:
-                      <input class="form-control" type="text" name="id" hidden />
+                      <input class="form-control" type="text" name="id" hidden/>
                     </label>
                   </div>
                   <div class="form-group">
-                    <label>Nome:
-                      <input class="form-control col-12" type="text" name="nome"/>
+                    <label for="enter-name-prod">Nome:
+                      <input class="form-control col-12" type="text" name="nome" id="enter-name-prod"/>
                     </label>
                   </div>
-                  <label>Ingredienti:
-                    <textarea class="form-control" rows="5" cols="42" name="ingredienti" > </textarea>
-                  </label> <br/>
-                  <label>Prezzo:
-                    <input class="form-control" type="number" name="prezzo" min="1" max="90" />
-                  </label> <br/>
-                  <label>Tipologia:
-                    <select class="form-control" id="plate-type">
-                      <option>Primo Piatto</option>
-                      <option>Secondo Piatto</option>
-                      <option>Bevanda</option>
-                    </select>
-                  </label> <br/>
-                  <label>Tempo di Preparazione:
-                    <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
-                  </label> <br/>
+                  <div class="form-group">
+                    <label id="insert-ingredients-prod">Ingredienti:
+                      <textarea class="form-control" rows="5" cols="42" name="ingredienti" id="insert-ingredients-prod"> </textarea>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="insert-price-prod">Prezzo:
+                      <input class="form-control" type="number" name="prezzo" min="1" max="90" id="insert-price-prod"/>
+                    </label>
+                  </div>
+                  <div class="form-group"> 
+                    <label for="plate-type">Tipologia:
+                      <select class="form-control" id="plate-type">
+                        <option>Primo Piatto</option>
+                        <option>Secondo Piatto</option>
+                        <option>Bevanda</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="insert-preapare-time-prod">Tempo di Preparazione:
+                      <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" id="insert-preapare-time-prod" />
+                    </label>  
+                  </div>
                   <div class="modal-footer">
                     <input class="btn btn-primary" type="submit" id="submit"/>
                     <input class="btn btn-danger" type="submit" value="Rimuovi" id="remove"/>
@@ -226,11 +234,11 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group row p-2">
-                    <label>Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" required/>
+                    <label for="open-time-rest">Apertura:
+                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" id="open-time-rest" required/>
                     </label>
-                    <label>Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" required/>
+                    <label for="close-time-rest">Chiusura:
+                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" id="close-time-rest" required/>
                     </label>
                   </div>
                 </form>

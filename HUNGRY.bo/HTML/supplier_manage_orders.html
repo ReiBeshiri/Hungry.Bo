@@ -172,7 +172,7 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="custom-file mb-2">
-                    <label class="custom-file-label">Aggiungi icona:
+                    <label class="custom-file-label" for="custom-icon">Aggiungi icona:
                       <input type="file" class="custom-file-input" id="custom-icon"/>
                     </label>
                   </div>
@@ -329,11 +329,11 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group row p-2">
-                    <label>Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" required/>
+                    <label for="open-hour-select">Apertura:
+                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" id="open-hour-select" required/>
                     </label>
-                    <label>Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" required/>
+                    <label for="close-hour-select">Chiusura:
+                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" id="close-hour-select" required/>
                     </label>
                   </div>
                 </form>
