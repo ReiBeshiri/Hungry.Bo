@@ -103,6 +103,10 @@ input[type="submit"] {
   width: 20%;
 }
 
+div.notify {
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;
