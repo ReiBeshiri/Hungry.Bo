@@ -89,10 +89,10 @@
           <div class="table-header">
             <p>Ordini</p>
           </div>
-          <table class="table table-hover table-editable">
+          <table class="table table-hover">
             <thead class="thead-dark">
             <tr>
-              <th id="prduct-id" hidden>id</th>
+              <th id="id" hidden>id</th>
               <th id="dest">Destinatario</th>
               <th id="prod" class="order-prod">Stato</th>
               <th id="place">Luogo</th>
@@ -123,7 +123,7 @@
     </div>
     <!-- END TABLES -->
 
-      <!-- Modal Gestisci Notifiche Prodotto Invia Cliente-->
+    <!-- Modal Gestisci Notifiche Prodotto Invia Cliente-->
     <div class="modal fade" id="order-manage" tabindex="-1" role="dialog" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -136,13 +136,13 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Stato Ordine</label>
+                    <label class="mr-sm-2" for="order-status-select">Stato Ordine</label>
                     <div class="text-right align-right">
-                      <select class="custom-select" id="inlineFormCustomSelect">
-                      <option value="1">Spedito</option>
-                      <option value="2">Consegnato</option>
-                      <option value="3">Altro...</option>
-                    </select>
+                      <select class="custom-select" id="order-status-select">
+                        <option value="1">Spedito</option>
+                        <option value="2">Consegnato</option>
+                        <option value="3">Altro...</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group" id="desc-other">
@@ -209,8 +209,8 @@
                     </label>
                   </div>
                   <div class="form-group">
-                     <label for="textarea-desc">Descrizione:
-                       <textarea class="form-control" name="descrizione" rows="5" cols="55" id="textarea-desc"></textarea>
+                     <label for="textarea-desc-product">Descrizione:
+                       <textarea class="form-control" name="descrizione" rows="5" cols="55" id="textarea-desc-product"></textarea>
                      </label>
                   </div>
                   <div class="form-group">
@@ -224,8 +224,8 @@
                     </label>
                   </div>
                   <div class="form-group">
-                      <label class="mr-sm-2" for="inlineFormCustomSelect">Tipologia:
-                        <select name="tipologia" class="custom-select" id="inlineFormCustomSelect">
+                      <label class="mr-sm-2" for="plate-type-select">Tipologia:
+                        <select name="tipologia" class="custom-select" id="plate-type-select">
                           <option value="1">Antipasti</option>
                           <option value="2">Primi piatti</option>
                           <option value="3">Secondi</option>
@@ -330,10 +330,10 @@
                 <form action="../PHP/supplier_home.php" method="post">
                   <div class="form-group row p-2">
                     <label for="open-hour-select">Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="7:00" max="12:00" id="open-hour-select" required/>
+                      <input class="form-control col-sm-11" type="time" name="open" min="10:00" max="13:00" id="open-hour-select" required/>
                     </label>
                     <label for="close-hour-select">Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="16:00" id="close-hour-select" required/>
+                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="15:00" id="close-hour-select" required/>
                     </label>
                   </div>
                 </form>

@@ -13,8 +13,8 @@ $(document).ready(function () {
   }).trigger('resize');
 
 
-  $('#inlineFormCustomSelect').change(function() {
-  	if($('#inlineFormCustomSelect').val() == 3){
+  $('#order-status-select').change(function() {
+  	if($('#order-status-select').val() == 3){
   		$('#desc-other').removeAttr("hidden");
   	}else{
   		$('#desc-other').attr("hidden", "true");
