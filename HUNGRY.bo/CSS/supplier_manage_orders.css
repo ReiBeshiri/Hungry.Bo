@@ -96,7 +96,6 @@ input[type="submit"] {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 .hour{
@@ -109,8 +108,6 @@ div.notify {
 
 @media screen and (max-width: 981px) {
   nav {
-    display: flex;
-    flex-direction: row;
     transform: scaleX(-1);
   }
 
