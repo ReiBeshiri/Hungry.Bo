@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Stile Personalizzato -->
+    <link rel="stylesheet" href="../CSS/orders.css">
+
+    <!-- JS file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+
+    <title>orders</title>
+  </head>
+  <body>
+
+  <!-- NAVBAR -->
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand d-inline-block" href="#">
+        <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icon" alt="icon"/>
+      </a>
+
+      <div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./supplier_home.html">
+              Home
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- END NAVBAR -->
+
+  <!-- TABLES -->
+  <div class="fluid-container">
+    <div class="row tables">
+      <div class="text-center col-12">
+          <div class="table-header">
+            <p><strong>Ordini</strong></p>
+          </div>
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th id="id" hidden>id</th>
+                <th id="dest">Destinatario</th>
+                <th id="prod" class="order-prod">Stato</th>
+                <th id="place">Luogo</th>
+                <th id="hour">Ora</th>
+                <th id="details">Gestisci</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td headers="id" hidden>1</td>
+                <td headers="dest">Chianì</td>
+                <td headers="prod" class="order-state">Ordine non ancora spedito</td>
+                <td headers="place">aula 3.7</td>
+                <td headers="hour">12:30</td>
+                <td headers="details"><a href="#" data-toggle="modal" data-target="#order-details">Dettagli</a></td>
+              </tr>
+              <tr>
+                <td headers="id" hidden>2</td>
+                <td headers="dest">Greppia</td>
+                <td headers="prod" class="order-state">Ordine spedito, attesa conferma</td>
+                <td headers="place">aula 2.9</td>
+                <td headers="hour">13:30</td>
+                <td headers="details"><a href="#" data-toggle="modal" data-target="#order-details">Dettagli</a></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+  <!-- END TABLES -->
+
+  <!-- Modal Gestisci Notifiche Prodotto Invia Cliente-->
+  <div class="modal fade" id="order-details" tabindex="-1" aria-labelledby="details-title" role="dialog" data-toggle="modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="details-title">Detaglio Ordine</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <p>Mittente: <span>Chianì</span></p>
+            </div>
+            <div class="form-group">
+              Ordine:
+              <ul>
+                <li>margherita <span>(Modifiche)</span></li>
+                <li>diavola <span>(Modifiche)</span></li>
+                <li>5 stagioni <span>(Modifiche)</span></li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <p>Stato: <span>Non ancora spedito</span></p>
+            </div>
+            <div class="form-group">
+              <p>Luogo: <span>aula 2.2</span></p>
+            </div>
+            <div class="form-group">
+              <p>Ora: <span>12:30</span></p>
+            </div>
+        </div>
+      </div>
+  </div>
+  <!-- FINE Modal Gestisci Notifiche Prodotto Invia Cliente-->
+
+  <!-- FOOTER -->
+  <footer>
+    <p> HUNGRY.bo <br/>
+        <small> 2018/2019 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna </small> </p>
+    <p> Mattia Vincenzi 792970 <br/>
+        Rei Beshiri     789973
+    </p>
+  </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../JS/orders.js"></script>
+  </body>
+</html>

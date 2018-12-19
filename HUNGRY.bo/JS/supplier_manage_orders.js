@@ -8,7 +8,7 @@ $(document).ready(function () {
       	  $("th.order-prod").attr("hidden", "true");
       } else {
       	  $("td.order-state").removeAttr("hidden");
-		  $("th.order-prod").removeAttr("hidden");
+		      $("th.order-prod").removeAttr("hidden");
       }
   }).trigger('resize');
 

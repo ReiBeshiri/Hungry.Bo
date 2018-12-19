@@ -1,0 +1,50 @@
+
+div.tables {
+  padding: 10px 0px 10px 0px;
+  box-sizing: border-box;
+}
+
+div[class="row tables"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+div.table-header>p {
+  font-family: LeagueSpartan;
+}
+
+table tr {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+footer {
+  padding: 20px;
+  background-color: #343a40;
+  color: #FFFF;
+  font-family: Helvetica;
+}
+
+footer>p:last-child {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: 13px;
+  text-align: right;
+}
+
+footer>p:first-child {
+  font-weight: bold;
+  font-size: 15px;
+  float: left;
+}
+
+@media screen and (max-width: 981px) {
+  nav {
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1);
+  }
+}
