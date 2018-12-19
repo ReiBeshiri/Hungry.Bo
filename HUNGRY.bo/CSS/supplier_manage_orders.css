@@ -8,7 +8,7 @@
   font-family: LeagueSpartan;
 }
 
-#container {
+/*#container {
   width: 100%;
   display: inline-block;
   background-image: url("../res/background.jpg");
@@ -16,12 +16,12 @@
   position: relative;
   background-position: center center;
   /*height: 100%; background-image: url("/public/businesses/86.9e10cb9a-e482-4a68-9a77-251b81109bd1.jpg"); background-repeat: no-repeat; background-position: center center; background-size: cover; position: relative;*/
-}
+/*}*/
 
-#container > div.dumb-container > p {
+/*#container > div.dumb-container > p {
   color: rgb(255, 255, 255);
   font-family: LeagueSpartan;
-}
+}*/
 
 table tr {
   border: 1px solid black;
