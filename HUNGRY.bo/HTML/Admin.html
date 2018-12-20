@@ -96,7 +96,9 @@
                   </span>
                 </td>
                 <td headers="remove">
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
+                  <a data-toggle="modal" data-target="#confirm-delete-admin">
+                    <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -105,7 +107,7 @@
                 <td headers="nome-locale">Greppia</td>
                 <td headers="modify">
                   <span class="table-modify">
-                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="">Modifica</button>
                   </span>
                 </td>
                 <td headers="notify">
@@ -114,16 +116,142 @@
                   </span>
                 </td>
                 <td headers="remove">
-                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
+                  <a data-toggle="modal" data-target="#confirm-delete-admin">
+                    <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/>
+                  </a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn btn-outline-success">Aggiungi</button>
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button>
       </div>
     </div>
   </div>
   <!-- END TABLES -->
+
+  <!-- Modal Invia Notifica Admin-->
+      <div class="modal fade" id="send-notify-from-admin" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hour-title">Invia Notifica a <span>span</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <form action="../PHP/supplier_home.php" method="post">
+                  <label for="insert-ingredients-prod">Descrizione:
+                      <textarea class="form-control" rows="5" cols="50" name="notifica-admin" id="insert-ingredients-prod"> </textarea>
+                    </label>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Invia</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FINE Modal Invia Notifica Admin-->
+
+        <!-- Modal Modifica Admin-->
+      <div class="modal fade" id="modify-from-admin" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hour-title">Modifica <span>span</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <form action="../PHP/supplier_home.php" method="post">
+                  <label for="enter-name-prod">Password:
+                    <input class="form-control" type="text" name="pwd" id="enter-name-pwd"/>
+                  </label>
+                  <label for="enter-name-prod">Email:
+                    <input class="form-control" type="text" name="mail" id="enter-mail"/>
+                  </label>
+                  <label for="enter-name-prod">Nome locale:
+                    <input class="form-control" type="text" name="nomeloc" id="enter-name"/>
+                  </label>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Salva</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FINE Modal Invia Notifica Admin-->
+
+      <!-- Modal Aggiungi Admin-->
+      <div class="modal fade" id="add-from-admin" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hour-title">Aggiungi Fornitore</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <form action="../PHP/supplier_home.php" method="post">
+                    <div class="form-group">
+                      <label>Username:
+                        <input class="form-control" type="text" name="username" required/>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label>Password:
+                        <input class="form-control" type="password" name="password" required/>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label>Email:
+                        <input class="form-control" type="email" name="email" required/>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label>Nome Locale:
+                        <input class="form-control" type="text" name="nome-locale" required/>
+                      </label>
+                    </div>
+                    <div>
+                      <label>Indirizzo:
+                        <input class="form-control" type="text" name="indirizzo" required/>
+                      </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Salva</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FINE Modal Aggiungi Admin-->
+
+      <!-- Modal Conferma Elimina Admin-->
+      <div class="modal fade" id="confirm-delete-admin" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hour-title">Confermi di eliminare <span>span</span>?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body" hidden>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger">Annulla</button>
+              <button type="button" class="btn btn-primary">Conferma</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FINE Modal Conferma Elimina Admin-->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
