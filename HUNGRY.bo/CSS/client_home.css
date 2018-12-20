@@ -47,6 +47,10 @@ button:not(.footer-button) {
   margin: 10px;
 }
 
+div.notify {
+  margin-bottom: 10px;
+}
+
 footer {
   padding: 20px;
   background-color: #343a40;
