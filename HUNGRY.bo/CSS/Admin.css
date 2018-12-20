@@ -37,6 +37,30 @@ div.table-header>p {
   height: 15px;
 }
 
+#username {
+  width: 22%;
+}
+
+#password {
+  width: 22%;
+}
+
+#nome-locale {
+  width: 22%;
+}
+
+#modify {
+  width: 15%;
+}
+
+#notify {
+  width: 15%;
+}
+
+#remove {
+  width: 6%;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     transform: scaleX(-1);
@@ -44,5 +68,21 @@ div.table-header>p {
 
   nav > *{
     transform: scaleX(-1);
+  }
+
+  #username {
+    width: 40%;
+  }
+
+  #modify {
+    width: 25%;
+  }
+
+  #notify {
+    width: 25%;
+  }
+
+  #remove {
+    width: 10%;
   }
 }
