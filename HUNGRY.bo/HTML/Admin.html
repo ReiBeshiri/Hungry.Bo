@@ -58,10 +58,6 @@
           </li>
         </ul>
       </div>
-      <ul class="navbar-nav btn-cart">
-        <li class="nav-item active">
-        </li>
-      </ul>
     </nav>
   </div>
   <!-- END NAVBAR -->
@@ -71,35 +67,55 @@
     <div class="row tables">
       <div class="text-center col-12">
           <div class="table-header">
-            <p><strong>Ordini</strong></p>
+            <p><strong>Fornitori</strong></p>
           </div>
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th id="id" hidden>id</th>
-                <th id="dest">Destinatario</th>
-                <th id="prod" class="order-prod">Stato</th>
-                <th id="place">Luogo</th>
-                <th id="hour">Ora</th>
-                <th id="details">Gestisci</th>
+                <th id="username">Username</th>
+                <th id="password">Password</th>
+                <th id="nome-locale">Nome Locale</th>
+                <th id="modify">Modifica</th>
+                <th id="notify">Notifica</th>
+                <th id="remove" hidden>Remove</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td headers="id" hidden>1</td>
-                <td headers="dest">Chianì</td>
-                <td headers="prod" class="order-state">Ordine non ancora spedito</td>
-                <td headers="place">aula 3.7</td>
-                <td headers="hour">12:30</td>
-                <td headers="details"><a href="#" data-toggle="modal" data-target="#order-details">Dettagli</a></td>
+                <td headers="username">ChianìCesena</td>
+                <td headers="password">Pincopallo</td>
+                <td headers="nome-locale">Chianì</td>
+                <td headers="modify">
+                  <span class="table-modify">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                  </span>
+                </td>
+                <td headers="notify">
+                  <span class="table-modify">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="">Notifica</button>
+                  </span>
+                </td>
+                <td headers="remove">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
+                </td>
               </tr>
               <tr>
-                <td headers="id" hidden>2</td>
-                <td headers="dest">Greppia</td>
-                <td headers="prod" class="order-state">Ordine spedito, attesa conferma</td>
-                <td headers="place">aula 2.9</td>
-                <td headers="hour">13:30</td>
-                <td headers="details"><a href="#" data-toggle="modal" data-target="#order-details">Dettagli</a></td>
+                <td headers="username">GreppiaCesena</td>
+                <td headers="password">Pincopallo123</td>
+                <td headers="nome-locale">Greppia</td>
+                <td headers="modify">
+                  <span class="table-modify">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
+                  </span>
+                </td>
+                <td headers="notify">
+                  <span class="table-modify">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="">Notifica</button>
+                  </span>
+                </td>
+                <td headers="remove">
+                  <input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/>
+                </td>
               </tr>
             </tbody>
           </table>

@@ -1,0 +1,48 @@
+table tr {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+div.tables {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+div[class="row tables"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+div.table-header>p {
+  font-family: LeagueSpartan;
+}
+
+.table {
+  table-layout:fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table th {
+  vertical-align: center
+}
+
+.cancel {
+  width: 15px;
+  height: 15px;
+}
+
+@media screen and (max-width: 981px) {
+  nav {
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1);
+  }
+}
