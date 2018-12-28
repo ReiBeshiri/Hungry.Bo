@@ -27,7 +27,9 @@
 
         <div>
           <section>
-            <form method="post">
+            <div class="alert alert-danger alert-php" role="alert">
+            </div>
+            <form action="#" method="post">
               <label>Username: <br/>
                 <input class="form-control" type="text" name="username" id="username" required/>
               </label> <br/>
@@ -58,6 +60,10 @@
                 <label>Tempo per arrivare al campus: <br/>
                   <input class="form-control" id="tempo" type="number" name="tempo" min="1" max="90" />
                 </label> <br/>
+                <label>Tipologia Locale: <br/>
+                  <select name="tipo-locale" class="form-control">
+                  </select>
+                </label>
               </div>
               <input type="hidden" name="sent" value="true" />
               <button class="btn btn-primary mb-2" id="submit">Registrati</button>

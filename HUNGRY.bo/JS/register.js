@@ -2,6 +2,8 @@ $(document).ready(function(){
 
   $("#info-fornitori").hide();
 
+  $("div.alert").hide();
+
   $(window).bind("resize", function () {
       if ($(this).width() < 576) {
           $("#login").addClass('mx-auto');
@@ -18,8 +20,18 @@ $(document).ready(function(){
     $("#info-fornitori").hide('slow');
   });
 
+  $.getJSON("../PHP/dbRequestManager.php?request=tipologie-locali", function(data){
+    console.log(data);
+    var html_code = "";
+    for(var i = 0; i < data.length; i++){
+        html_code += "<select value='"+data[i]["Nome"]+"'>"+data[i]["Nome"]+"</select>";
+    }
+    $("select").html(html_code);
+  });
+
   $("form button").click(function() {
-    //event.preventDefault();
+    event.preventDefault();
+    $("div.alert").hide();
 
     var errors = "";
 
@@ -36,27 +48,31 @@ $(document).ready(function(){
     password.value = "";
 
     if (!validateEmail($("#email").val())) {
-      error += "Mail non valida";
+      errors += "Mail non valida";
     } else if(errors.length == 0) {
       var dataToSend = $("form").serialize();
       $.post("../PHP/register.php", dataToSend, function(data) {
-        console.log(data);
+        errors = "";
         if(!(data.status == "success")) {
-          console.log(data.status);
+          errors += data.status;
         } else {
-          console.log("NUOVA PAGINA");
           window.location.replace("../HTML/client_home.html");
         }
+        checkError(errors);
       });
     }
-
-    //Scrivere errore su un form
-
+    checkError(errors);
   });
-
 });
 
 function validateEmail(email) {
   var regex = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
   return regex.test(email);
+}
+
+function checkError(errors) {
+  if(errors.length > 0){
+    $("div.alert").html("Errore: " + errors);
+    $("div.alert").show();
+  }
 }

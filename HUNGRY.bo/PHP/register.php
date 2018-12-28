@@ -8,8 +8,8 @@ define("DATABASE", "HUNGRYbo"); // Nome del database.
 if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
   isset($_POST["type"]) && isset($_POST["email"])) {
 
-  if(!filter_var($_GET["email"], FILTER_VALIDATE_EMAIL)) {
-    $response_array["status"] = "Errore: Mail non corretta";
+  if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+    $response_array["status"] = "Mail non corretta";
     print json_encode($response_array);
     die();
   }
@@ -18,7 +18,7 @@ if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
 
   // Check connection
   if ($mysqli->connect_error) {
-      $response_array['status'] = "Errore: Connessione con il DB non riuscita";
+      $response_array['status'] = "Connessione con il DB non riuscita";
       print json_encode($response_array);
       die();
   }
@@ -46,7 +46,7 @@ if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
   $stmt->close();
 
   if($num_users > 0) {
-    $response_array['status'] = "Errore: Esiste già un utente con lo stesso nome";
+    $response_array['status'] = "Esiste già un utente con lo stesso nome";
     print json_encode($response_array);
     die();
   } else {
@@ -79,7 +79,7 @@ if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
     } else {
       if(!isset($_POST["tempo"]) && isset($_POST["nome-locale"]) && isset($_POST["indirizzo"]) &&
       isset($_POST["tipo-locale"])) {
-        $response_array['status'] = "Errore: Variabili non settate";
+        $response_array['status'] = "Variabili non settate";
         print json_encode($response_array);
         die();
       }
