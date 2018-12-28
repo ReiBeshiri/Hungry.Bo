@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Fri Dec 21 20:55:36 2018 
+-- * Generation date: Sun Dec 23 18:21:22 2018 
 -- * LUN file: C:\Users\mattia.vincenzi2\Desktop\HUNGRY.bo.lun 
 -- * Schema: LOGICA W TYPE/1 
 -- ********************************************* 
@@ -31,7 +31,7 @@ create table Cliente (
      Email varchar(50) not null,
      Salt char(128) not null,
      constraint IDCliente primary key (Username),
-     constraint FKappartiene a_ID unique (IDCarrello));
+     constraint FKappartienea_ID unique (IDCarrello));
 
 create table Fornitore (
      Username varchar(30) not null,
@@ -112,11 +112,25 @@ create table TipologiaProdotto (
      Nome varchar(25) not null,
      constraint IDTipologiaProdotto primary key (Nome));
 
+ALTER TABLE Carrello
+MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE Prodotto
+MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE Ordine
+MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE Notifica
+MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE Recensione
+MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
 
 -- Constraints Section
 -- ___________________ 
 
-alter table Cliente add constraint FKappartiene a_FK
+alter table Cliente add constraint FKappartienea _FK
      foreign key (IDCarrello)
      references Carrello (ID);
 
@@ -132,7 +146,7 @@ alter table Ordine add constraint FKeffettua
      foreign key (UsernameCliente)
      references Cliente (Username);
 
-alter table Ordine add constraint FKconsegnato in
+alter table Ordine add constraint FKconsegnatoin
      foreign key (LuogoConsegna)
      references Luogo (Nome);
 
@@ -164,7 +178,7 @@ alter table ProdottoInOrdine add constraint FKappartenenza
      foreign key (IDOrdine)
      references Ordine (ID);
 
-alter table ProdottoInOrdine add constraint FKrelativo a
+alter table ProdottoInOrdine add constraint FKrelativoa
      foreign key (IDProdotto)
      references Prodotto (ID);
 
@@ -175,7 +189,6 @@ alter table Recensione add constraint FKriceve
 alter table Recensione add constraint FKscrive
      foreign key (UsernameCliente)
      references Cliente (Username);
-
 
 -- Index Section
 -- _____________ 

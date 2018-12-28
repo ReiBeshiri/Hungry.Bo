@@ -1,5 +1,5 @@
 @font-face {
-  src: url("../font/YellowTail-Regular.otf");
+  src: url("../font/Charline font.otf");
   font-family: YellowTail;
 }
 
@@ -71,7 +71,7 @@ footer>p:first-child {
   }
 
   nav > *{
-    transform: scaleX(-1); 
+    transform: scaleX(-1);
   }
 
   a.navbar-brand {
