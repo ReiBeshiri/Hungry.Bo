@@ -26,14 +26,15 @@
 
         <div>
           <section>
-            <form action="../PHP/login.php" method="post">
+            <form action="#" method="post">
               <label>Username: <br/>
-                <input class="form-control" type="text" name="username" required/>
+                <input class="form-control" type="text" name="username" id="username" required/>
               </label> <br/>
               <label>Password: <br/>
-                <input class="form-control" type="password" name="password" required/>
+                <input class="form-control" type="password" name="password" id="password" required/>
               </label> <br/>
-              <input class="btn btn-primary mb-2" type="submit" value="Login"/>
+              <input type="hidden" name="sent" value="true" />
+                <button class="btn btn-primary mb-2" id="submit">Login</button>
             </form>
           </section>
           <p>Non sei registrato? <a href="./register.html">registrati</a></p>
@@ -41,10 +42,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity=
+    "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="../JS/login.js"></script>
+    <script src="../JS/sha_512.js"></script>
+
   </body>
 </html>
