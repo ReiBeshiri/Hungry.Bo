@@ -123,9 +123,12 @@ MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE Notifica
 MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+<<<<<<< HEAD
 
 ALTER TABLE Recensione
 MODIFY ID int(11) NOT NULL AUTO_INCREMENT;
+=======
+>>>>>>> 2370a0be66be11d5cc2b144a8b72666198667605
 
 -- Constraints Section
 -- ___________________ 
