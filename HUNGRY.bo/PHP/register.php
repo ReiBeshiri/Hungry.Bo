@@ -1,9 +1,6 @@
 <?php
 header('Content-Type: application/json');
-define("HOST", "localhost"); // E' il server a cui ti vuoi connettere.
-define("USER", "root"); // E' l'utente con cui ti collegherai al DB.
-define("PASSWORD", ""); // Password di accesso al DB.
-define("DATABASE", "HUNGRYbo"); // Nome del database.
+include("db_connect.php");
 
 if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
   isset($_POST["type"]) && isset($_POST["email"])) {
@@ -48,7 +45,6 @@ if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
   if($num_users > 0) {
     $response_array['status'] = "Esiste già un utente con lo stesso nome";
     print json_encode($response_array);
-    die();
   } else {
     // Recupero la password criptata dal form di inserimento.
     $password = $_POST['p'];
@@ -61,30 +57,29 @@ if(isset($_POST["sent"]) && isset($_POST["p"]) && isset($_POST["username"]) &&
     // Crea una password usando la chiave appena creata.
     $password = hash('sha512', $password.$random_salt);
 
-    $totale = 0.0;
-
-    //Creazione del carrello dedicato all'utente.
-    $stmt = $mysqli->prepare("INSERT INTO Carrello (Totale) VALUES (?)");
-
-    $stmt->bind_param('d', $totale);
-
-    $stmt->execute();
-
-    $stmt->close();
-
     if ($user_type == "Cliente") {
+      $totale = 0.0;
+
+      //Creazione del carrello dedicato all'utente.
+      $stmt = $mysqli->prepare("INSERT INTO Carrello (Totale) VALUES (?)");
+
+      $stmt->bind_param('d', $totale);
+
+      $stmt->execute();
+
+      $stmt->close();
       $stmt = $mysqli->prepare("INSERT INTO Cliente (Username, IDCarrello, Password, Email, Salt) VALUES (?, ?, ?, ?, ?)");
       $stmt->bind_param('sisss', $username, $IDCarrello, $password, $email, $random_salt);
       $IDCarrello = $mysqli->insert_id;
     } else {
-      if(!isset($_POST["tempo"]) && isset($_POST["nome-locale"]) && isset($_POST["indirizzo"]) &&
-      isset($_POST["tipo-locale"])) {
+      if(!isset($_POST["tempo"]) || !isset($_POST["nome-locale"]) || !isset($_POST["indirizzo"]) ||
+      !isset($_POST["tipo-locale"])) {
         $response_array['status'] = "Variabili non settate";
         print json_encode($response_array);
         die();
       }
       $stmt = $mysqli->prepare("INSERT INTO Fornitore (Username, Password, Email, Salt, TempoArrivoCampus, NomeLocale, Indirizzo, TipoLocale) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-      $stmt->bind_param('sisss', $username, $password, $email, $random_salt, $tempo, $nomeLocale, $indirizzo, $tipo);
+      $stmt->bind_param('ssssisss', $username, $password, $email, $random_salt, $tempo, $nomeLocale, $indirizzo, $tipo);
       $tempo = $_POST["tempo"];
       $nomeLocale = $_POST["nome-locale"];
       $indirizzo = $_POST["indirizzo"];

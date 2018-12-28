@@ -21,12 +21,11 @@ $(document).ready(function(){
   });
 
   $.getJSON("../PHP/dbRequestManager.php?request=tipologie-locali", function(data){
-    console.log(data);
     var html_code = "";
     for(var i = 0; i < data.length; i++){
-        html_code += "<select value='"+data[i]["Nome"]+"'>"+data[i]["Nome"]+"</select>";
+        html_code += "<option value='"+data[i]["Nome"]+"'>"+data[i]["Nome"]+"</option>";
     }
-    $("select").html(html_code);
+    $("form select").html(html_code);
   });
 
   $("form button").click(function() {
@@ -52,13 +51,17 @@ $(document).ready(function(){
     } else if(errors.length == 0) {
       var dataToSend = $("form").serialize();
       $.post("../PHP/register.php", dataToSend, function(data) {
-        errors = "";
+        var error = "";
+        console.log(data.status);
         if(!(data.status == "success")) {
-          errors += data.status;
+          checkError(data.status);
         } else {
-          window.location.replace("../HTML/client_home.html");
+          if ($("#clienti").is(":checked")){
+            window.location.replace("../HTML/client_home.html");
+          } else {
+            window.location.replace("../HTML/supplier_home.html");
+          }
         }
-        checkError(errors);
       });
     }
     checkError(errors);

@@ -1,8 +1,9 @@
 <?php
+header('Content-Type: application/json');
 include("db_connect.php");
 
 if(isset($_GET["request"])) {
-  $conn = new mysqli(HOST, USER, PASSWORD, DATABASE);
+  $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
 
   // Check connection
   if ($mysqli->connect_error) {
@@ -10,7 +11,6 @@ if(isset($_GET["request"])) {
       print json_encode($response_array);
       die();
   }
-
   switch ($_GET["request"]) {
     case 'tipologie-locali':
       $stmt = $mysqli->prepare("SELECT * FROM TipologiaLocale");
@@ -18,12 +18,13 @@ if(isset($_GET["request"])) {
       $stmt->execute();
 
       $result = $stmt->get_result();
-      
+
       $output = array();
       while($row = $result->fetch_assoc()){
           $output[] = $row;
       }
       $stmt->close();
+
       print json_encode($output);
 
       break;
@@ -32,5 +33,6 @@ if(isset($_GET["request"])) {
       // code...
       break;
   }
+  $mysqli->close();
 }
 ?>
