@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 	          console.log(data.status);
 
-	        } else if(data.status == "successclient"){
+	        } else if(data.status === "successclient"){
 
 	          console.log("Accesso Client");
 	          window.location.replace("../HTML/client_home.html");

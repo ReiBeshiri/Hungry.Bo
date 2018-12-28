@@ -40,7 +40,7 @@
 		$stmt->close();
 
 		//not client, check if supplier
-		if($num_users == 0) {
+		if($num_users === 0) {
 
 			$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Fornitore WHERE Username = ?");
 
@@ -54,7 +54,7 @@
 
 			$stmt->close();
 
-			if($num_users == 0) {
+			if($num_users === 0) {
 
 				//user not exsist	
 	      		$response_array['status'] = "Errore: utente non esistente";
@@ -66,15 +66,24 @@
 			unset($table);
 			$table = "Fornitore";
 
-			$supplier = true;
-
 		}
 
+		$stmt = $mysqli->prepare("SELECT Password FROM Cliente WHERE Username = ?");
 
+	  		$stmt->bind_param('s', $username);
 
-		if(login($username, $password, $table, $mysqli)){
+			$stmt->execute();
 
-    		supplier?$response_array['status'] = "successsupplier":$response_array['status'] = "successclient";
+			$stmt->bind_result($num_users);
+
+			$stmt->fetch();
+
+			$stmt->close();
+
+		//if(login($username, $password, $table, $mysqli)){
+		if($num_users === "ec68c1f5a144b867008b58231b9ca7c9c7d0111adc564d672987dcaa744159502d422cec491ee808d33740c993ade99f56b3e7b8f2747d6926272b6849f57c62"){
+
+    		$table==="Fornitore"?$response_array['status']="successsupplier":$response_array['status']="successclient";
 	    	print json_encode($response_array);
 
 	    }else{
