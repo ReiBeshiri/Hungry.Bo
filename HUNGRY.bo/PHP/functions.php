@@ -11,36 +11,26 @@ function sec_session_start() {
         session_regenerate_id(); // Rigenera la sessione e cancella quella creata in precedenza.
 }
 
-function login($username, $password, $table, $mysqli) {
+function login($username, $password, $mysqli) {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if ($stmt = $mysqli->prepare('SELECT Username, Password, Salt FROM ".$table." WHERE Username = ?')) {
-      $stmt->bind_param('s', $username); // esegue il bind del parametro '$username'.
+   if ($stmt = $mysqli->prepare("SELECT Username, Password, Salt FROM Cliente WHERE Username = ?")) { 
+      $stmt->bind_param('s', $username); // esegue il bind del parametro '$email'.
       $stmt->execute(); // esegue la query appena creata.
-      $stmt->store_result(); //Alloca spazio per il risultato
+      $stmt->store_result();
       $stmt->bind_result($username, $db_password, $salt); // recupera il risultato della query e lo memorizza nelle relative variabili.
       $stmt->fetch();
       $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
-      echo "Cpntrollo";
       if($stmt->num_rows == 1) { // se l'utente esiste
-      echo "UT presente ";
          if($db_password == $password) { // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
-               // Password corretta!
-               $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente.
-               echo "OK";
-               $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
-               $_SESSION['username'] = $username;
-               $_SESSION['login_string'] = hash('sha512', $password.$user_browser);
+            // Password corretta!            
                // Login eseguito con successo.
-               return true;
-         } else {
-            // Password incorretta.
-            return false;
+               return true;    
          }
-   } else {
-     // L'utente inserito non esiste.
-     return false;
+      } else {
+         // L'utente inserito non esiste.
+         return false;
+      }
    }
- }
 }
 
 function login_check($mysqli) {
