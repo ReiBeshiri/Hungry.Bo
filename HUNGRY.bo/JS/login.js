@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	$("form button").click(function() {
 		console.log("bottone premuto");
-	    //event.preventDefault();
+	    event.preventDefault();
 
 	    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
 	    var p = document.createElement("input");
@@ -29,8 +29,7 @@ $(document).ready(function(){
 	    var dataToSend = $("form").serialize();
 	    console.log(dataToSend);
 
-	    $.post("../PHP/login.php?ciao=mattia", dataToSend, function(data) {
-console.log("ADDIO");
+	    $.post("../PHP/login.php", dataToSend, function(data) {
 	        console.log(data);
 
 	        if(!(data.status == "successclient") || !(data.status == "successsupplier")) {

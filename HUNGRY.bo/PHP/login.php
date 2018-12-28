@@ -1,11 +1,13 @@
 <?php
-	/*include './functions.php';*/
+	include("functions.php");
 	header('Content-Type: application/json');
 	define("HOST", "localhost"); // E' il server a cui ti vuoi connettere.
 	define("USER", "root"); // E' l'utente con cui ti collegherai al DB.
 	define("PASSWORD", ""); // Password di accesso al DB.
 	define("DATABASE", "HUNGRYbo"); // Nome del database.
-	var_dump($_GET["ciao"]);
+
+	var_dump($_POST);
+
 	if(isset($_POST["username"]) && isset($_POST["p"])) {
 
 		$username = $_POST['username'];
@@ -38,7 +40,7 @@
 		$stmt->close();
 
 		//not client, check if supplier
-		if($num_users === 0) {
+		if($num_users == 0) {
 
 			$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Fornitore WHERE Username = ?");
 
@@ -52,7 +54,7 @@
 
 			$stmt->close();
 
-			if($num_users === 0) {
+			if($num_users == 0) {
 
 				//user not exsist	
 	      		$response_array['status'] = "Errore: utente non esistente";
@@ -68,6 +70,8 @@
 
 		}
 
+
+
 		if(login($username, $password, $table, $mysqli)){
 
     		supplier?$response_array['status'] = "successsupplier":$response_array['status'] = "successclient";
@@ -75,7 +79,7 @@
 
 	    }else{
 
-	    	$response_array['status'] = "Errore: utente non esistente";
+	    	$response_array['status'] = "Errore: utente non esistente colpa di login()";
       		print json_encode($response_array);
       		die();
 
@@ -89,8 +93,5 @@
       	print json_encode($response_array);
 
 	}
-
-	$response_array['status'] = "fine pagina php";
-	print json_encode($response_array);
 
 ?>
