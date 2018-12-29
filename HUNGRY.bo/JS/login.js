@@ -32,7 +32,7 @@ $(document).ready(function(){
 	    $.post("../PHP/login.php", dataToSend, function(data) {
 	        console.log(data);
 
-	        if(!(data.status == "successclient") || !(data.status == "successsupplier")) {
+	        if(!(data.status === "successclient") && !(data.status === "successsupplier")) {
 
 	          console.log(data.status);
 
