@@ -61,7 +61,7 @@ if(isset($_GET["request"])) {
       case 'modifica-orari':
         $apertura = $_POST["open"];
         $chiusura = $_POST["close"];
-        
+
         $stmt = $mysqli->prepare("UPDATE Fornitore SET OraApertura=?, OraChiusura=? WHERE Username=?");
 
         if($stmt == false) {
@@ -71,6 +71,35 @@ if(isset($_GET["request"])) {
         }
 
         $stmt->bind_param('sss', $apertura, $chiusura, $_SESSION['username']);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+
+        break;
+
+      case 'aggiungi-prodotto':
+        var_dump($_POST);
+        $nome = $_POST["nome"];
+        $ingredienti = $_POST["descrizione"];
+        $tempo = $_POST["tempo-preparazione"];
+        $prezzo = $_POST["prezzo"];
+        $tipo = $_POST["tipologia"];
+        $username = $_SESSION["username"];
+
+        $stmt = $mysqli->prepare("INSERT INTO Prodotto (Nome, Prezzo, TempoPreparazione, Ingredienti, TipoProdotto, UsernameFornitore) VALUES (?, ?, ?, ?, ?, ?)");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('siisss', $nome, $prezzo, $tempo, $ingredienti, $tipo, $username);
 
         $stmt->execute();
 

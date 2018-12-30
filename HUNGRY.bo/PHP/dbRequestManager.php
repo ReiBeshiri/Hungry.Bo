@@ -28,6 +28,23 @@ if(isset($_GET["request"])) {
       print json_encode($output);
 
       break;
+
+    case 'tipologie-prodotti':
+      $stmt = $mysqli->prepare("SELECT * FROM TipologiaProdotto");
+
+      $stmt->execute();
+
+      $result = $stmt->get_result();
+
+      $output = array();
+      while($row = $result->fetch_assoc()){
+          $output[] = $row;
+      }
+      $stmt->close();
+
+      print json_encode($output);
+
+      break;
   }
   $mysqli->close();
 }

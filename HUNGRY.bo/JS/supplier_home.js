@@ -10,6 +10,14 @@ $(document).ready(function(){
 
   });
 
+  $.getJSON("../PHP/dbRequestManager.php?request=tipologie-prodotti", function(data){
+    var html_code = "";
+    for(var i = 0; i < data.length; i++){
+        html_code += "<option value='"+data[i]["Nome"]+"'>"+data[i]["Nome"]+"</option>";
+    }
+    $("#inlineFormCustomSelect").html(html_code);
+  });
+
   $("#custom-icon").change(function(){
     icona = ($("#custom-icon").val()).split("\\");
     icona = icona[icona.length-1];
@@ -55,10 +63,19 @@ $(document).ready(function(){
   $("form#modifica-orario button").click(function(){
     var open = $("#open");
     var close = $("#close");
-    console.log(open);
     var dataToSend = $("form#modifica-orario").serialize();
     $.post("../PHP/supplier_home.php?request=modifica-orari", dataToSend, function(data){
       console.log(data);
     });
   });
+
+  $("form#inserisci-prodotto button").click(function(){
+    var dataToSend = $("form#inserisci-prodotto").serialize();
+    console.log(dataToSend);
+    $.post("../PHP/supplier_home.php?request=aggiungi-prodotto", dataToSend, function(data){
+      console.log(data);
+    });
+  });
+
+
 });
