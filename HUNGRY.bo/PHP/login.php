@@ -14,6 +14,8 @@
 
 	if(isset($_POST["username"]) && isset($_POST["p"])) {
 
+		sec_session_start();
+
 		$username = $_POST['username'];
   	$password = $_POST['p'];
   	$table = "Cliente";

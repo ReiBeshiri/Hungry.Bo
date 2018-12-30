@@ -1,3 +1,5 @@
+var nomeLocale = "";
+
 $(document).ready(function () {
   $(window).bind("resize", function () {
       if ($(this).width() < 981) {
@@ -8,4 +10,45 @@ $(document).ready(function () {
         $("ul.btn-cart>li").html('<a href="./carrello.html"><button id="cart" type="button" class="btn btn-outline-info">Carrello</button></a>');
       }
   }).trigger('resize');
+
+  //get nomelocale when click on "scrivi reecensione"
+  $("small a").click(function() {
+    nomeLocale = $("div h6").html();
+    console.log(nomeLocale);
+  });
+
+  $("form button").click(function() {
+      console.log("bottone premuto");
+      event.preventDefault();
+
+      var voto = $("#score").val();
+      var desc = $("#comment").val();
+
+      console.log(voto);
+      console.log(desc);
+
+      var dataToSend = {
+        nomeLocale:nomeLocale,
+        desc:desc,
+        voto:voto
+      };
+
+      $.post("../PHP/client_home.php", dataToSend, function(data) {
+
+          console.log(data);
+
+          if(data.status === "success") {
+
+            console.log("recensione aggiunta");
+            alert("recensione aggiunta");
+
+          } else{
+
+            console.log("errore");
+
+          }
+
+      });
+  });
+
 });
