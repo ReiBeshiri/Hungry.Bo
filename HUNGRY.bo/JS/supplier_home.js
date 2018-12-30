@@ -2,15 +2,6 @@ $(document).ready(function(){
   var icona;
   var immagine;
 
-  var cells = document.querySelectorAll(".table td");
-
-  for (var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("blur", handler);
-  }
-
-  function handler() {
-  }
-
   $('.table-remove').click(function () {
 
   });
@@ -47,7 +38,7 @@ $(document).ready(function(){
     $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
   });
 
-  $("button#gestisci-locale-submit").click(function(){
+  $("#gestisci-locale-submit").click(function(){
     event.preventDefault();
 
     var dataToSend = {
@@ -61,4 +52,13 @@ $(document).ready(function(){
     });
   });
 
+  $("form#modifica-orario button").click(function(){
+    var open = $("#open");
+    var close = $("#close");
+    console.log(open);
+    var dataToSend = $("form#modifica-orario").serialize();
+    $.post("../PHP/supplier_home.php?request=modifica-orari", dataToSend, function(data){
+      console.log(data);
+    });
+  });
 });

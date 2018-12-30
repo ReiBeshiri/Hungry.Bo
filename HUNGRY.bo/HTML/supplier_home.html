@@ -223,29 +223,29 @@
 
       <!-- Modal Modifica Orario-->
       <div class="modal fade" id="modify-hours" tabindex="-1" aria-labelledby="hour-title" role="dialog" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="hour-title">Modifica Prodotto</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-            <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
-                  <div class="form-group row p-2">
-                    <label for="open-time">Apertura:
-                      <input class="form-control col-sm-11" type="time" name="open" min="10:00" max="13:00" id="open-time" required/>
-                    </label>
-                    <label for="close-time">Chiusura:
-                      <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="15:00" id="close-time" required/>
-                    </label>
-                  </div>
-                </form>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="hour-title">Modifica Prodotto</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Salva</button>
-            </div>
+            <form id="modifica-orario" action="#" method="post">
+              <div class="modal-body">
+                <div class="form-group row p-2">
+                  <label for="open-time">Apertura:
+                    <input class="form-control col-sm-11" type="time" name="open" min="10:00" max="13:00" id="open-time" required/>
+                  </label>
+                  <label for="close-time">Chiusura:
+                    <input class="form-control col-sm-11" type="time" name="close" min="13:30" max="15:00" id="close-time" required/>
+                  </label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Salva</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -253,31 +253,33 @@
 
       <!-- Modal Gestisci Locale-->
       <div class="modal fade" id="modify-local" tabindex="-1" role="dialog" aria-labelledby="manage-title" data-toggle="modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="manage-title">Gestisci Locale</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-            <div class="modal-body">
-                  <div class="custom-file mb-2">
-                    <label for="custom-icon" id="icon-label" class="custom-file-label">Aggiungi icona:
-                      <input type="file" class="custom-file-input" name="custom-icon" id="custom-icon"/>
-                    </label>
-                  </div>
-                  <div class="custom-file">
-                    <label class="custom-file-label" id="image-label" for="custom-img">Aggiungi Immagine:
-                      <input type="file" class="custom-file-input" name="custom-img" id="custom-img"/>
-                    </label>
-                  </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="manage-title">Gestisci Locale</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="modal-footer">
-              <button id="gestisci-locale-submit" type="button" class="btn btn-primary">Salva</button>
+              <form id="#gestisci-locale" action="#" method="post">
+                <div class="modal-body">
+                    <div class="custom-file mb-2">
+                      <label for="custom-icon" id="icon-label" class="custom-file-label">Aggiungi icona:
+                        <input type="file" class="custom-file-input" name="custom-icon" id="custom-icon"/>
+                      </label>
+                    </div>
+                    <div class="custom-file">
+                      <label class="custom-file-label" id="image-label" for="custom-img">Aggiungi Immagine:
+                        <input type="file" class="custom-file-input" name="custom-img" id="custom-img"/>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="gestisci-locale-submit" type="button" class="btn btn-primary">Salva</button>
+                  </div>
+                </form>
             </div>
           </div>
-        </div>
       </div>
       <!-- FINE Modal Gestisci Locale-->
 

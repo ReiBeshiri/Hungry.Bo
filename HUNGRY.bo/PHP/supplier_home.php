@@ -19,9 +19,7 @@ if(isset($_GET["request"])) {
 
       $stmt = $mysqli->prepare("SELECT * FROM Fornitore WHERE Username = ?");
 
-      $name = "rei";
-
-      $stmt->bind_param('s', $name/*$_SESSION['username']*/);
+      $stmt->bind_param('s', $_SESSION['username']);
 
       $stmt->execute();
 
@@ -43,14 +41,36 @@ if(isset($_GET["request"])) {
         $stmt = $mysqli->prepare("UPDATE Fornitore SET Icona=?, Immagine=? WHERE Username=?");
 
         if($stmt == false) {
-          $response_array['status'] = "Errore nella quesry";
+          $response_array['status'] = "Errore nella query";
           print json_encode($response_array);
           die();
         }
 
-        $name = "rei";
+        $stmt->bind_param('sss', $icona, $immagine, $_SESSION['username']);
 
-        $stmt->bind_param('sss', $icona, $immagine, $name/*$_SESSION['username']*/);
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+
+        break;
+
+      case 'modifica-orari':
+        $apertura = $_POST["open"];
+        $chiusura = $_POST["close"];
+        
+        $stmt = $mysqli->prepare("UPDATE Fornitore SET OraApertura=?, OraChiusura=? WHERE Username=?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('sss', $apertura, $chiusura, $_SESSION['username']);
 
         $stmt->execute();
 
