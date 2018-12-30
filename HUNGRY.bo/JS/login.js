@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+  $("div.alert").hide();
+
   $(window).bind("resize", function () {
       if ($(this).width() < 576) {
           $("#login").addClass('mx-auto');
@@ -9,7 +12,7 @@ $(document).ready(function(){
 
 
 	$("form button").click(function() {
-		console.log("bottone premuto");
+		  console.log("bottone premuto");
 	    event.preventDefault();
 
 	    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
@@ -35,6 +38,8 @@ $(document).ready(function(){
 	        if(!(data.status === "successclient") && !(data.status === "successsupplier")) {
 
 	          console.log(data.status);
+            $("div.alert").html("Errore: Username o password incorretti");
+            $("div.alert").show();
 
 	        } else if(data.status === "successclient"){
 

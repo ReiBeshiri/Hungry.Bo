@@ -1,4 +1,5 @@
 <?php
+	include('functions.php');
 	header('Content-Type: application/json');
 	define("HOST", "localhost"); // E' il server a cui ti vuoi connettere.
 	define("USER", "root"); // E' l'utente con cui ti collegherai al DB.
@@ -98,16 +99,16 @@
 		$stmt->close();
 
 		//encrypting psw with salt
-		$password = hash('sha512', $_POST['p'].$salt);
+		//$password = hash('sha512', $_POST['p'].$salt);
 
-		if($pwd === $password){
+		if(login($username, $password, $mysqli, $pwd, $salt)){
 
     		$table==="Fornitore"?$response_array['status']="successsupplier":$response_array['status']="successclient";
 	    	echo json_encode($response_array);
 
 	    }else{
 
-	    	$response_array['status'] = "Errore: utente non esistente colpa di login()";
+	    	$response_array['status'] = "Errore: username o password non corretti";
       	echo json_encode($response_array);
       	die();
 
