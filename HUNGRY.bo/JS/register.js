@@ -56,11 +56,7 @@ $(document).ready(function(){
         if(!(data.status == "success")) {
           checkError(data.status);
         } else {
-          if ($("#clienti").is(":checked")){
-            window.location.replace("../HTML/client_home.html");
-          } else {
-            window.location.replace("../HTML/supplier_home.html");
-          }
+          window.location.replace("../HTML/login.html");
         }
       });
     }

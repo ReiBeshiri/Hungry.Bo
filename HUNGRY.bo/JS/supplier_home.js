@@ -24,4 +24,6 @@ $(document).ready(function(){
       }
   }).trigger('resize');
 
+  $.getJSON("../PHP/dbRequestManager.php?request=icona-locale&nome="+);
+
 });

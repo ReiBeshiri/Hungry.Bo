@@ -13,7 +13,7 @@ function sec_session_start() {
 
 function login($username, $password, $mysqli) {
    // Usando statement sql 'prepared' non sarà possibile attuare un attacco di tipo SQL injection.
-   if ($stmt = $mysqli->prepare("SELECT Username, Password, Salt FROM Cliente WHERE Username = ?")) { 
+   if ($stmt = $mysqli->prepare("SELECT Username, Password, Salt FROM Cliente WHERE Username = ?")) {
       $stmt->bind_param('s', $username); // esegue il bind del parametro '$email'.
       $stmt->execute(); // esegue la query appena creata.
       $stmt->store_result();
@@ -22,9 +22,16 @@ function login($username, $password, $mysqli) {
       $password = hash('sha512', $password.$salt); // codifica la password usando una chiave univoca.
       if($stmt->num_rows == 1) { // se l'utente esiste
          if($db_password == $password) { // Verifica che la password memorizzata nel database corrisponda alla password fornita dall'utente.
-            // Password corretta!            
-               // Login eseguito con successo.
-               return true;    
+            // Password corretta!
+            $user_browser = $_SERVER['HTTP_USER_AGENT']; // Recupero il parametro 'user-agent' relativo all'utente corrente.
+
+            $user_id = preg_replace("/[^0-9]+/", "", $user_id); // ci proteggiamo da un attacco XSS
+            $_SESSION['user_id'] = $user_id;
+            $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username); // ci proteggiamo da un attacco XSS
+            $_SESSION['username'] = $username;
+            $_SESSION['login_string'] = hash('sha512', $password.$user_browser);  
+            // Login eseguito con successo.
+            return true;
          }
       } else {
          // L'utente inserito non esiste.
