@@ -2,6 +2,8 @@
 header('Content-Type: application/json');
 include("db_connect.php");
 
+sec_session_start();
+
 if(isset($_GET["request"])) {
   $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
 
@@ -26,63 +28,6 @@ if(isset($_GET["request"])) {
       $stmt->close();
 
       print json_encode($output);
-
-      break;
-
-    case 'icona-locale':
-      $local_name = $GET['nome'];
-
-      $stmt-> $mysqli->prepare("SELECT Icona FROM Fornitori WHERE Username = ?");
-
-      $stmt->bind_param('s', $local_name);
-
-      $stmt->execute();
-
-      $stmt->bind_result($result);
-
-      $stmt->fetch();
-
-      $stmt->close();
-
-      print json_encode($result);
-
-      break;
-
-    case 'immagine-locale':
-      $local_name = $GET['nome'];
-
-      $stmt-> $mysqli->prepare("SELECT Immagine FROM Fornitori WHERE Username = ?");
-
-      $stmt->bind_param('s', $local_name);
-
-      $stmt->execute();
-
-      $stmt->bind_result($result);
-
-      $stmt->fetch();
-
-      $stmt->close();
-
-      print json_encode($result);
-
-      break;
-
-    case 'orario-locale':
-      $local_name = $GET['nome'];
-      //Dovrebbe stamoare un solo record.
-      $stmt-> $mysqli->prepare("SELECT OraApertura, OraChiusura FROM Fornitori WHERE Username = ?");
-
-      $stmt->bind_param('s', $local_name);
-
-      $stmt->execute();
-
-      $stmt->bind_result($result);
-
-      $stmt->fetch();
-
-      $stmt->close();
-
-      print json_encode($result);
 
       break;
   }

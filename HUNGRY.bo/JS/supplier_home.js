@@ -24,6 +24,10 @@ $(document).ready(function(){
       }
   }).trigger('resize');
 
-  $.getJSON("../PHP/dbRequestManager.php?request=icona-locale&nome="+);
+  $.getJSON("../PHP/supplier_home.php?request=info-locale", function(data){
+    $("span#local-name").text(data[0].NomeLocale);
+    $("span#local-address").text(data[0].Indirizzo);
+    $("span#local-name").text(data[0].OraApertura + "-" + data[0].OraApertura);
+  });
 
 });
