@@ -11,14 +11,17 @@
 #container {
   width: 100%;
   display: inline-block;
-  background-image: url("../res/background.jpg");
   background-size: cover;
   position: relative;
   background-position: center center;
   /*height: 100%; background-image: url("/public/businesses/86.9e10cb9a-e482-4a68-9a77-251b81109bd1.jpg"); background-repeat: no-repeat; background-position: center center; background-size: cover; position: relative;*/
 }
 
-#container > div.dumb-container > p {
+#container > div.dumb-container > p > span {
+  color: rgb(255, 255, 255);
+}
+
+#container > div.dumb-container > p > span:first-child {
   color: rgb(255, 255, 255);
   font-family: LeagueSpartan;
 }
@@ -53,8 +56,9 @@ div.dumb-container {
 
 img.local-icon {
   margin-top: 110px;
-  width: 200px;
-  height: 200px;
+  margin-bottom: 10px;
+  width: 160px;
+  height: 160px;
 }
 
 footer {

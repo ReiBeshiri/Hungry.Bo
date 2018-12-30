@@ -2,8 +2,6 @@
 header('Content-Type: application/json');
 include("db_connect.php");
 
-sec_session_start();
-
 if(isset($_GET["request"])) {
   $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
 

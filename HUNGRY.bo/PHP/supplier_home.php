@@ -1,11 +1,9 @@
 <?php
+header('Content-Type: application/json');
 include("db_connect.php");
 include("functions.php");
 
 sec_session_start();
-
-header('Content-Type: application/json');
-include("db_connect.php");
 
 if(isset($_GET["request"])) {
   $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
@@ -18,23 +16,51 @@ if(isset($_GET["request"])) {
   }
   switch ($_GET["request"]) {
     case 'informazioni-locale':
-      $local_name = $GET['nome'];
 
-      $stmt-> $mysqli->prepare("SELECT * FROM Fornitori WHERE Username = ?");
+      $stmt = $mysqli->prepare("SELECT * FROM Fornitore WHERE Username = ?");
 
-      $stmt->bind_param('s', $_SESSION['username']);
+      $name = "rei";
+
+      $stmt->bind_param('s', $name/*$_SESSION['username']*/);
 
       $stmt->execute();
 
-      $stmt->bind_result($result);
+      $result = $stmt->get_result();
 
-      $stmt->fetch();
-
+      $output = array();
+      while($row = $result->fetch_assoc()){
+          $output[] = $row;
+      }
       $stmt->close();
 
-      print json_encode($result);
+      print json_encode($output);
 
       break;
+
+      case 'aggiungi-immagini':
+        $icona = $_POST["icona"];
+        $immagine = $_POST["immagine"];
+        $stmt = $mysqli->prepare("UPDATE Fornitore SET Icona=?, Immagine=? WHERE Username=?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella quesry";
+          print json_encode($response_array);
+          die();
+        }
+
+        $name = "rei";
+
+        $stmt->bind_param('sss', $icona, $immagine, $name/*$_SESSION['username']*/);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+
+        break;
     }
     $mysqli->close();
 }
