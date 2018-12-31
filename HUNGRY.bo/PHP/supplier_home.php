@@ -128,6 +128,35 @@ if(isset($_GET["request"])) {
         print json_encode($output);
 
         break;
+      case 'modifica-prodotto':
+        var_dump($_POST);
+        $nome = $_POST["nome"];
+        $ingredienti = $_POST["ingredienti"];
+        $tempo = $_POST["tempo-di-preparazione"];
+        $prezzo = $_POST["prezzo"];
+        $tipo = $_POST["tipo-prodotto"];
+        $username = $_SESSION["username"];
+        $id = $_POST["id"];
+
+        $stmt = $mysqli->prepare("UPDATE INTO Prodotto (Nome, Prezzo, TempoPreparazione, Ingredienti, TipoProdotto) VALUES (?, ?, ?, ?, ?) WHERE ID=?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('siissi', $nome, $prezzo, $tempo, $ingredienti, $tipo, $id);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+
+        break;
     }
     $mysqli->close();
 }

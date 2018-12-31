@@ -193,18 +193,18 @@
                   </div>
                   <div class="form-group">
                     <label for="insert-price-prod">Prezzo:
-                      <input class="form-control" type="number" name="prezzo" min="1" max="90" id="insert-price-prod"/>
+                      <input class="form-control" type="number" name="prezzo" min="1" step="any" max="90" id="insert-price-prod"/>
                     </label>
                   </div>
                   <div class="form-group">
                     <label for="plate-type">Tipologia:
-                      <select class="form-control" id="plate-type">
+                      <select class="form-control" name="tipo-prodotto" id="plate-type">
                       </select>
                     </label>
                   </div>
                   <div class="form-group">
                     <label for="insert-preapare-time-prod">Tempo di Preparazione:
-                      <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" id="insert-preapare-time-prod" />
+                      <input class="form-control" type="number" name="tempo-di-preparazione" min="0" max="90" id="insert-preapare-time-prod" />
                     </label>
                   </div>
                   <div class="modal-footer">
@@ -304,12 +304,12 @@
                 </div>
                 <div class="form-group">
                   <label class="col-form-label" for="preparation-time-input">Tempo di preparazione:
-                    <input class="form-control" name="tempo-preparazione" type="number" value="1" min="1" max="90" id="preparation-time-input"/>
+                    <input class="form-control" name="tempo-preparazione" type="number" value="0" min="1" max="90" id="preparation-time-input"/>
                   </label>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label" for="prezzo-input">Prezzo:
-                    <input class="form-control" name="prezzo" type="number" value="1" min="1" max="90" id="prezzo-input"/>
+                    <input class="form-control" name="prezzo" type="number" value="1" min="1" max="90" step="any" id="prezzo-input"/>
                   </label>
                 </div>
                 <div class="form-group">

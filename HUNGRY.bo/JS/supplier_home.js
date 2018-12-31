@@ -117,4 +117,12 @@ $(document).ready(function(){
       $("select#plate-type option[value="+data[0].TipoProdotto+"]").attr('selected', 'selected');
     });
   });
+  //NON FUNZIONA
+  $("form#modifica-prodotto button#submit").click(function(){
+    var dataToSend = $("form#modifica-prodotto").serialize();
+    console.log(dataToSend);
+    $.post("../supplier_home.php?request=modifica-prodotto", dataToSend, function(data){
+      console.log(data);
+    });
+  });
 });
