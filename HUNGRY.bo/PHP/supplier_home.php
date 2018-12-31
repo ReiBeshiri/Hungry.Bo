@@ -98,7 +98,7 @@ if(isset($_GET["request"])) {
           die();
         }
 
-        $stmt->bind_param('siisss', $nome, $prezzo, $tempo, $ingredienti, $tipo, $username);
+        $stmt->bind_param('sdisss', $nome, $prezzo, $tempo, $ingredienti, $tipo, $username);
 
         $stmt->execute();
 
@@ -128,8 +128,8 @@ if(isset($_GET["request"])) {
         print json_encode($output);
 
         break;
+
       case 'modifica-prodotto':
-        var_dump($_POST);
         $nome = $_POST["nome"];
         $ingredienti = $_POST["ingredienti"];
         $tempo = $_POST["tempo-di-preparazione"];
@@ -138,7 +138,7 @@ if(isset($_GET["request"])) {
         $username = $_SESSION["username"];
         $id = $_POST["id"];
 
-        $stmt = $mysqli->prepare("UPDATE INTO Prodotto (Nome, Prezzo, TempoPreparazione, Ingredienti, TipoProdotto) VALUES (?, ?, ?, ?, ?) WHERE ID=?");
+        $stmt = $mysqli->prepare("UPDATE Prodotto SET Nome=?, Prezzo=?, TempoPreparazione=?, Ingredienti=?, TipoProdotto=? WHERE ID=?");
 
         if($stmt == false) {
           $response_array['status'] = "Errore nella query";
@@ -146,7 +146,28 @@ if(isset($_GET["request"])) {
           die();
         }
 
-        $stmt->bind_param('siissi', $nome, $prezzo, $tempo, $ingredienti, $tipo, $id);
+        $stmt->bind_param('sdissi', $nome, $prezzo, $tempo, $ingredienti, $tipo, $id);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+
+        break;
+
+      case 'rimuovi-prodotto':
+        $stmt = $mysqli->prepare("DELETE FROM Prodotto WHERE ID=?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('i', $_POST['id']);
 
         $stmt->execute();
 

@@ -117,12 +117,24 @@ $(document).ready(function(){
       $("select#plate-type option[value="+data[0].TipoProdotto+"]").attr('selected', 'selected');
     });
   });
-  //NON FUNZIONA
+
   $("form#modifica-prodotto button#submit").click(function(){
     var dataToSend = $("form#modifica-prodotto").serialize();
     console.log(dataToSend);
-    $.post("../supplier_home.php?request=modifica-prodotto", dataToSend, function(data){
+    $.post("../PHP/supplier_home.php?request=modifica-prodotto", dataToSend, function(data){
       console.log(data);
     });
   });
+
+  $("form#modifica-prodotto button#remove").click(function(){
+    var id_sel = $("input#id").val();
+    var dataToSend = {
+      id: id_sel
+    };
+    console.log(dataToSend);
+    $.post("../PHP/supplier_home.php?request=rimuovi-prodotto", dataToSend, function(data){
+      console.log(data);
+    });
+  });
+
 });
