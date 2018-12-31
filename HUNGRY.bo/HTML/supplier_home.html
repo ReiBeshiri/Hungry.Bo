@@ -83,43 +83,21 @@
     <!-- END PAGE HEADER -->
 
     <!-- TABLES -->
-    <div class="row tables">
+    <div class="row tables" >
   		<div class="col-12 col-md-8">
         <div class="table-header">
-          <p>Secondi Piatti</p>
+          <p>Primi Piatti</p>
         </div>
-  			<table class="table table-hover">
+  			<table class="table table-hover" id="Primo-Piatto">
   			  <thead class="thead-dark">
     				<tr>
-              <th id="id-p1" hidden>id</th>
-    				  <th id="product-p1">Prodotto</th>
-    				  <th id="price-p1">Prezzo</th>
-              <th id="modify-p1">Modifica</th>
+              <th id="id-Primo-Piatto" hidden>id</th>
+    				  <th id="product-Primo-Piatto">Prodotto</th>
+    				  <th id="price-Primo-Piatto">Prezzo</th>
+              <th id="modify-Primo-Piatto">Modifica</th>
     				</tr>
   			  </thead>
   			  <tbody>
-    				<tr>
-              <td headers="id-p1" hidden>1</td>
-              <td headers="product-p1">Hamburger <br/>
-                <span class="ingredients-in-table">(Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</span></td>
-              <td headers="price-p1">6 €</td>
-              <td headers="modify-p1">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-                </span>
-              </td>
-    				</tr>
-    				<tr>
-              <td headers="id-p1" hidden>2</td>
-              <td headers="product-p1">Panino <br/>
-                <span class="ingredients-in-table">(Prosciutto, Formaggio, Pane di sesamo ...)</span></td>
-    				  <td headers="price-p1">5 €</td>
-              <td headers="modify-p1">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-                  </span>
-              </td>
-    				</tr>
     	   </tbody>
     	</table>
     </div>
@@ -128,35 +106,57 @@
       <div class="table-header">
         <p>Bevande</p>
       </div>
-  		<table class="table table-hover">
+  		<table class="table table-hover" id="Bibita">
   		    <thead class="thead-dark">
   			    <tr>
-              <th id="id-p2" hidden>id</th>
-  					  <th id="product-p2">Prodotto</th>
-  					  <th id="price-p2">Prezzo</th>
-              <th id="modify-p2">Modifica</th>
+              <th id="id-Bibita" hidden>id</th>
+  					  <th id="product-Bibita">Prodotto</th>
+  					  <th id="price-Bibita">Prezzo</th>
+              <th id="modify-Bibita">Modifica</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+    			</tbody>
+    		</table>
+    	</div>
+  	</div>
+    <!-- END TABLES -->
+
+    <!-- TABLES -->
+    <div class="row tables">
+  		<div class="col-12 col-md-8">
+        <div class="table-header">
+          <p>Secondi Piatti</p>
+        </div>
+  			<table class="table table-hover" id="Secondo-Piatto">
+  			  <thead class="thead-dark">
+    				<tr>
+              <th id="id-Secondo-Piatto" hidden>id</th>
+    				  <th id="product-Secondo-Piatto">Prodotto</th>
+    				  <th id="price-Secondo-Piatto">Prezzo</th>
+              <th id="modify-Secondo-Piatto">Modifica</th>
+    				</tr>
+  			  </thead>
+  			  <tbody>
+    	   </tbody>
+    	</table>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="table-header">
+        <p>Dolci</p>
+      </div>
+  		<table class="table table-hover" id="Dolce">
+  		    <thead class="thead-dark">
+  			    <tr>
+              <th id="id-Dolce" hidden>id</th>
+  					  <th id="product-Dolce">Prodotto</th>
+  					  <th id="price-Dolce">Prezzo</th>
+              <th id="modify-Dolce">Modifica</th>
   					</tr>
   				</thead>
   				<tbody>
   					<tr>
-              <td headers="id-p2" hidden>3</td>
-              <td headers="product-p2">Coca Cola</td>
-              <td headers="price-p2">2 €</td>
-              <td headers="modify-p2">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-                </span>
-              </td>
-  					</tr>
-  					<tr>
-              <td headers="id-p2" hidden>4</td>
-              <td headers="product-p2">Fanta</td>
-  					  <td headers="price-p2">3 €</td>
-              <td headers="modify-p2">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-popup">Modifica</button>
-                </span>
-              </td>
   					</tr>
     			</tbody>
     		</table>
@@ -175,7 +175,7 @@
             </button>
           </div>
             <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
+                <form id="modifica-prodotto" action="#" method="post">
                   <div class="form-group">
                     <label for="id" hidden>ID:
                       <input class="form-control" type="text" name="id" id="id" hidden />
@@ -199,9 +199,6 @@
                   <div class="form-group">
                     <label for="plate-type">Tipologia:
                       <select class="form-control" id="plate-type">
-                        <option>Primo Piatto</option>
-                        <option>Secondo Piatto</option>
-                        <option>Bevanda</option>
                       </select>
                     </label>
                   </div>

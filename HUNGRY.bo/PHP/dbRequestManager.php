@@ -45,6 +45,27 @@ if(isset($_GET["request"])) {
       print json_encode($output);
 
       break;
+
+    case 'seleziona-prodotto':
+      $stmt = $mysqli->prepare("SELECT * FROM Prodotto WHERE ID=?");
+
+      $id = $_POST["id"];
+
+      $stmt->bind_param("i", $id);
+
+      $stmt->execute();
+
+      $result = $stmt->get_result();
+
+      $output = array();
+      while($row = $result->fetch_assoc()){
+          $output[] = $row;
+      }
+      $stmt->close();
+
+      print json_encode($output);
+
+      break;
   }
   $mysqli->close();
 }

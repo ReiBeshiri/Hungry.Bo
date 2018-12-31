@@ -83,7 +83,6 @@ if(isset($_GET["request"])) {
         break;
 
       case 'aggiungi-prodotto':
-        var_dump($_POST);
         $nome = $_POST["nome"];
         $ingredienti = $_POST["descrizione"];
         $tempo = $_POST["tempo-preparazione"];
@@ -108,6 +107,25 @@ if(isset($_GET["request"])) {
         $response_array['status'] = 'success';
 
         print json_encode($response_array);
+
+        break;
+
+      case 'lista-prodotti':
+        $stmt = $mysqli->prepare("SELECT * FROM Prodotto WHERE UsernameFornitore = ?");
+
+        $stmt->bind_param('s', $_SESSION['username']);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $output = array();
+        while($row = $result->fetch_assoc()){
+            $output[] = $row;
+        }
+        $stmt->close();
+
+        print json_encode($output);
 
         break;
     }
