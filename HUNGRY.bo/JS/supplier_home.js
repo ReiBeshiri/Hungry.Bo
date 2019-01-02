@@ -142,9 +142,37 @@ $(document).ready(function(){
     });
   });
 
-  // $("button#logout").click(function() {
-  //   $.getJSON("../PHP/logout.php", function(data) {
-  //     //window.location.replace("../HTML/login.html");
-  //   });
-  // });
+  //Set 500 mS of timeout for check notifications
+  setInterval(checkNotify, 5000);
 });
+
+function checkNotify() {
+  $.getJSON("../PHP/supplier_home.php?request=controllo-notifiche", function(data) {
+    console.log(data);
+    if(data.status == 'true') {
+      //Inserire simbolo rosso di fianco a notifica. --> Da eliminare solo alla pressione.
+      $("#numero-notifiche").html('<span class="badge badge-danger">'+data.count+'</span>');
+      $.getJSON("../PHP/supplier_home.php?request=lista-notifiche", function(notify) {
+        console.log(notify);
+        // for(var i=0; i < notify.length; i++) {
+        //
+        //   //Conteggio prodotti.
+        //   var dataToSend = {
+        //     id: notify[i].IDOrdine
+        //   };
+        //
+        //   $.post("../PHP/supplier_home.php?request=conta-prodotti", dataToSend, function(nProd) {
+        //     console.log(nProd);
+        //
+        //     $.post("../PHP/supplier_home.php?request=ordine-notifica", dataToSend, function(order) {
+        //       console.log(order);
+        //       var html_code='<div class="card-body"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span><br/><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span><br/><span class="luogo"><strong>Luogo Consegna: <strong></span>'+order[0].LuogoConsegna+'<br/><span class="ora"><strong>Ora Consegna: <strong>'+order[0].Ora+'</span></p><div class="text-right"><a href="#" class="btn btn-primary btn-sm">Segnala come letta</a></div></div></div>';
+        //       $("form#gestisci-notifiche").html(html_code);
+        //     });
+        //
+        //   });
+        // }
+      });
+    }
+  });
+}

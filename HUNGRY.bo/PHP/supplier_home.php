@@ -178,6 +178,110 @@ if(isset($_GET["request"])) {
         print json_encode($response_array);
 
         break;
+
+      case 'controllo-notifiche':
+        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Notifica WHERE Destinatario = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('s', $_SESSION['username']);
+
+        $stmt->execute();
+
+        $stmt->bind_result($result);
+
+        $stmt->fetch();
+
+        if($result > 0) {
+          $response_array['status'] = 'true';
+          $response_array['count'] = $result;
+        } else {
+          $response_array['status'] = 'false';
+        }
+
+        print json_encode($response_array);
+
+        break;
+
+      case 'lista-notifiche':
+        $stmt = $mysqli->prepare("SELECT * FROM Notifica WHERE Destinatario = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('s', $_SESSION['username']);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $output = array();
+        while($row = $result->fetch_assoc()){
+            $output[] = $row;
+        }
+        $stmt->close();
+
+        print json_encode($output);
+        break;
+
+      case 'conta-prodotti':
+        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM ProdottoInOrdine WHERE IDOrdine = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('i', $_POST['id']);
+
+        $stmt->execute();
+
+        $stmt->bind_result($result);
+
+        $stmt->fetch();
+
+        if($result > 0) {
+          $response_array['status'] = 'true';
+          $response_array['count'] = $result;
+        } else {
+          $response_array['status'] = 'false';
+        }
+
+        print json_encode($response_array);
+
+        break;
+
+      case 'ordine-notifica':
+        $stmt = $mysqli->prepare("SELECT * FROM Ordine WHERE ID = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('i', $_POST['id']);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $output = array();
+        while($row = $result->fetch_assoc()){
+            $output[] = $row;
+        }
+        $stmt->close();
+
+        print json_encode($output);
+        break;
     }
     $mysqli->close();
 }
