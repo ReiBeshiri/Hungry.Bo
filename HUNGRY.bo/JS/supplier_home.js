@@ -58,6 +58,7 @@ $(document).ready(function(){
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=aggiungi-immagini", dataToSend, function(data) {
       console.log(data.status);
+      location.reload();
     });
   });
 
@@ -67,6 +68,7 @@ $(document).ready(function(){
     var dataToSend = $("form#modifica-orario").serialize();
     $.post("../PHP/supplier_home.php?request=modifica-orari", dataToSend, function(data){
       console.log(data);
+      location.reload();
     });
   });
 
@@ -75,6 +77,7 @@ $(document).ready(function(){
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=aggiungi-prodotto", dataToSend, function(data){
       console.log(data);
+      location.reload();
     });
   });
 
@@ -123,6 +126,7 @@ $(document).ready(function(){
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=modifica-prodotto", dataToSend, function(data){
       console.log(data);
+      location.reload();
     });
   });
 
@@ -134,6 +138,7 @@ $(document).ready(function(){
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=rimuovi-prodotto", dataToSend, function(data){
       console.log(data);
+      location.reload();
     });
   });
 
