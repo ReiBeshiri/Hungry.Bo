@@ -249,7 +249,6 @@ if(isset($_GET["request"])) {
         $stmt->fetch();
 
         if($result > 0) {
-          $response_array['status'] = 'true';
           $response_array['count'] = $result;
         } else {
           $response_array['status'] = 'false';
