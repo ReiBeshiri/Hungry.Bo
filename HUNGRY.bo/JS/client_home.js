@@ -20,8 +20,8 @@ $(document).ready(function () {
       } else{
 
         voti = data;
-        
-        $(".avg-vote").get(0).append(voti.status);
+
+        $(".avg-score").get(0).append(voti.status);
 
       }
 
