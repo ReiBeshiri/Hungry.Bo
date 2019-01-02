@@ -142,4 +142,9 @@ $(document).ready(function(){
     });
   });
 
+  // $("button#logout").click(function() {
+  //   $.getJSON("../PHP/logout.php", function(data) {
+  //     //window.location.replace("../HTML/login.html");
+  //   });
+  // });
 });

@@ -81,7 +81,7 @@ footer>p:first-child {
   float: left;
 }
 
-input[type="submit"] {
+button {
   width: 25%;
 }
 

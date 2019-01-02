@@ -25,7 +25,7 @@ function login($username, $password, $mysqli, $db_password, $salt) {
          // L'utente inserito non esiste.
          return false;
       }
-   }
+}
 
 function login_check($mysqli) {
    // Verifica che tutte le variabili di sessione siano impostate correttamente
