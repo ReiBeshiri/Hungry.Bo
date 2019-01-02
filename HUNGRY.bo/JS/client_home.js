@@ -1,5 +1,5 @@
 var nomeLocale = "";
-
+var voti = 0;
 $(document).ready(function () {
   $(window).bind("resize", function () {
       if ($(this).width() < 981) {
@@ -10,6 +10,22 @@ $(document).ready(function () {
         $("ul.btn-cart>li").html('<a href="./carrello.html"><button id="cart" type="button" class="btn btn-outline-info">Carrello</button></a>');
       }
   }).trigger('resize');
+
+  $.getJSON("../PHP/scores.php?request=voti", function(data) {
+
+      if(data.status === "error") {
+
+        console.log("error");
+
+      } else{
+
+        voti = data;
+        
+        $(".avg-vote").get(0).append(voti.status);
+
+      }
+
+  });
 
   //get nomelocale when click on "scrivi reecensione"
   $("small a").click(function() {
@@ -33,7 +49,7 @@ $(document).ready(function () {
         voto:voto
       };
 
-      $.post("../PHP/client_home.php", dataToSend, function(data) {
+      $.post("../PHP/review.php", dataToSend, function(data) {
 
           console.log(data);
 
@@ -49,6 +65,7 @@ $(document).ready(function () {
           }
 
       });
+
   });
 
 });
