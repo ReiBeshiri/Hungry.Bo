@@ -81,7 +81,8 @@ footer>p:first-child {
   float: left;
 }
 
-button {
+#submit,
+#remove {
   width: 25%;
 }
 
