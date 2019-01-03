@@ -281,6 +281,24 @@ if(isset($_GET["request"])) {
 
         print json_encode($output);
         break;
+
+      case 'rimuovi-notifica':
+        $stmt = $mysqli->prepare("DELETE FROM Notifica WHERE ID=?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('i', $_POST['id']);
+
+        $stmt->execute();
+
+        $response_array['status'] = "success";
+
+        print json_encode($response_array);
+        break;
     }
     $mysqli->close();
 }

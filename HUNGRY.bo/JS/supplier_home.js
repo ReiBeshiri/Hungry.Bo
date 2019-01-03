@@ -83,9 +83,7 @@ $(document).ready(function(){
 
   //Creazione dinamica delle tabelle.
   $.post("../PHP/supplier_home.php?request=lista-prodotti", function(products){
-      console.log(products);
       $.getJSON("../PHP/dbRequestManager.php?request=tipologie-prodotti", function(type){
-        console.log(type);
         for(var i = 0; i < type.length; i++) {
             var html_code = "";
             for(var j = 0; j < products.length; j++) {
@@ -111,7 +109,6 @@ $(document).ready(function(){
       id: id_sel
     };
     $.post("../PHP/dbRequestManager.php?request=seleziona-prodotto", dataToSend, function(data){
-      console.log(data);
       $("input#id").val(data[0].ID);
       $("input#enter-name-prod").val(data[0].Nome);
       $("textarea#insert-ingredients-prod").val(data[0].Ingredienti);
@@ -125,7 +122,6 @@ $(document).ready(function(){
     var dataToSend = $("form#modifica-prodotto").serialize();
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=modifica-prodotto", dataToSend, function(data){
-      console.log(data);
       location.reload();
     });
   });
@@ -137,42 +133,72 @@ $(document).ready(function(){
     };
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=rimuovi-prodotto", dataToSend, function(data){
-      console.log(data);
       location.reload();
     });
   });
 
-  //Set 500 mS of timeout for check notifications
+  //Set 5 s of timeout for check notifications
   setInterval(checkNotify, 5000);
+
+  $("form#gestisci-notifiche").on('click', 'button.letta', function(){
+    var span = $(this).parents("form#gestisci-notifiche").find("span.id-notifica");
+    var id = span.text();
+    var dataToSend = {
+      id: id
+    };
+    console.log(id);
+    $.post("../PHP/supplier_home.php?request=rimuovi-notifica", dataToSend, function(data) {
+      console.log(data);
+      if(data.status == 'success') {
+        span.parents("div.notifica").fadeOut("slow");
+        updateNotifyNum();
+      }
+    });
+  });
+
 });
 
 function checkNotify() {
+  updateNotifyNum();
+  $.getJSON("../PHP/supplier_home.php?request=lista-notifiche", function(notify) {
+    for(var i = 0; i < notify.length; i++) {
+      //Conteggio prodotti.
+      var dataToSend = {
+        id: notify[i].IDOrdine
+      };
+
+      $.ajax({
+        url: "../PHP/supplier_home.php?request=conta-prodotti",
+        type: "POST",
+        async: false,
+        dataType: "json",
+        data: dataToSend,
+        success: function(nProd) {
+
+          if(nProd.status !== 'false') {
+          $.ajax({
+              url: "../PHP/supplier_home.php?request=ordine-notifica",
+              type: "POST",
+              async: false,
+              dataType: "json",
+              data: dataToSend,
+              success: function(order) {
+                var html_code='<div class="card-body notifica"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span></li><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
+                $("form#gestisci-notifiche").html(html_code);
+          }});
+        }
+      }});
+    }
+  });
+}
+
+function updateNotifyNum() {
   $.getJSON("../PHP/supplier_home.php?request=controllo-notifiche", function(data) {
-    console.log(data);
     if(data.status == 'true') {
       //Inserire simbolo rosso di fianco a notifica. --> Da eliminare solo alla pressione.
       $("#numero-notifiche").html('<span class="badge badge-danger">'+data.count+'</span>');
-      $.getJSON("../PHP/supplier_home.php?request=lista-notifiche", function(notify) {
-        console.log(notify);
-        // for(var i=0; i < notify.length; i++) {
-        //
-        //   //Conteggio prodotti.
-        //   var dataToSend = {
-        //     id: notify[i].IDOrdine
-        //   };
-        //
-        //   $.post("../PHP/supplier_home.php?request=conta-prodotti", dataToSend, function(nProd) {
-        //     console.log(nProd);
-        //
-        //     $.post("../PHP/supplier_home.php?request=ordine-notifica", dataToSend, function(order) {
-        //       console.log(order);
-        //       var html_code='<div class="card-body"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span><br/><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span><br/><span class="luogo"><strong>Luogo Consegna: <strong></span>'+order[0].LuogoConsegna+'<br/><span class="ora"><strong>Ora Consegna: <strong>'+order[0].Ora+'</span></p><div class="text-right"><a href="#" class="btn btn-primary btn-sm">Segnala come letta</a></div></div></div>';
-        //       $("form#gestisci-notifiche").html(html_code);
-        //     });
-        //
-        //   });
-        // }
-      });
+    } else {
+      $("#numero-notifiche").empty();
     }
   });
 }
