@@ -2,14 +2,6 @@ $(document).ready(function(){
   var icona;
   var immagine;
 
-  $('.table-remove').click(function () {
-
-  });
-
-  $('.table-add').click(function () {
-
-  });
-
   $.getJSON("../PHP/dbRequestManager.php?request=tipologie-prodotti", function(data){
     var html_code = "";
     for(var i = 0; i < data.length; i++){
@@ -42,7 +34,7 @@ $(document).ready(function(){
   $.getJSON("../PHP/supplier_home.php?request=informazioni-locale", function(data){
     $("span#local-name").text(data[0].NomeLocale);
     $("span#local-address").text(data[0].Indirizzo);
-    $("span#local-time").text(data[0].OraApertura + "-" + data[0].OraApertura);
+    $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraApertura.slice(0,5));
     $("#container>div.dumb-container>#icon-container").html('<img class="img-fluid rounded-circle local-icon" src="../res/'+data[0].Icona+'" alt="local icon"/>');
     $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
   });
@@ -97,6 +89,7 @@ $(document).ready(function(){
             }
             $("table#"+type[i].Nome+">tbody").html(html_code);
         }
+        window.parent.$(window.parent.document).trigger('complete');
       });
   });
 
@@ -183,7 +176,7 @@ function checkNotify() {
               dataType: "json",
               data: dataToSend,
               success: function(order) {
-                var html_code='<div class="card-body notifica"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span></li><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
+                var html_code='<div class="card-body notifica"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span></li><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
                 $("form#gestisci-notifiche").html(html_code);
           }});
         }
