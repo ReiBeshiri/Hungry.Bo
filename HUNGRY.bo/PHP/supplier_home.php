@@ -36,21 +36,41 @@ if(isset($_GET["request"])) {
       break;
 
       case 'aggiungi-immagini':
-        $icona = $_POST["icona"];
-        $immagine = $_POST["immagine"];
-        $stmt = $mysqli->prepare("UPDATE Fornitore SET Icona=?, Immagine=? WHERE Username=?");
+        if(isset($_POST["icona"])) {
+          $icona = $_POST["icona"];
 
-        if($stmt == false) {
-          $response_array['status'] = "Errore nella query";
-          print json_encode($response_array);
-          die();
+          $stmt = $mysqli->prepare("UPDATE Fornitore SET Icona=? WHERE Username=?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('ss', $icona, $_SESSION['username']);
+
+          $stmt->execute();
+
+          $stmt->close();
+
         }
+        
+        if(isset($_POST["immagine"])) {
+          $immagine = $_POST["immagine"];
+          $stmt = $mysqli->prepare("UPDATE Fornitore SET Immagine=? WHERE Username=?");
 
-        $stmt->bind_param('sss', $icona, $immagine, $_SESSION['username']);
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query";
+            print json_encode($response_array);
+            die();
+          }
 
-        $stmt->execute();
+          $stmt->bind_param('ss', $immagine, $_SESSION['username']);
 
-        $stmt->close();
+          $stmt->execute();
+
+          $stmt->close();
+        }
 
         $response_array['status'] = 'success';
 

@@ -89,7 +89,7 @@ $(document).ready(function(){
             }
             $("table#"+type[i].Nome+">tbody").html(html_code);
         }
-        window.parent.$(window.parent.document).trigger('complete');
+        window.parent.$(window.parent.document).trigger('resize');
       });
   });
 
