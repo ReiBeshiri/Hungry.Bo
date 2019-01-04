@@ -22,32 +22,34 @@ $(document).ready(function () {
     } else{
 
       suppliers = data;
-      nomilocali = suppliers.status[0]["NomeLocale"];
-      console.log(nomilocali);
+      nomilocali = suppliers.status;
+      var supp;
+      for (var i = 0; i < 2; i++) {
+        console.log(nomilocali[i]);
+        $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center">'+nomilocali[i]["NomeLocale"]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score"></span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+      }
+
+      ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
+      console.log(nomilocali[1]);
+      $.getJSON("../PHP/scores.php", nomilocali, function(data) {
+
+          if(data.status === "error") {
+
+              console.log("error");
+
+          } else{
+
+              voti = data;
+
+              $(".avg-score").get(0).append(voti.status);
+
+          }
+
+      });
 
     }
 
-    $("#greed div").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center">'+nomilocali+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score"></span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
-
   });
-
-
-  $.getJSON("../PHP/scores.php?request=voti", function(data) {
-
-      if(data.status === "error") {
-
-        console.log("error");
-
-      } else{
-
-        voti = data;
-
-        $(".avg-score").get(0).append(voti.status);
-
-      }
-
-  });
-
 
   //get nomelocale when click on "scrivi reecensione"
   $("small a").click(function() {

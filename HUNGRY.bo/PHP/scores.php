@@ -9,6 +9,10 @@
   //session
   sec_session_start();
 
+  var_dump($_GET);
+  var_dump($_POST);
+  
+
   if(isset($_GET["request"])) {
 
   //start conn
