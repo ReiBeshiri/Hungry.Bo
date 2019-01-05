@@ -13,7 +13,7 @@ $(document).ready(function () {
       }
   }).trigger('resize');
 
-  $.getJSON("../PHP/suppliers.php?request=suppliers", function(data) {
+  $.getJSON("../PHP/client_home_suppliers.php?request=suppliers", function(data) {
 
     if(data.status === "error") {
 
@@ -23,29 +23,25 @@ $(document).ready(function () {
 
       suppliers = data;
       nomilocali = suppliers.status;
-      var supp;
-      for (var i = 0; i < 2; i++) {
-        console.log(nomilocali[i]);
-        $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center">'+nomilocali[i]["NomeLocale"]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score"></span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+
+      for (var i = 0; i < nomilocali.length; i++) {
+        ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
+        $.post("../PHP/client_home_scores.php", nomilocali[i], function(data) {
+
+            if(data.status === "error") {
+
+                console.log("error");
+
+            } else{
+
+                response = data;
+
+                  $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+
+            }
+
+        });
       }
-
-      ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
-      console.log(nomilocali[1]);
-      $.getJSON("../PHP/scores.php", nomilocali, function(data) {
-
-          if(data.status === "error") {
-
-              console.log("error");
-
-          } else{
-
-              voti = data;
-
-              $(".avg-score").get(0).append(voti.status);
-
-          }
-
-      });
 
     }
 
