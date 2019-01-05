@@ -124,6 +124,32 @@ if(isset($_GET['request'])) {
         print json_encode($response_array);
       }
       break;
+
+    case 'notify-client':
+      if(isset($_POST['id']) && isset($_POST['destinatario']) && isset($_POST['descrizione'])) {
+        $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente, IDOrdine) VALUES (?, ?, ?, ?, ?)");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+        $letta = 0;
+
+        $stmt->bind_param('sissi', $_POST['descrizione'], $letta, $_POST['destinatario'], $_SESSION['username'], $_POST['id']);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array['status'] = 'success';
+
+        print json_encode($response_array);
+      } else {
+        $response_array['status'] = "IDOrdine e/o destinatario mancante/i";
+        print json_encode($response_array);
+      }
+      break;
   }
 
   $mysqli->close();

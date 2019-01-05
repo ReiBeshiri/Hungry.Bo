@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 
   $('#order-status-select').change(function() {
-  	if($('#order-status-select').val() == "Altro..."){
+  	if($('#order-status-select').val() == "Altro"){
   		$('#desc-other').removeAttr("hidden");
   	}else{
   		$('#desc-other').attr("hidden", "true");
@@ -84,16 +84,34 @@ $(document).ready(function () {
   $("div#order-manage button").click(function() {
     var id = $("span#id-sel-order").text();
     var stato = $("#order-status-select").val();
+    var descrizione = "Stato dell'ordine cambiato: ";
+    var destinatario = $("span#cliente").text();
 
-    var data = {
+    descrizione += stato;
+
+    if(stato == "Altro") {
+      descrizione += " -> " + $("#textarea-desc").val();
+    }
+
+    var dataToSend = {
       id: id,
       stato: stato
     }
 
-    $.post("../PHP/supplier_orders.php?request=update-status", data, function(dataRecv) {
+    $.post("../PHP/supplier_orders.php?request=update-status", dataToSend, function(dataRecv) {
       if(dataRecv.status == "success") {
-        location.reload();
+        dataToSendNotify = {
+          id: id,
+          descrizione: descrizione,
+          destinatario: destinatario
+        }
+        $.post("../PHP/supplier_orders.php?request=notify-client", dataToSendNotify, function(data) {
+          if(data.status == 'success') {
+            location.reload();
+          }
+        });
       }
     });
   });
+
 });
