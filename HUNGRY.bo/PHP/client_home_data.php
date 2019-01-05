@@ -76,8 +76,46 @@
 
     }
 
+
+    $stmt = $mysqli->prepare("SELECT Immagine FROM Fornitore WHERE Username = ?");
+
+    $stmt->bind_param('s', $username);
+
+    $stmt->execute();
+
+    $stmt->bind_result($immagine);
+
+    $stmt->fetch();
+
+    $stmt->close();
+
+    if($immagine === NULL) {
+
+      $immagine = "-";
+
+    }
+
+    $stmt = $mysqli->prepare("SELECT Icona FROM Fornitore WHERE Username = ?");
+
+    $stmt->bind_param('s', $username);
+
+    $stmt->execute();
+
+    $stmt->bind_result($icona);
+
+    $stmt->fetch();
+
+    $stmt->close();
+
+    if($icona === NULL) {
+
+      $icona = "-";
+
+    }
+
+
     $response = array();
-    array_push($response, $nomelocale, $avg);
+    array_push($response, $nomelocale, $avg, $immagine, $icona);
 
     $response_array['status'] = $response;
     print json_encode($response_array);

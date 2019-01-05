@@ -26,7 +26,7 @@ $(document).ready(function () {
 
       for (var i = 0; i < nomilocali.length; i++) {
         ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
-        $.post("../PHP/client_home_scores.php", nomilocali[i], function(data) {
+        $.post("../PHP/client_home_data.php", nomilocali[i], function(data) {
 
             if(data.status === "error") {
 
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
                 response = data;
 
-                  $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="../res/pizzamargherita.jpg" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+                  $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="'+response.status[2]+'" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="'+response.status[2]+'../res/icona.png" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
 
             }
 
