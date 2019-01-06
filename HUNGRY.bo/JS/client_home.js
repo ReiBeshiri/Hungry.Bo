@@ -1,8 +1,7 @@
-var nomeLocale = "";
-var suppliers;
-var nomilocali;
-var voti = 0;
+var filters = [];
+
 $(document).ready(function () {
+
   $(window).bind("resize", function () {
       if ($(this).width() < 981) {
           $("ul.btn-cart>li").empty();
@@ -13,79 +12,112 @@ $(document).ready(function () {
       }
   }).trigger('resize');
 
-  $.getJSON("../PHP/client_home_suppliers.php?request=suppliers", function(data) {
+  // $.getJSON("../PHP/client_home_suppliers.php?request=suppliers", function(data) {
+  //   if(data.status === "error") {
+  //     console.log("error");
+  //   } else{
+  //
+  //     suppliers = data;
+  //     nomilocali = suppliers.status;
+  //
+  //     for (var i = 0; i < nomilocali.length; i++) {
+  //       ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
+  //       $.post("../PHP/client_home_data.php", nomilocali[i], function(data) {
+  //           if(data.status === "error") {
+  //               console.log("error");
+  //           } else{
+  //               response = data;
+  //               $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="'+"../res/"+response.status[2]+'" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/'+response.status[3]+'" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+  //           }
+  //       });
+  //     }
+  //   }
+  // });
 
-    if(data.status === "error") {
-
-      console.log("error");
-
-    } else{
-
-      suppliers = data;
-      nomilocali = suppliers.status;
-
-      for (var i = 0; i < nomilocali.length; i++) {
-        ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
-        $.post("../PHP/client_home_data.php", nomilocali[i], function(data) {
-
-            if(data.status === "error") {
-
-                console.log("error");
-
-            } else{
-
-                response = data;
-
-                $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="'+"../res/"+response.status[2]+'" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/'+response.status[3]+'" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
-
-            }
-
-        });
+  $.getJSON("../PHP/client_home.php?request=supplier-data", function(data) {
+    for(var i = 0; i < data.length; i++) {
+      var dataToSend = {
+        username: data[i].Username
       }
-
+      $.ajax({
+          url: "../PHP/client_home.php?request=local-vote",
+          type: "POST",
+          async: false,
+          dataType: "json",
+          data: dataToSend,
+          success: function(vote) {
+            $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3 card-locale"><span class="tipologia" hidden>'+data[i].TipoLocale+'</span><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="'+"../res/"+data[i].Immagine+'" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/'+data[i].Icona+'" alt="local icon"/><div class="card-body"><span class="username" hidden>'+data[i].Username+'</span><h6 class="card-title text-center">'+data[i].NomeLocale+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+vote+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a class="rec-link" href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
+          }});
     }
-
   });
 
-  //get nomelocale when click on "scrivi reecensione"
-  $("small a").click(function() {
-    nomeLocale = $("div h6").html();
-    console.log(nomeLocale);
-  });
+  $("#appends").on('click', 'a.rec-link', function() {
+    var username = $(this).parents("div.card").find("span.username").text();
+    $("span#username-popup").text(username);
+  })
 
-  $("form button").click(function() {
-      console.log("bottone premuto");
-      event.preventDefault();
-
+  $("#recensione-popup button").click(function() {
       var voto = $("#score").val();
       var desc = $("#comment").val();
-
-      console.log(voto);
-      console.log(desc);
+      var usernameFornitore =  $("span#username-popup").text();
 
       var dataToSend = {
-        nomeLocale:nomeLocale,
+        usernameFornitore:usernameFornitore,
         desc:desc,
         voto:voto
       };
 
       $.post("../PHP/review.php", dataToSend, function(data) {
-
           console.log(data);
-
           if(data.status === "success") {
-
             console.log("recensione aggiunta");
             alert("recensione aggiunta");
-
           } else{
-
             console.log("errore");
-
           }
-
+          location.reload();
       });
 
+  });
+
+  $.getJSON("../PHP/client_home.php?request=categories", function(data) {
+    if(data.status !== 'error') {
+      var html_code = "";
+      for(var i = 0; i < data.length; i++) {
+        html_code += '<label> <input type="checkbox" name="'+data[i].Nome+'"/>'+data[i].Nome+'</label><br/>';
+      }
+      $("div#filter-categories form").html(html_code);
+    }
+  });
+
+  $("div#filter-categories").on('change', 'input[type="checkbox"]', function() {
+    var filter = $(this).attr("name");
+    if($(this).is(":checked") && $.inArray(filter, filters) == -1) {
+      filters.push(filter);
+    } else {
+      filters.splice($.inArray(filter, filters),1);
+    }
+
+    if(filters.length == 0) {
+      $("div.card-locale").each(function() {
+        $(this).removeAttr("hidden");
+      });
+    } else {
+      $("div.card-locale").each(function() {
+        var hidden = true;
+        var tipo = $(this).find("span.tipologia").text();
+        filters.forEach(function(filter) {
+          if(tipo == filter) {
+            hidden = false;
+          }
+        });
+        if(hidden) {
+          $(this).attr("hidden", "true");
+        } else {
+          $(this).removeAttr("hidden");
+        }
+      });
+    }
   });
 
 });

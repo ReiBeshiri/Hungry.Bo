@@ -35,10 +35,8 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Categorie
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <form class="checkbox-form" action="../PHP/client_home.php" method="post">
-                <label> <input type="checkbox" name="pizza"/>Pizza</label><br/>
-                <label> <input type="checkbox" name="panineria"/>Panini</label>
+            <div id="filter-categories" class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <form class="checkbox-form" action="#" method="post">
               </form>
             </div>
           </li>
@@ -89,7 +87,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="post">
+          <form method="post" id="recensione-popup">
+            <span id="username-popup" hidden></span>
             <div class="form-group">
               <div class="form-group">
                 <label>Commento:
@@ -101,7 +100,7 @@
               </label>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary footer-button" type="submit" value="Invia Recensione" id="submit">Invia Recensione</button>
+              <button class="btn btn-primary footer-button" type="button" value="Invia Recensione" id="submit">Invia Recensione</button>
             </div>
           </form>
         </div>

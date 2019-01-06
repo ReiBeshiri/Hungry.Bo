@@ -1,10 +1,7 @@
 <?php
   include('functions.php');
+  include("db_connect.php");
   header('Content-Type: application/json');
-  define("HOST", "localhost"); // E' il server a cui ti vuoi connettere.
-  define("USER", "root"); // E' l'utente con cui ti collegherai al DB.
-  define("PASSWORD", ""); // Password di accesso al DB.
-  define("DATABASE", "HUNGRYbo"); // Nome del database.
 
   //session
   sec_session_start();
