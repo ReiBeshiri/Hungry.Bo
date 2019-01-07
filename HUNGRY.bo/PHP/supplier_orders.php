@@ -127,10 +127,45 @@ if(isset($_GET['request'])) {
 
     case 'notify-client':
       if(isset($_POST['id']) && isset($_POST['destinatario']) && isset($_POST['descrizione'])) {
+
+        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Notifica WHERE Mittente = ? AND Destinatario = ? AND IDOrdine = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query di conteggio";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('ssi', $_SESSION['username'], $_POST['destinatario'], $_POST['id']);
+
+        $stmt->execute();
+
+        $stmt->bind_result($result);
+
+        $stmt->fetch();
+
+        $stmt->close();
+
+        if($result > 0) {
+          $stmt = $mysqli->prepare("DELETE FROM Notifica WHERE Mittente = ? AND Destinatario = ? AND IDOrdine = ?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query di eliminazione duplicato";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('ssi', $_SESSION['username'], $_POST['destinatario'], $_POST['id']);
+
+          $stmt->execute();
+
+          $stmt->close();
+        }
+
         $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente, IDOrdine) VALUES (?, ?, ?, ?, ?)");
 
         if($stmt == false) {
-          $response_array['status'] = "Errore nella query";
+          $response_array['status'] = "Errore nella query d inserimento";
           print json_encode($response_array);
           die();
         }

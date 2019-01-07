@@ -134,7 +134,7 @@ $(document).ready(function(){
   setInterval(checkNotify, 5000);
 
   $("form#gestisci-notifiche").on('click', 'button.letta', function(){
-    var span = $(this).parents("form#gestisci-notifiche").find("span.id-notifica");
+    var span = $(this).parents("div.notifica").find("span.id-notifica");
     var id = span.text();
     var dataToSend = {
       id: id
@@ -154,6 +154,7 @@ $(document).ready(function(){
 function checkNotify() {
   updateNotifyNum();
   $.getJSON("../PHP/supplier_home.php?request=lista-notifiche", function(notify) {
+    var html_code = "";
     for(var i = 0; i < notify.length; i++) {
       //Conteggio prodotti.
       var dataToSend = {
@@ -176,12 +177,12 @@ function checkNotify() {
               dataType: "json",
               data: dataToSend,
               success: function(order) {
-                var html_code='<div class="card-body notifica"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span></li><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
-                $("form#gestisci-notifiche").html(html_code);
+                html_code+='<div class="card-body notifica"><h6 class="card-title mittente">Hai un nuovo ordine da <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="prodotti"><strong>Numero Prodotti: </strong>'+nProd.count+'</span></li><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
           }});
         }
       }});
     }
+    $("form#gestisci-notifiche").html(html_code);
   });
 }
 

@@ -84,13 +84,11 @@ $(document).ready(function () {
   $("div#order-manage button").click(function() {
     var id = $("span#id-sel-order").text();
     var stato = $("#order-status-select").val();
-    var descrizione = "Stato dell'ordine cambiato: ";
+    var descrizione = "";
     var destinatario = $("span#cliente").text();
 
-    descrizione += stato;
-
     if(stato == "Altro") {
-      descrizione += " -> " + $("#textarea-desc").val();
+      descrizione += $("#textarea-desc").val();
     }
 
     var dataToSend = {
