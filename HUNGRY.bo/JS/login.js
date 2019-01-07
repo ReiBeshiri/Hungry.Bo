@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  var selectedRadio = "Cliente";
 
   $("div.alert").hide();
 
@@ -10,24 +11,36 @@ $(document).ready(function(){
       }
   }).trigger('resize');
 
+  $("#fornitori").on("change", function(){
+    selectedRadio = "";
+    selectedRadio = "Fornitore";
+  });
+
+  $("#clienti").on("change", function(){
+    selectedRadio = "";
+    selectedRadio = "Cliente";
+  });
+
 
 	$("form button").click(function() {
-		  console.log("bottone premuto");
 	    event.preventDefault();
 
 	    // Crea un elemento di input che verrà usato come campo di output per la password criptata.
 	    var p = document.createElement("input");
+      var r = document.createElement("input");
 
 	    // Aggiungi un nuovo elemento al tuo form.
+      $("form").append(r);
+	    r.name = "selectedRadio";
+	    r.type = "hidden"
+	    r.value = selectedRadio;
+
 	    $("form").append(p);
 	    p.name = "p";
 	    p.type = "hidden"
 	    p.value = hex_sha512(password.value);
-
 	    // Assicurati che la password non venga inviata in chiaro.
 	    password.value = "";
-
-	    console.log("password hashata");
 
 	    var dataToSend = $("form").serialize();
 	    console.log(dataToSend);

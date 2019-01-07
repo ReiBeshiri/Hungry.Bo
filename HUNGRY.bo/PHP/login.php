@@ -18,7 +18,7 @@
 
 		$username = $_POST['username'];
   	$password = $_POST['p'];
-  	$table = "Cliente";
+  	$table = $_POST['selectedRadio'];
 
 		//start conn
 		$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
@@ -33,7 +33,7 @@
   		}
 
   		//check if is cliente
-  		$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Cliente WHERE Username = ?");
+  		$stmt = $mysqli->prepare("SELECT COUNT(*) FROM $table WHERE Username = ?");
 
   		$stmt->bind_param('s', $username);
 
@@ -45,32 +45,13 @@
 
 			$stmt->close();
 
-			//not client, check if supplier
+			//check if exist
 		if($num_users === 0) {
-
-				$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Fornitore WHERE Username = ?");
-
-		  	$stmt->bind_param('s', $username);
-
-				$stmt->execute();
-
-				$stmt->bind_result($num_users);
-
-				$stmt->fetch();
-
-				$stmt->close();
-
-				if($num_users === 0) {
 
 						//user not exsist
 		      	$response_array['status'] = "Errore: utente non esistente";
 		      	echo json_encode($response_array);
 		      	die();
-
-				}
-
-				unset($table);
-				$table = "Fornitore";
 
 		}
 
