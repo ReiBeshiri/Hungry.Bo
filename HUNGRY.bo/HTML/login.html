@@ -17,7 +17,7 @@
     <title>login</title>
   </head>
   <body>
-    <div class="col-12 col-md-5 col-xl-5 text-center align-middle" id="login">
+    <div class="pre-scrollable col-12 col-md-5 col-xl-5 text-center align-middle" id="login">
         <img src="../res/icona.png" alt="logo"/>
         <div class="title">
           <h1>HUNGRY.bo</h1>
@@ -35,14 +35,14 @@
               <label>Password: <br/>
                 <input class="form-control" type="password" name="password" id="password" required/>
               </label> <br/>
-              <input type="hidden" name="sent" value="true" />
-                <button class="btn btn-primary mb-2" id="submit">Login</button>
               <div class="radio">
                 <label><input type="radio" name="optradio" checked id="clienti">Cliente</label>
               </div>
               <div class="radio">
                 <label><input type="radio" name="optradio" id="fornitori">Fornitore</label>
               </div>
+              <input type="hidden" name="sent" value="true" />
+              <button class="btn btn-primary mb-2" id="submit">Login</button>
             </form>
           </section>
           <p>Non sei registrato? <a href="./register.html">registrati</a></p>

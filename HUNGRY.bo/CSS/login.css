@@ -37,10 +37,11 @@ h2 {
 #login {
   height: 100%;
   background-color: rgba(255,255,255,0.6);
+  max-height: 100%;
 }
 
 img {
-  margin-top: 10%;
+  margin-top: 5%;
   width: 40%;
 }
 
