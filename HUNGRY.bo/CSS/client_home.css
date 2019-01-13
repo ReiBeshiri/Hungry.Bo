@@ -30,8 +30,9 @@ form.checkbox-form {
 }
 
 img.icon {
-  width: 100px;
+  width: 90px;
   padding: 10px;
+  display: inline-block;
 }
 
 .comment {
