@@ -37,7 +37,8 @@ $(document).ready(function(){
 
             }
           }
-          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+maxTime+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
+          var timeOrder = parseTime(ordersData[i]["Ora"], maxTime);
+          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+timeOrder+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
           maxTime=0;
         }
     } else {
@@ -109,4 +110,24 @@ $(document).ready(function(){
     });
 
 });
+
+
+function parseTime(timeOrder, maxTime) {
+  var h = timeOrder.slice(0,2);
+  var sep = timeOrder.slice(2,3)
+  var m = timeOrder.slice(3,5);
+  var s = timeOrder.slice(5);
+  //console.log(h,sep,m,s);
+
+  m = Number(m);
+  m+=maxTime;
+  if(m > 59){
+    m-=60;
+    m = "0"+m;
+    h = Number(h);
+    h++;
+  }
+  return h+sep+m+s;
+}
+
 //new Date().toLocaleTimeString('en-US', { hour12: false});
