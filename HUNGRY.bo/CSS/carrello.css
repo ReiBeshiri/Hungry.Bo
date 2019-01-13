@@ -25,11 +25,6 @@ h6 {
   height: 100%;
 }
 
-img.icon {
-  width: 100px;
-  padding: 10px;
-}
-
 .comment {
   font-style: italic;
   text-decoration: underline;
@@ -121,4 +116,14 @@ footer>p:first-child {
   font-weight: bold;
   font-size: 15px;
   float: left;
+}
+
+@media screen and (max-width: 981px) {
+  nav {
+    transform: scaleX(-1);
+  }
+
+  nav > *{
+    transform: scaleX(-1);
+  }
 }
