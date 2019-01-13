@@ -26,14 +26,12 @@ $(document).ready(function(){
         console.log(productsInOrdersData);
         console.log(productsData);
         //console.log(ordersData[0]["ID"]);
-
         for (var i = 0; i < ordersData.length; i++) {
           for (var j = 0; j < productsInOrdersData.length; j++) {
             if(ordersData[i]["ID"] === productsInOrdersData[j]["IDOrdine"]){
               for (var k = 0; k < productsData.length; k++) {
                 if(productsInOrdersData[j]["IDProdotto"] === productsData[k]["ID"]){
                   maxTime<productsData[k]["TempoPreparazione"]?maxTime=productsData[k]["TempoPreparazione"]:maxTime=maxTime;
-                  console.log(maxTime);
                 }
               }
 
@@ -111,3 +109,4 @@ $(document).ready(function(){
     });
 
 });
+//new Date().toLocaleTimeString('en-US', { hour12: false});
