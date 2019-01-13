@@ -22,44 +22,25 @@ $(document).ready(function(){
         var arrayOrd = [];
         var arrayDet = [];
         var maxTime = 0;
-        //console.log(ordersData);
-        //console.log(productsInOrdersData);
-        //console.log(productsData);
+        console.log(ordersData);
+        console.log(productsInOrdersData);
+        console.log(productsData);
+        //console.log(ordersData[0]["ID"]);
 
-        //filter
         for (var i = 0; i < ordersData.length; i++) {
-          arrayOrd.push(ordersData[i]);
           for (var j = 0; j < productsInOrdersData.length; j++) {
             if(ordersData[i]["ID"] === productsInOrdersData[j]["IDOrdine"]){
-              arrayOrd.push(productsInOrdersData[j]);
-            }
-            for (var k = 0; k < productsData.length; k++) {
-              if(productsInOrdersData[j]["IDProdotto"] === productsData[k]["ID"]){
-                arrayDet.push(productsData[k]);
+              for (var k = 0; k < productsData.length; k++) {
+                if(productsInOrdersData[j]["IDProdotto"] === productsData[k]["ID"]){
+                  maxTime<productsData[k]["TempoPreparazione"]?maxTime=productsData[k]["TempoPreparazione"]:maxTime=maxTime;
+                  console.log(maxTime);
+                }
               }
-            }
-          }
-        }
-        ///console.log(arrayOrd);
-        //console.log(arrayDet);
-        //console.log(deliveryData);
 
-        for(var i = 0; i < ordersData.length; i++){
-            //ora Consegna
-            for (var j = 0; j < productsData.length; j++) {
-              if(ordersData[i]["UsernameFornitore"] === productsData[j]["UsernameFornitore"]){
-                if(parseInt(productsData[j]["TempoPreparazione"]) > parseInt(maxTime)){
-                  maxTime = productsData[j]["TempoPreparazione"];
-                }
-              }
-              //sommo maxTime a TempoArrivoCampus
-              for(var k = 0; k < deliveryData.length; k++){
-                if(ordersData[i]["UsernameFornitore"] === deliveryData[k]["Username"]){
-                  maxTime = parseInt(maxTime) + parseInt(deliveryData[k]["TempoArrivoCampus"]);
-                }
-              }
+            }
           }
-            $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+maxTime+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
+          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+maxTime+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
+          maxTime=0;
         }
     } else {
       console.log("An error in the Server as occurred");
