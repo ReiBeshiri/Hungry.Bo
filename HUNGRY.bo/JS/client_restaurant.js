@@ -11,5 +11,16 @@ $(document).ready(function () {
         $("tr>td>span.ingredients-in-table").removeAttr("hidden");
       }
   }).trigger('resize');
+  
+
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var s = url.searchParams.get("s");
+
+  console.log(s);
+
+  $.getJSON('../PHP/client_restaurant.php?request='+s+'', function(data) {
+
+  });
 
 });
