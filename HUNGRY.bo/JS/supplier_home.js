@@ -34,7 +34,7 @@ $(document).ready(function(){
   $.getJSON("../PHP/supplier_home.php?request=informazioni-locale", function(data){
     $("span#local-name").text(data[0].NomeLocale);
     $("span#local-address").text(data[0].Indirizzo);
-    $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraApertura.slice(0,5));
+    $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraChiusura.slice(0,5));
     $("#container>div.dumb-container>#icon-container").html('<img class="img-fluid rounded-circle local-icon" src="../res/'+data[0].Icona+'" alt="local icon"/>');
     $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
   });

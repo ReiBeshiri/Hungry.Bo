@@ -48,10 +48,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#manage-notify">
+            <a class="nav-link" data-toggle="modal" data-target="#manage-notify">
               Notifiche
-              <em class="fa fa-envelope-o">
-                <span class="badge badge-danger">2</span>
+              <em id="numero-notifiche" class="fa fa-envelope-o">
               </em>
             </a>
           </li>
@@ -74,18 +73,19 @@
     <!-- PAGE HEADER -->
     <div class="text-center" id="container">
       <div class="dumb-container">
-        <img class="img-fluid rounded-circle local-icon" src="../res/icona.png" alt="local icon"/>
-        <p>
-          <span id="local-name"> Nome Locale </span> <br/>
-          <span id="local-time"> lun-ven 10:00-15:00 </span>
+        <!--<img class="img-fluid rounded-circle local-icon" src="../res/icona.png" alt="local icon"/>-->
+        <div id="icon-container"></div>
+        <p id="local-info">
+          <span id="local-name"></span> <br/>
+          <span id="local-time"></span>
         </p>
       </div>
     </div>
     <!-- END PAGE HEADER -->
 
     <!-- TABLES -->
-    <div class="row tables">
-			<div class="col-12 col-md-8">
+<!--    <div class="row tables">
+			<div class="col-12 col-md-7">
         <div class="table-header">
           <p>Secondi Piatti</p>
         </div>
@@ -95,7 +95,7 @@
               <th id="id-t1" hidden>id</th>
   					  <th id="product-t1">Prodotto</th>
   					  <th id="price-t1">Prezzo</th>
-              <th id="modify-t1">Seleziona</th>
+              <th id="select-t1">Seleziona</th>
   					</tr>
 				  </thead>
 				  <tbody>
@@ -104,9 +104,9 @@
               <td headers="product-t1">Hamburger <br/>
               <span class="ingredients-in-table">(Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</span></td>
               <td headers="price-t1">6 €</td>
-              <td headers="modify-t1">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
+              <td headers="select-t1">
+                <span class="table-select">
+                  <button type="button" class="btn btn-outline-info select" data-toggle="modal" data-target="#order-popup">Seleziona</button>
                 </span>
               </td>
   					</tr>
@@ -115,9 +115,9 @@
               <td headers="product-t1">Panino <br/>
               <span class="ingredients-in-table">(Prosciutto, Formaggio, Pane di sesamo ...)</span></td>
   					  <td headers="price-t1">5 €</td>
-              <td headers="modify-t1">
-                <span class="table-modify">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
+              <td headers="select-t1">
+                <span class="table-select">
+                  <button type="button" class="btn btn-outline-info select" data-toggle="modal" data-target="#order-popup">Seleziona</button>
                 </span>
               </td>
   					</tr>
@@ -125,7 +125,7 @@
   			</table>
   		</div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-5">
           <div class="table-header">
             <p>Bevande</p>
           </div>
@@ -135,7 +135,7 @@
               <th id="id-t2" hidden>id</th>
   					  <th id="product-t2">Prodotto</th>
   					  <th id="price-t2">Prezzo</th>
-              <th id="modify-t2">Seleziona</th>
+              <th id="select-t2">Seleziona</th>
   					</tr>
   				  </thead>
   				  <tbody>
@@ -143,8 +143,8 @@
               <td headers="id-t2" hidden>3</td>
               <td headers="product-t2">Coca Cola</td>
               <td headers="price-t2">2 €</td>
-              <td headers="modify-t2">
-                <span class="table-modify">
+              <td headers="select-t2">
+                <span class="table-select">
                   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
                 </span>
               </td>
@@ -153,8 +153,8 @@
               <td headers="id-t2" hidden>4</td>
               <td headers="product-t2">Fanta</td>
   					  <td headers="price-t2">3 €</td>
-              <td headers="modify-t2">
-                <span class="table-modify">
+              <td headers="select-t2">
+                <span class="table-select">
                   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
                 </span>
               </td>
@@ -162,12 +162,93 @@
     			  </tbody>
     			</table>
     		</div>
-  	</div>
+  	</div>-->
     <!-- END TABLES -->
 
+    <!-- TABLES -->
+    <div class="row tables" >
+      <div class="col-12 col-md-7">
+        <div class="table-header">
+          <p>Primi Piatti</p>
+        </div>
+        <table class="table table-hover" id="Primo-Piatto">
+          <thead class="thead-dark">
+            <tr>
+              <th id="id-Primo-Piatto" hidden>id</th>
+              <th id="product-Primo-Piatto">Prodotto</th>
+              <th id="price-Primo-Piatto">Prezzo</th>
+              <th id="select-Primo-Piatto">Seleziona</th>
+            </tr>
+          </thead>
+          <tbody>
+         </tbody>
+      </table>
+    </div>
 
-      <!-- Modal Seleziona Prodotto-->
-      <div class="modal fade" id="order-popup" tabindex="-1" role="dialog" aria-labelledby="add-cart-title" data-toggle="modal" aria-hidden="true">
+    <div class="col-12 col-md-5">
+      <div class="table-header">
+        <p>Bevande</p>
+      </div>
+      <table class="table table-hover" id="Bibita">
+          <thead class="thead-dark">
+            <tr>
+              <th id="id-Bibita" hidden>id</th>
+              <th id="product-Bibita">Prodotto</th>
+              <th id="price-Bibita">Prezzo</th>
+              <th id="select-Bibita">Seleziona</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- END TABLES -->
+
+    <!-- TABLES -->
+    <div class="row tables">
+      <div class="col-12 col-md-7">
+        <div class="table-header">
+          <p>Secondi Piatti</p>
+        </div>
+        <table class="table table-hover" id="Secondo-Piatto">
+          <thead class="thead-dark">
+            <tr>
+              <th id="id-Secondo-Piatto" hidden>id</th>
+              <th id="product-Secondo-Piatto">Prodotto</th>
+              <th id="price-Secondo-Piatto">Prezzo</th>
+              <th id="select-Secondo-Piatto">Seleziona</th>
+            </tr>
+          </thead>
+          <tbody>
+         </tbody>
+      </table>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <div class="table-header">
+        <p>Dolci</p>
+      </div>
+      <table class="table table-hover" id="Dolce">
+          <thead class="thead-dark">
+            <tr>
+              <th id="id-Dolce" hidden>id</th>
+              <th id="product-Dolce">Prodotto</th>
+              <th id="price-Dolce">Prezzo</th>
+              <th id="select-Dolce">Seleziona</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- END TABLES -->
+
+    <!-- Modal Seleziona Prodotto-->
+    <div class="modal fade" id="order-popup" tabindex="-1" role="dialog" aria-labelledby="add-cart-title" data-toggle="modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -176,22 +257,29 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <form id="add-cart-form" method="post">
             <div class="modal-body">
-                <form action="../PHP/client_restaurant.php" method="post">
-                  <div>
-                    <label id="ingredients">Ingredienti: Salame ecc...</label>
-                    <label>Presonalizza:
-                      <textarea class="form-control" rows="5" cols="42" name="descrizione" > </textarea>
-                    </label>
-                  </div>
-                  <label class="float-left">Quantità:
-                      <input class="form-control" type="number" name="tempo-di-preparazione" min="1" max="90" />
-                  </label>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <input class="btn btn-primary" value="Aggiungi al carrello" type="submit" id="add-to-cart-button"/>
-            </div>
+              <label for="id" hidden>ID:
+                <input class="form-control" type="text" name="id" id="id" hidden />
+              </label>
+              <div class="form-group">
+                <label id="ingredients"><strong>Ingredienti: </strong></label>
+              </div>
+              <div class="form-group">
+                <label for="descrizione">Personalizza:
+                  <textarea class="form-control" rows="5" cols="42" name="descrizione" > </textarea>
+                </label>
+              </div>
+              <div class="form-group">
+                <label for="qnta">Quantità:
+                  <input class="form-control" type="number" name="qnta" min="1" max="10" />
+                </label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="add-to-cart-button">Agg. al carrello</button>
+              </div>
+          </form>
           </div>
         </div>
       </div>
@@ -208,61 +296,7 @@
             </button>
           </div>
             <div class="modal-body">
-                <form action="../PHP/supplier_home.php" method="post">
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 1</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 2</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 3</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 4</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 5</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card notify">
-                      <div class="card-body">
-                        <h6 class="card-title">Notifica 6</h6>
-                        <p class="card-text"><span><strong>Mittente </strong></span><span><strong>Descrizione </strong></span><span><strong>Ordine </strong></span><span><strong>Luogo </strong></span><span><strong>Ora </strong></span></p>
-                        <div class="text-right">
-                          <a href="#" class="btn btn-primary btn-sm">Segnala come letta</a>
-                        </div>
-                      </div>
-                    </div>
+              <form id="gestisci-notifiche" method="post">
               </form>
             </div>
           </div>

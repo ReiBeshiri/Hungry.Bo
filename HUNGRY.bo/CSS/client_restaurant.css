@@ -11,7 +11,7 @@
 #container {
   width: 100%;
   display: inline-block;
-  background-image: url("../res/background.jpg");
+  /*background-image: url("../res/background.jpg");*/
   background-size: cover;
   position: relative;
   background-position: center center;
@@ -21,6 +21,10 @@
 #container > div.dumb-container > p {
   color: rgb(255, 255, 255);
   font-family: LeagueSpartan;
+}
+
+table {
+  box-sizing: border-box;
 }
 
 table tr {
@@ -93,6 +97,10 @@ input#add-to-cart-button {
   width: 48%;
 }
 
+p#local-info {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;
@@ -114,5 +122,17 @@ input#add-to-cart-button {
 
   #cart {
     order: 1;
+  }
+
+  img.local-icon {
+    margin-top: 110px;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 981px) {
+  div.tables {
+
   }
 }
