@@ -1,3 +1,12 @@
+@font-face {
+  src: url("../font/Charline font.otf");
+  font-family: YellowTail;
+}
+
+@font-face {
+  src: url("../font/LeagueSpartan-Bold.otf");
+  font-family: LeagueSpartan;
+}
 
 div.tables {
   padding: 10px 0px 10px 0px;

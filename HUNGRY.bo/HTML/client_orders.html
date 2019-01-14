@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Stile Personalizzato -->
-    <link rel="stylesheet" href="../CSS/orders.css">
+    <link rel="stylesheet" href="../CSS/client_orders.css">
 
     <!-- JS file -->
     <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
@@ -25,12 +25,32 @@
         <img src="../res/icona.png" width="80" height="80" class="d-inline-block align-center icon" alt="icon"/>
       </a>
 
-      <div>
+      <!--<div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="./client_home.html">
               Home
             </a>
+          </li>
+        </ul>
+      </div>-->
+      <button id="toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="./client_home.html">
+              Home
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <form action="../PHP/logout.php" method="post">
+              <button type="submit" class="btn btn-outline-info">Logout</button>
+            </form>
           </li>
         </ul>
       </div>

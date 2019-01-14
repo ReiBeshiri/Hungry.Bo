@@ -9,6 +9,8 @@ $(document).ready(function () {
         $("td.luogo").attr("hidden", "true");
       	$("th#place").attr("hidden", "true");
       } else if ($(this).width() < 980) {
+        $("td.order-state").attr("hidden", "true");
+        $("th#prod").attr("hidden", "true");
         $("th#place").removeAttr("hidden");
         $("td.luogo").removeAttr("hidden");
       } else {

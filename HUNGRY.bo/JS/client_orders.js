@@ -40,6 +40,7 @@ $(document).ready(function(){
           var timeOrder = parseTime(ordersData[i]["Ora"], maxTime);
           $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+timeOrder+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
           maxTime=0;
+          window.parent.$(window.parent.document).trigger('resize');
         }
     } else {
       console.log("An error in the Server as occurred");
@@ -84,9 +85,9 @@ $(document).ready(function(){
 
           var output = data;
           var str2 = '';
-          var str1 = '<div class="form-group"><p>Mittente: <span>'+output[0]+'</span></p></div><div class="form-group">Ordine:<ul>';
+          var str1 = '<div class="form-group"><p><strong>Mittente: </strong><span>'+output[0]+'</span></p></div><div class="form-group"><strong>Ordine:</strong><ul>';
 
-          var str3 = '</ul></div><div class="form-group"><p>Stato: <span>'+spedizione+'</span></p></div><div class="form-group"><p>Luogo: <span>'+luogoConsegna+'</span></p></div><div class="form-group"><p>Ora: <span>'+oraConsegna+'</span></p></div>';
+          var str3 = '</ul></div><div class="form-group"><p><strong>Stato: </strong><span>'+spedizione+'</span></p></div><div class="form-group"><p><strong>Luogo: </strong><span>'+luogoConsegna+'</span></p></div><div class="form-group"><p><strong>Ora: </strong><span>'+oraConsegna+'</span></p></div>';
 
           for (var i = 1; i < output.length; i++) {
             if(output[i]["Descrizione"] === null){
