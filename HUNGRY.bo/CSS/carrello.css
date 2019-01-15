@@ -73,6 +73,21 @@ img.local-icon {
   height: 15px;
 }
 
+div.tables {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+div[class="row tables"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+table {
+  box-sizing: border-box;
+}
+
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
