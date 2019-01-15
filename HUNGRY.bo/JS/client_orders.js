@@ -7,6 +7,13 @@ $(document).ready(function(){
             $("td.order-state").removeAttr("hidden");
             $("th.order-prod").removeAttr("hidden");
         }
+        if ($(this).width() <= 320) {
+          $("th#place").attr("hidden", "true");
+          $("td.placehide").attr("hidden", "true");
+        } else {
+          $("th#place").removeAttr("hidden");
+          $("td.placehide").removeAttr("hidden");
+        }
     }).trigger('resize');
 
 
@@ -38,7 +45,7 @@ $(document).ready(function(){
             }
           }
           var timeOrder = parseTime(ordersData[i]["Ora"], maxTime);
-          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="dest">'+ordersData[i]["UsernameCliente"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+timeOrder+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
+          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="mitt">'+ordersData[i]["UsernameFornitore"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place" class="placehide">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+timeOrder+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
           maxTime=0;
           window.parent.$(window.parent.document).trigger('resize');
         }
