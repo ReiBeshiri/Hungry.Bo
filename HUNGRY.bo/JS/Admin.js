@@ -27,7 +27,7 @@ $(document).ready(function(){
       if(data !== null){
         $("div.admintable").empty();
         var str = "";
-        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Clienti</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">IDCarrello</th><th id="nome-locale">Email</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong class="searchtable">Clienti</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">IDCarrello</th><th id="nome-locale">Email</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
         var str2 = "";
         var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
         for (var i = 0; i < data.length; i++) {
@@ -44,7 +44,7 @@ $(document).ready(function(){
       if(data !== null){
         $("div.admintable").empty();
         var str = "";
-        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Fornitori</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">Indirizzo</th><th id="nome-locale">NomeLocale</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong class="searchtable">Fornitori</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">Indirizzo</th><th id="nome-locale">NomeLocale</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
         var str2 = "";
         var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
         for (var i = 0; i < data.length; i++) {
@@ -100,6 +100,15 @@ $(document).ready(function(){
         tempoarrivocampus: $("#enter-time").val(),
       };
       console.log(dataToSend);
+      $.post("../PHP/Admin.php?request=modificaFornitori", dataToSend, function(data) {
+        if(data.status === "success") {
+          console.log("Modifica Completata");
+          alert("Modifica Completata");
+        } else {
+          console.log("errore");
+          alert("Errore durante la Modifica");
+        }
+      });
     });
   });
 
@@ -109,16 +118,42 @@ $(document).ready(function(){
     $("button.savecli").click(function() {
       var dataToSend = {
         username: username,
-        email: $("#enter-mail").val(),
+        email: $("#enter-mail-cli").val(),
         newusername: $("#enter-username-cli").val(),
       };
       console.log(dataToSend);
+      $.post("../PHP/Admin.php?request=modificaClienti", dataToSend, function(data) {
+        if(data.status === "success") {
+          console.log("Modifica Completata");
+          alert("Modifica Completata");
+        } else {
+          console.log("errore");
+          alert("Errore durante la Modifica");
+        }
+      });
     });
   });
 
   $("div.admintable").on('click', 'button.buttonNotify', function() {
   var username = $(this).parents("tr").children("td[headers='username']").text();
+  $("button.notificaUser").click(function() {
+  var table = $("strong.searchtable").text();
+  var dataToSend = {
+    username: username,
+    table: table,
+    desc: $("#insert-notify-desc").val(),
+  };
+    $.post("../PHP/Admin.php?request=notifica", dataToSend, function(data) {
+      if(data.status === "success") {
+        console.log("Notifica Completata");
+        alert("Notifica Completata");
+      } else {
+        console.log("errore");
+        alert("Errore durante la Notifica");
+      }
+    });
   });
+});
 
   $("div.admintable").on('click', 'button.buttonAdd', function() {
     console.log("buttonAdd");
