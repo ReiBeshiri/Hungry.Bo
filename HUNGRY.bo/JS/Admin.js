@@ -1,16 +1,18 @@
-$(window).bind("resize", function () {
+$(document).ready(function(){
+
+  $(window).bind("resize", function () {
     if ($(this).width() <= 981) {
-        $("th#password").hide();
-        $("td[headers='password']").hide();
-        $("th#nome-locale").hide();
-        $("td[headers='nome-locale']").hide();
-        $("td[headers='modify']>span").empty();
-        $("td[headers='modify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
-        $("td[headers='notify']>span").empty();
-        $("td[headers='notify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/notify-icon.png" alt="notify" data-toggle="modal" data-target="#send-notify-from-admin"/></a>');
+      $("th#password").hide();
+      $("td[headers='indirizzo']").hide();
+      $("th#nome-locale").hide();
+      $("td[headers='nome-locale']").hide();
+      $("td[headers='modify']>span").empty();
+      $("td[headers='modify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
+      $("td[headers='notify']>span").empty();
+      $("td[headers='notify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/notify-icon.png" alt="notify" data-toggle="modal" data-target="#send-notify-from-admin"/></a>');
     } else {
       $("th#password").show();
-      $("td[headers='password']").show();
+      $("td[headers='indirizzo']").show();
       $("th#nome-locale").show();
       $("td[headers='nome-locale']").show();
       $("td[headers='modify']>span").empty();
@@ -18,4 +20,111 @@ $(window).bind("resize", function () {
       $("td[headers='notify']>span").empty();
       $("td[headers='notify']>span").html('<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#send-notify-from-admin">Notifica</button>');
     }
-}).trigger('resize');
+  }).trigger('resize');
+
+  $("#manage_cli").click(function() {
+    $.getJSON("../PHP/Admin.php?request=clienti", function(data) {
+      if(data !== null){
+        $("div.admintable").empty();
+        var str = "";
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Clienti</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">IDCarrello</th><th id="nome-locale">Email</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
+        var str2 = "";
+        var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
+        for (var i = 0; i < data.length; i++) {
+          str2 += '<tr><td headers="username">'+data[i]["Username"]+'</td><td headers="indirizzo">'+data[i]["IDCarrello"]+'</td><td headers="nome-locale">'+data[i]["Email"]+'</td><td headers="modify"><span class="table-modify"><button type="button" class="btn btn-outline-info buttonModifycli" data-toggle="modal" data-target="#modify-from-admin-cli">Modifica</button></span></td><td headers="notify"><span class="table-modify"><button type="button" class="btn btn-outline-primary buttonNotify" data-toggle="modal" data-target="#send-notify-from-admin">Notifica</button></span></td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
+        }
+        str = str1+str2+str3;
+        $("div.admintable").append(str)
+      }
+    });
+  });
+
+  $("#manage_sup").click(function() {
+    $.getJSON("../PHP/Admin.php?request=fornitori", function(data) {
+      if(data !== null){
+        $("div.admintable").empty();
+        var str = "";
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Fornitori</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Username</th><th id="indirizzo">Indirizzo</th><th id="nome-locale">NomeLocale</th><th id="modify">Modifica</th><th id="notify">Notifica</th><th id="remove" hidden>Remove</th></tr></thead><tbody>';
+        var str2 = "";
+        var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
+        for (var i = 0; i < data.length; i++) {
+          str2 += '<tr><td headers="username">'+data[i]["Username"]+'</td><td headers="indirizzo">'+data[i]["Indirizzo"]+'</td><td headers="nome-locale">'+data[i]["NomeLocale"]+'</td><td headers="modify"><span class="table-modify"><button type="button" class="btn btn-outline-info buttonModify" data-toggle="modal" data-target="#modify-from-admin">Modifica</button></span></td><td headers="notify"><span class="table-modify"><button type="button" class="btn btn-outline-primary buttonNotify" data-toggle="modal" data-target="#send-notify-from-admin">Notifica</button></span></td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
+        }
+        str = str1+str2+str3;
+        $("div.admintable").append(str)
+      }
+    });
+  });
+
+  $("#local-type").click(function() {
+    $.getJSON("../PHP/Admin.php?request=tipolocale", function(data) {
+      if(data !== null){
+        $("div.admintable").empty();
+        var str = "";
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Tipologie Locali</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Nome</th><th id="remove">Del</th></tr></thead><tbody>';
+        var str2 = "";
+        var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
+        for (var i = 0; i < data.length; i++) {
+          str2 += '<tr><td headers="username">'+data[i]["Nome"]+'</td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
+        }
+        str = str1+str2+str3;
+        $("div.admintable").append(str)
+      }
+    });
+  });
+
+  $("#prod-type").click(function() {
+    $.getJSON("../PHP/Admin.php?request=tipoprodotti", function(data) {
+      if(data !== null){
+        $("div.admintable").empty();
+        var str = "";
+        var str1 = '<div class="fluid-container"><div class="row tables"><div class="text-center col-12"><div class="table-header"><p><strong>Tipologie Prodotti</strong></p></div><table class="table table-hover"><thead class="thead-dark"><tr><th id="username">Nome</th><th id="remove">Del</th></tr></thead><tbody>';
+        var str2 = "";
+        var str3 = '</tbody></table><button type="button" class="btn btn-outline-success buttonAdd" data-toggle="modal" data-target="#add-from-admin">Aggiungi</button></div></div></div>';
+        for (var i = 0; i < data.length; i++) {
+          str2 += '<tr><td headers="username">'+data[i]["Nome"]+'</td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
+        }
+        str = str1+str2+str3;
+        $("div.admintable").append(str)
+      }
+    });
+  });
+
+  $("div.admintable").on('click', 'button.buttonModify', function() {
+    var username = $(this).parents("tr").children("td[headers='username']").text();
+    $("button.save").click(function() {
+      var dataToSend = {
+        username: username,
+        email: $("#enter-mail").val(),
+        nomelocale: $("#enter-name").val(),
+        tempoarrivocampus: $("#enter-time").val(),
+      };
+      console.log(dataToSend);
+    });
+  });
+
+
+  $("div.admintable").on('click', 'button.buttonModifycli', function() {
+    var username = $(this).parents("tr").children("td[headers='username']").text();
+    $("button.savecli").click(function() {
+      var dataToSend = {
+        username: username,
+        email: $("#enter-mail").val(),
+        newusername: $("#enter-username-cli").val(),
+      };
+      console.log(dataToSend);
+    });
+  });
+
+  $("div.admintable").on('click', 'button.buttonNotify', function() {
+  var username = $(this).parents("tr").children("td[headers='username']").text();
+  });
+
+  $("div.admintable").on('click', 'button.buttonAdd', function() {
+    console.log("buttonAdd");
+  });
+
+  $("div.admintable").on('click', 'a.aremove', function() {
+  var username = $(this).parents("tr").children("td[headers='username']").text();
+  });
+});
