@@ -4,6 +4,16 @@ $(document).ready(function() {
 
 	$("div#main-component").on("change", ".prod-qnt", function() {
 		computeDinamicallyPrice($(this));
+		var id = $(this).parents("tr").find("td.id").text();
+
+		var dataToSend = {
+			id:id,
+			qnta: $(this).val()
+		};
+
+		$.post("../PHP/carrello.php?request=update-qnta", dataToSend, function(data) {
+			console.log(data);
+		});
 	});
 
 	$(window).bind("resize", function() {
@@ -52,7 +62,7 @@ $(document).ready(function() {
 									dataType: "json",
 									data: dataToSend,
 									success: function(info_product) {
-										html_code += '<tr><td headers="id'+suppliers[0].Username+'" hidden>'+info_product[0].ID+'</td><td headers="product'+suppliers[0].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[i].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[0].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[0].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[i].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[0].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
+										html_code += '<tr><td class="id" headers="id'+suppliers[0].Username+'" hidden>'+products[i].ID+'</td><td headers="product'+suppliers[0].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[i].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[0].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[0].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[i].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[0].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
 							}});
 
 						}

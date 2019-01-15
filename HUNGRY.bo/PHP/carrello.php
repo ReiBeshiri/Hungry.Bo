@@ -185,9 +185,44 @@ if(isset($_GET['request'])) {
         print json_encode($response_array);
       }
       break;
+    case "update-qnta":
+      if(isset($_POST["id"]) && isset($_POST["qnta"])) {
+        $stmt = $mysqli->prepare("SELECT IDCarrello FROM Cliente WHERE Username = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella di ricerca dell'ID carrello";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('s', $_SESSION["username"]);
+
+        $stmt->execute();
+
+        $stmt->bind_result($id_carrello);
+
+        $stmt->fetch();
+
+        $stmt->close();
+
+        //Update della quantità del prodotto in carrello.
+        $stmt = $mysqli->prepare("UPDATE ProdottoInCarrello SET qnta = ? WHERE UsernameCliente = ? AND IDCarrello = ? AND ID = ?");
+
+        $stmt->bind_param('ssii', $_POST["qnta"], $_SESSION["username"], $id_carrello, $_POST["id"]);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array["status"] = "success";
+        print json_encode($response_array);
+      } else {
+        $response_array['status'] = "Informazioni mancanti";
+        print json_encode($response_array);
+      }
+      break;
   }
 
   $mysqli->close();
 }
-
 ?>
