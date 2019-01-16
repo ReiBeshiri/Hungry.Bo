@@ -377,6 +377,24 @@ if(isset($_GET['request'])) {
           $stmt->close();
 
         }
+
+        //Creazione notifica
+        $stmt = $mysqli->prepare("INSERT INTO Notifica (Letta, Destinatario, Mittente, IDOrdine) VALUES (?, ?, ?, ?)");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella creazione della notifica";
+          print json_encode($response_array);
+          die();
+        }
+
+        $letta = 0;
+
+        $stmt->bind_param('issi', $letta, $_POST["username"], $_SESSION["username"], $order_id);
+
+        $stmt->execute();
+
+        $stmt->close();
+
         $response_array['status'] = "success";
         print json_encode($response_array);
       } else {
