@@ -272,7 +272,41 @@
 
         break;
 
+        case 'rimuovi':
+
+          if($_POST["username"] != "" && $_POST["table"] != ""){
+
+            $usr = $_POST["username"];
+            if($_POST["table"] == "Fornitori"){
+              $table = "Fornitore";
+            } else {
+              $table = "Cliente";
+            }
+
+            $stmt = $mysqli->prepare("DELETE FROM $table WHERE Username='$usr'");
+
+            if($stmt === false){
+              $response_array['status'] = "error";
+              print json_encode($response_array);
+              die();
+            }
+
+            $stmt->execute();
+
+            $stmt->close();
+
+            $response_array['status'] = "success";
+            print json_encode($response_array);
+            die();
+          }
+
+        break;
+
       }
+
+      /*case 'aggiungi':
+
+      break;*/
 
       $mysqli->close();
   }

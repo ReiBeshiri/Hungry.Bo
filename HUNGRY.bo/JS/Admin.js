@@ -135,31 +135,115 @@ $(document).ready(function(){
   });
 
   $("div.admintable").on('click', 'button.buttonNotify', function() {
-  var username = $(this).parents("tr").children("td[headers='username']").text();
-  $("button.notificaUser").click(function() {
-  var table = $("strong.searchtable").text();
-  var dataToSend = {
-    username: username,
-    table: table,
-    desc: $("#insert-notify-desc").val(),
-  };
-    $.post("../PHP/Admin.php?request=notifica", dataToSend, function(data) {
-      if(data.status === "success") {
-        console.log("Notifica Completata");
-        alert("Notifica Completata");
-      } else {
-        console.log("errore");
-        alert("Errore durante la Notifica");
-      }
+    var username = $(this).parents("tr").children("td[headers='username']").text();
+    $("button.notificaUser").click(function() {
+    var table = $("strong.searchtable").text();
+    var dataToSend = {
+      username: username,
+      table: table,
+      desc: $("#insert-notify-desc").val(),
+    };
+      $.post("../PHP/Admin.php?request=notifica", dataToSend, function(data) {
+        if(data.status === "success") {
+          console.log("Notifica Completata");
+          alert("Notifica Completata");
+        } else {
+          console.log("errore");
+          alert("Errore durante la Notifica");
+        }
+      });
     });
   });
-});
 
   $("div.admintable").on('click', 'button.buttonAdd', function() {
-    console.log("buttonAdd");
+    var table = $("strong.searchtable").text();
+    if(table === "Fornitori"){
+      $("input#usrNomeLocale").show();
+      $("label#usrNomeLocalelbl").show();
+      $("input#usrInd").show();
+      $("label#usrIndlbl").show();
+      $("input#usrTac").show();
+      $("label#usrTaclbl").show();
+      $("select#usrTipo").show();
+      $("label#usrTipolbl").show();
+      $("input#usrNomeLocale").attr("required", "true");
+      $("input#usrInd").attr("required", "true");
+      $("input#usrTipo").attr("required", "true");
+      $("input#usrTac").attr("required", "true");
+      $.getJSON("../PHP/dbRequestManager.php?request=tipologie-locali", function(data){
+        var html_code = "";
+        for(var i = 0; i < data.length; i++){
+            html_code += "<option value='"+data[i]["Nome"]+"'>"+data[i]["Nome"]+"</option>";
+        }
+        $("form select").html(html_code);
+      });
+    } else {
+      $("input#usrNomeLocale").hide();
+      $("label#usrNomeLocalelbl").hide();
+      $("input#usrInd").hide();
+      $("label#usrIndlbl").hide();
+      $("input#usrTac").hide();
+      $("label#usrTaclbl").hide();
+      $("input#usrTipo").hide();
+      $("label#usrTipolbl").hide();
+      $("input#usrNomeLocale").removeAttr("required");
+      $("input#usrInd").removeAttr("required");
+      $("input#usrTipo").removeAttr("required");
+      $("input#usrTac").removeAttr("required");
+    }
+    $("button.addUser").click(function() {
+      if(table === "Fornitori"){
+        var dataToSend = {
+          sent: "true",
+          type: "fornitore",
+          username: $("#usrUsr").val(),
+          p: $("#usrPwd").val(),
+          email: $("#usrEmail").val(),
+          'nome-locale': $("#usrNomeLocale").val(),
+          indirizzo: $("#usrInd").val(),
+          tempo: $("#usrTac").val(),
+          'tipo-locale': $("#usrTipo").val(),
+        };
+      } else {
+        var dataToSend = {
+          sent: "true",
+          type: "cliente",
+          username: $("#usrUsr").val(),
+          p: $("#usrPwd").val(),
+          email: $("#usrEmail").val(),
+        };
+      }
+      $.post("../PHP/register.php", dataToSend, function(data) {
+        if(data.status === "success") {
+          console.log("Aggiunta Utente Completata");
+          alert("Aggiunta Utente Completata");
+        } else {
+          console.log("errore");
+          alert("Errore durante l'aggiunta Utente");
+        }
+      });
+    });
   });
 
   $("div.admintable").on('click', 'a.aremove', function() {
-  var username = $(this).parents("tr").children("td[headers='username']").text();
+    var username = $(this).parents("tr").children("td[headers='username']").text();
+    var table = $("strong.searchtable").text();
+    $("button.deleteUser").click(function() {
+      var dataToSend = {
+        username: username,
+        table: table,
+      };
+      $.post("../PHP/Admin.php?request=rimuovi", dataToSend, function(data) {
+        if(data.status === "success") {
+          console.log("Rimozione Completata");
+          alert("Rimozione Completata");
+        } else {
+          console.log("errore");
+          alert("Errore durante la Rimozione");
+        }
+      });
+    });
   });
+
+
 });
