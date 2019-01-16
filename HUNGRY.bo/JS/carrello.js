@@ -58,11 +58,11 @@ $(document).ready(function() {
 
 	$.post("../PHP/carrello.php?request=fornitori-in-carrello", function(suppliers) {
 		var html_code = "";
+		console.log(suppliers);
 		for(var i = 0; i < suppliers.length; i++) {
-			html_code += '<div class="container"><div class="card text-center supplier-cart"><div class="card-body"><span id="supplier-username" hidden>'+suppliers[0].Username+'</span><strong>'+suppliers[0].NomeLocale+'</strong><div class="text-center"><img class="d-inline-block img-fluid rounded-circle local-icon" src="../res/'+suppliers[0].Icona+'" alt="local icon"/></div><div class="col-12"><table class="table table-hover table-condensed"><thead><tr><th id="id'+suppliers[0].Username+'" hidden>ID</th><th id="product'+suppliers[0].Username+'">Prodotto</th><th id="price'+suppliers[0].Username+'">Prezzo</th><th id="qnt'+suppliers[0].Username+'">Quantità</th><th id="remove'+suppliers[0].Username+'" hidden>Remove</th></tr></thead><tbody>';
-
+			html_code += '<div class="container"><div class="card text-center supplier-cart"><div class="card-body"><span id="supplier-username" hidden>'+suppliers[i].Username+'</span><strong>'+suppliers[i].NomeLocale+'</strong><div class="text-center"><img class="d-inline-block img-fluid rounded-circle local-icon" src="../res/'+suppliers[i].Icona+'" alt="local icon"/></div><div class="col-12"><table class="table table-hover table-condensed"><thead><tr><th id="id'+suppliers[i].Username+'" hidden>ID</th><th id="product'+suppliers[i].Username+'">Prodotto</th><th id="price'+suppliers[i].Username+'">Prezzo</th><th id="qnt'+suppliers[i].Username+'">Quantità</th><th id="remove'+suppliers[i].Username+'" hidden>Remove</th></tr></thead><tbody>';
 			var dataToSend = {
-				usernameFornitore: suppliers[0].Username
+				usernameFornitore: suppliers[i].Username
 			};
 
 			$.ajax({
@@ -72,10 +72,11 @@ $(document).ready(function() {
           dataType: "json",
           data: dataToSend,
           success: function(products) {
-						for(var i = 0; i < products.length; i++) {
+						console.log(products);
+						for(var j = 0; j < products.length; j++) {
 
 							dataToSend = {
-								id: products[i].IDProdotto
+								id: products[j].IDProdotto
 							};
 
 							$.ajax({
@@ -85,7 +86,8 @@ $(document).ready(function() {
 									dataType: "json",
 									data: dataToSend,
 									success: function(info_product) {
-										html_code += '<tr><td class="id" headers="id'+suppliers[0].Username+'" hidden>'+products[i].ID+'</td><td headers="product'+suppliers[0].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[i].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[0].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[0].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[i].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[0].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
+										console.log(info_product);
+										html_code += '<tr><td class="id" headers="id'+suppliers[i].Username+'" hidden>'+products[j].ID+'</td><td headers="product'+suppliers[i].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[j].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[i].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[i].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[j].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[i].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
 							}});
 
 						}

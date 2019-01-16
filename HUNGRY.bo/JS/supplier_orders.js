@@ -83,7 +83,7 @@ $(document).ready(function () {
     });
   });
 
-  $("div#order-manage button").click(function() {
+  $("form#manage-order button").click(function() {
     var id = $("span#id-sel-order").text();
     var stato = $("#order-status-select").val();
     var descrizione = "";

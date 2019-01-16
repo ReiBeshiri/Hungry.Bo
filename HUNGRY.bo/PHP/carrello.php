@@ -149,9 +149,35 @@ if(isset($_GET['request'])) {
         while($row = $result->fetch_assoc()){
             $output[] = $row;
         }
-        $stmt->close();
 
-        print json_encode($output);
+        $stmt->close();
+        
+        $result = array();
+        for($x = 0; $x < count($output); $x++) {
+          $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Prodotto WHERE ID = ? AND UsernameFornitore = ?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query di ricerca del prodotto";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('is', $output[$x]["IDProdotto"], $_POST["usernameFornitore"]);
+
+          $stmt->execute();
+
+          $stmt->bind_result($count);
+
+          $stmt->fetch();
+
+          $stmt->close();
+
+          if ($count > 0) {
+            $result[] = $output[$x];
+          }
+        }
+
+        print json_encode($result);
       } else {
         $response_array['status'] = "Informazioni mancanti";
         print json_encode($response_array);
