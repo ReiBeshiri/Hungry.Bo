@@ -221,6 +221,29 @@ if(isset($_GET['request'])) {
         print json_encode($response_array);
       }
       break;
+    case "rimuovi-prodotto":
+    if(isset($_POST["id"])) {
+      $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE ID = ?");
+
+      if($stmt == false) {
+        $response_array['status'] = "Errore nella query";
+        print json_encode($response_array);
+        die();
+      }
+
+      $stmt->bind_param('i', $_POST["id"]);
+
+      $stmt->execute();
+      
+      $stmt->close();
+
+      $response_array["status"] = "success";
+      print json_encode($response_array);
+    } else {
+      $response_array['status'] = "ID mancante";
+      print json_encode($response_array);
+    }
+      break;
   }
 
   $mysqli->close();

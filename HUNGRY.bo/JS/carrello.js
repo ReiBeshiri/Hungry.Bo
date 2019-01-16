@@ -16,6 +16,21 @@ $(document).ready(function() {
 		});
 	});
 
+	$("div#main-component").on("click", ".cancel", function() {
+		alert("Prodotto eliminato dal carrello.");
+		var id = $(this).parents("tr").find("td.id").text();
+		var dataToSend = {
+			id: id
+		};
+
+		$.post("../PHP/carrello.php?request=rimuovi-prodotto", dataToSend, function(data) {
+			console.log(data);
+			if(data.status == "success") {
+				location.reload();
+			}
+		});
+	});
+
 	$(window).bind("resize", function() {
 			if ($(this).width() < 600) {
 					$("tfoot.footer").empty();
