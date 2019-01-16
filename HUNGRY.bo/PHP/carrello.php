@@ -222,8 +222,30 @@ if(isset($_GET['request'])) {
       }
       break;
     case "rimuovi-prodotto":
-    if(isset($_POST["id"])) {
-      $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE ID = ?");
+      if(isset($_POST["id"])) {
+        $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE ID = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('i', $_POST["id"]);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $response_array["status"] = "success";
+        print json_encode($response_array);
+      } else {
+        $response_array['status'] = "ID mancante";
+        print json_encode($response_array);
+      }
+      break;
+    case "luoghi-consegna":
+      $stmt = $mysqli->prepare("SELECT * FROM Luogo");
 
       if($stmt == false) {
         $response_array['status'] = "Errore nella query";
@@ -231,18 +253,136 @@ if(isset($_GET['request'])) {
         die();
       }
 
-      $stmt->bind_param('i', $_POST["id"]);
-
       $stmt->execute();
-      
+
+      $result = $stmt->get_result();
+
+      $output = array();
+      while($row = $result->fetch_assoc()){
+          $output[] = $row;
+      }
+
       $stmt->close();
 
-      $response_array["status"] = "success";
-      print json_encode($response_array);
-    } else {
-      $response_array['status'] = "ID mancante";
-      print json_encode($response_array);
-    }
+      print json_encode($output);
+      break;
+    case "ordine-effettuato":
+      if(isset($_POST["username"]) && isset($_POST["ids"]) && isset($_POST["cvv"]) && isset($_POST["num"]) && isset($_POST["hour"]) && isset($_POST["place"])) {
+        $stmt = $mysqli->prepare("SELECT IDCarrello FROM Cliente WHERE Username = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella query di ricerca dell'ID carrello";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('s', $_SESSION["username"]);
+
+        $stmt->execute();
+
+        $stmt->bind_result($id_carrello);
+
+        $stmt->fetch();
+
+        $stmt->close();
+
+        $stmt = $mysqli->prepare("INSERT INTO Ordine (Stato, UsernameCliente, LuogoConsegna, UsernameFornitore, Ora) VALUES (?, ?, ?, ?, ?)");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella creazione dell'ordine";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stato = "Ordinato";
+
+        $stmt->bind_param('sssss', $stato, $_SESSION["username"], $_POST["place"], $_POST["username"], $_POST['hour']);
+
+        $stmt->execute();
+
+        $order_id = $mysqli->insert_id;
+
+        $stmt->close();
+
+        for($x = 0; $x < count($_POST['ids']); $x++) {
+          $stmt = $mysqli->prepare("SELECT * FROM ProdottoInCarrello WHERE UsernameCliente = ? AND IDCarrello = ? AND ID = ?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella ricerca dei prodotti in carrello";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('sii', $_SESSION["username"], $id_carrello, $_POST['ids'][$x]);
+
+          $stmt->execute();
+
+          $result = $stmt->get_result();
+
+          $p_in_cart = [];
+          while($row = $result->fetch_assoc()){
+              $p_in_cart[] = $row;
+          }
+
+          $stmt->close();
+
+          $stmt = $mysqli->prepare("SELECT ID FROM ProdottoInOrdine ORDER BY ID DESC");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query di selezione dell'ID";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->execute();
+
+          $stmt->bind_result($id);
+
+          $stmt->fetch();
+
+          $stmt->close();
+
+          if ($id == NULL) {
+            $id = 1;
+          } else {
+            $id = $id + 1;
+          }
+
+          $stmt = $mysqli->prepare("INSERT INTO ProdottoInOrdine (IDProdotto, IDOrdine, ID, qnta, Descrizione) VALUES (?, ?, ?, ?, ?)");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella ricerca dei prodotti in carrello";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('iiiis', $p_in_cart[0]["IDProdotto"], $order_id, $id, $p_in_cart[0]["qnta"], $p_in_cart[0]["Descrizione"]);
+
+          $stmt->execute();
+
+          $stmt->close();
+
+          $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE UsernameCliente = ? AND IDCarrello = ? AND ID = ?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella ricerca dei prodotti in carrello";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('sii', $_SESSION["username"], $id_carrello, $_POST['ids'][$x]);
+
+          $stmt->execute();
+
+          $stmt->close();
+
+        }
+        $response_array['status'] = "success";
+        print json_encode($response_array);
+      } else {
+        $response_array['status'] = "Informazioni mancanti";
+        print json_encode($response_array);
+      }
       break;
   }
 

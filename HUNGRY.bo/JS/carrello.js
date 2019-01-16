@@ -2,6 +2,14 @@ $(document).ready(function() {
 
 	computeInitPrice();
 
+	$.post("../PHP/carrello.php?request=luoghi-consegna", function(data) {
+		var html_code = "";
+		for(var i = 0; i < data.length; i++) {
+			html_code +='<option value="'+data[i].Nome+'">'+data[i].Nome+'</option>';
+		}
+		$("select#delivery-place").html(html_code);
+	});
+
 	$("div#main-component").on("change", ".prod-qnt", function() {
 		computeDinamicallyPrice($(this));
 		var id = $(this).parents("tr").find("td.id").text();
@@ -34,10 +42,10 @@ $(document).ready(function() {
 	$(window).bind("resize", function() {
 			if ($(this).width() < 600) {
 					$("tfoot.footer").empty();
-					$("tfoot.footer").html('<tr><td colspan="4" class="text-center"><strong class="totalcart"></strong></td></tr> <tr><td colspan="4" class="text-center pay"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning">Ordina e paga</a></td></tr>');
+					$("tfoot.footer").html('<tr><td colspan="4" class="text-center"><strong class="totalcart"></strong></td></tr> <tr><td colspan="4" class="text-center pay"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning pay">Ordina e paga</a></td></tr>');
 			} else {
 				$("tfoot.footer").empty();
-				$("tfoot.footer").html('<tr><td class="dummy-column"></td><td class="align-center"><strong class="totalcart"></strong></td><td class="text-center"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning">Ordina e paga</a></td></tr>');
+				$("tfoot.footer").html('<tr><td class="dummy-column"></td><td class="align-center"><strong class="totalcart"></strong></td><td class="text-center"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning pay">Ordina e paga</a></td></tr>');
 			}
 
 			if ($(this).width() < 768) {
@@ -51,7 +59,7 @@ $(document).ready(function() {
 	$.post("../PHP/carrello.php?request=fornitori-in-carrello", function(suppliers) {
 		var html_code = "";
 		for(var i = 0; i < suppliers.length; i++) {
-			html_code += '<div class="container"><div class="card text-center supplier-cart"><div class="card-body"><strong>'+suppliers[0].NomeLocale+'</strong><div class="text-center"><img class="d-inline-block img-fluid rounded-circle local-icon" src="../res/'+suppliers[0].Icona+'" alt="local icon"/></div><div class="col-12"><table class="table table-hover table-condensed"><thead><tr><th id="id'+suppliers[0].Username+'" hidden>ID</th><th id="product'+suppliers[0].Username+'">Prodotto</th><th id="price'+suppliers[0].Username+'">Prezzo</th><th id="qnt'+suppliers[0].Username+'">Quantità</th><th id="remove'+suppliers[0].Username+'" hidden>Remove</th></tr></thead><tbody>';
+			html_code += '<div class="container"><div class="card text-center supplier-cart"><div class="card-body"><span id="supplier-username" hidden>'+suppliers[0].Username+'</span><strong>'+suppliers[0].NomeLocale+'</strong><div class="text-center"><img class="d-inline-block img-fluid rounded-circle local-icon" src="../res/'+suppliers[0].Icona+'" alt="local icon"/></div><div class="col-12"><table class="table table-hover table-condensed"><thead><tr><th id="id'+suppliers[0].Username+'" hidden>ID</th><th id="product'+suppliers[0].Username+'">Prodotto</th><th id="price'+suppliers[0].Username+'">Prezzo</th><th id="qnt'+suppliers[0].Username+'">Quantità</th><th id="remove'+suppliers[0].Username+'" hidden>Remove</th></tr></thead><tbody>';
 
 			var dataToSend = {
 				usernameFornitore: suppliers[0].Username
@@ -88,6 +96,35 @@ $(document).ready(function() {
 		$("div#main-component").html(html_code);
 		window.parent.$(window.parent.document).trigger('resize');
 
+	});
+
+	$("div#main-component").on("click", ".pay", function() {
+		var username = $(this).parents("div.card-body").find("span#supplier-username").text();
+		$("input#username").val(username);
+
+		var ids = [];
+		var username = $(this).parents("div.card-body").find("td.id").each(function(id) {
+			ids.push($(this).text());
+		});
+
+		$("form#order-pay button").click(function() {
+			var dataToSend = {
+				ids: ids,
+				username: $("input#username").val(),
+				cvv: $("input#cvv").val(),
+				num: $("input#card-num").val(),
+				hour: $("input#delivery-hour").val(),
+				place: $("select#delivery-place option:selected").text()
+			};
+
+			console.log(dataToSend);
+
+			$.post("../PHP/carrello.php?request=ordine-effettuato", dataToSend, function(data) {
+				if(data.status == "success") {
+					location.reload();
+				}
+			});
+		});
 	});
 
 });
