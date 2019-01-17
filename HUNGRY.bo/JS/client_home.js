@@ -148,7 +148,7 @@ function checkNotify() {
     var html_code = "";
     for(var i = 0; i < notify.length; i++) {
       if(notify[i].Mittente == "admin" && notify[i].IDOrdine == null) {
-          html_code+='<div class="card-body notifica"><h6 class="card-title mittente">Hai una notifica da <strong>'+notify[i].Mittente.toUpperCase()+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
+          html_code+='<div class="card-body notifica"><h6 style="color:red;" class="card-title mittente">Hai una notifica da <strong>'+notify[i].Mittente.toUpperCase()+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
       } else {
         //Conteggio prodotti.
         var dataToSend = {
