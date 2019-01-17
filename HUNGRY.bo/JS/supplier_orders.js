@@ -74,7 +74,7 @@ $(document).ready(function () {
             data: dataToSend,
             success: function(name) {
               if(name.status == 'success') {
-                html_code += '<li>'+name.nome+' <span class="qnta">'+pInOrder[i].qnta+'</span><br/>('+pInOrder[i].Descrizione+')</li>';
+                html_code += '<li>'+name.nome+' <span class="qnta"> (x'+pInOrder[i].qnta+')</span><br/>('+pInOrder[i].Descrizione+')</li>';
               }
         }});
       }
