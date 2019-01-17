@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$("div.alert").hide();
 
 	computeInitPrice();
 
@@ -110,22 +111,55 @@ $(document).ready(function() {
 		});
 
 		$("form#order-pay button").click(function() {
-			var dataToSend = {
-				ids: ids,
-				username: $("input#username").val(),
-				cvv: $("input#cvv").val(),
-				num: $("input#card-num").val(),
-				hour: $("input#delivery-hour").val(),
-				place: $("select#delivery-place option:selected").text()
-			};
+			var d = new Date();
+			var pressed_minutes = d.getHours() * 60 + d.getMinutes();
+			var insetTime = $("input#delivery-hour").val();
+			var ins_hour = insetTime.split(":");
+			var inserted_minutes = Number(ins_hour[0]) * 60 + Number(ins_hour[1]);
 
-			console.log(dataToSend);
+			if(inserted_minutes >= pressed_minutes + 30) {
+				var info = {
+					username: $("input#username").val()
+				};
 
-			$.post("../PHP/carrello.php?request=ordine-effettuato", dataToSend, function(data) {
-				if(data.status == "success") {
-					location.reload();
-				}
-			});
+				$.ajax({
+            url: "../PHP/carrello.php?request=orari",
+            type: "POST",
+            async: false,
+            dataType: "json",
+            data: info,
+            success: function(orari) {
+							var time_apertura = orari[0].OraApertura.slice(0,5).split(":");
+							var minutes_apertura = Number(time_apertura[0]) * 60 + Number(time_apertura[1]);
+							var time_chiusura = orari[0].OraChiusura.slice(0,5).split(":");
+							var minutes_chiusura = Number(time_chiusura[0]) * 60 + Number(time_chiusura[1]);
+
+							if(inserted_minutes >= minutes_apertura && inserted_minutes <= minutes_chiusura) {
+								var dataToSend = {
+									ids: ids,
+									username: $("input#username").val(),
+									cvv: $("input#cvv").val(),
+									num: $("input#card-num").val(),
+									hour: $("input#delivery-hour").val(),
+									place: $("select#delivery-place option:selected").text()
+								};
+
+								$.post("../PHP/carrello.php?request=ordine-effettuato", dataToSend, function(data) {
+									if(data.status == "success") {
+										location.reload();
+									}
+								});
+							} else {
+								var error = "Errore nell'ora inserita!\nSuggerimento: Consultare orari di apertura e chiusura del ristorante.";
+								$("div.alert").html(error);
+								$("div.alert").show();
+							}
+        }});
+			} else {
+				var error = "Errore nell'ora inserita!\nSuggerimento: E' necessario ordinare a distanza di almeno 30 minuti dalla prenotazione.";
+				$("div.alert").html(error);
+				$("div.alert").show();
+			}
 		});
 	});
 
