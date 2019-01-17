@@ -151,7 +151,7 @@ if(isset($_GET['request'])) {
         }
 
         $stmt->close();
-        
+
         $result = array();
         for($x = 0; $x < count($output); $x++) {
           $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Prodotto WHERE ID = ? AND UsernameFornitore = ?");
@@ -427,6 +427,29 @@ if(isset($_GET['request'])) {
         $response_array['status'] = "Informazioni mancanti";
         print json_encode($response_array);
       }
+      break;
+    case "orari":
+        $stmt = $mysqli->prepare("SELECT OraApertura, OraChiusura FROM Fornitore WHERE Username = ?");
+
+        if($stmt == false) {
+          $response_array['status'] = "Errore nella ricerca delle informazioni dei fornitori";
+          print json_encode($response_array);
+          die();
+        }
+
+        $stmt->bind_param('s', $_POST["username"]);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        while($row = $result->fetch_assoc()){
+            $info[] = $row;
+        }
+
+        $stmt->close();
+
+        print json_encode($info);
       break;
   }
 
