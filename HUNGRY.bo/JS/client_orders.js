@@ -28,25 +28,12 @@ $(document).ready(function(){
         var deliveryData = output[3];
         var arrayOrd = [];
         var arrayDet = [];
-        var maxTime = 0;
         console.log(ordersData);
         console.log(productsInOrdersData);
         console.log(productsData);
         //console.log(ordersData[0]["ID"]);
         for (var i = 0; i < ordersData.length; i++) {
-          for (var j = 0; j < productsInOrdersData.length; j++) {
-            if(ordersData[i]["ID"] === productsInOrdersData[j]["IDOrdine"]){
-              for (var k = 0; k < productsData.length; k++) {
-                if(productsInOrdersData[j]["IDProdotto"] === productsData[k]["ID"]){
-                  maxTime<productsData[k]["TempoPreparazione"]?maxTime=productsData[k]["TempoPreparazione"]:maxTime=maxTime;
-                }
-              }
-
-            }
-          }
-          var timeOrder = parseTime(ordersData[i]["Ora"], maxTime);
-          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="mitt">'+ordersData[i]["UsernameFornitore"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place" class="placehide">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+timeOrder+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
-          maxTime=0;
+          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="mitt">'+ordersData[i]["UsernameFornitore"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place" class="placehide">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+ordersData[i]["Ora"]+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
           window.parent.$(window.parent.document).trigger('resize');
         }
     } else {
@@ -118,24 +105,4 @@ $(document).ready(function(){
     });
 
 });
-
-
-function parseTime(timeOrder, maxTime) {
-  var h = timeOrder.slice(0,2);
-  var sep = timeOrder.slice(2,3)
-  var m = timeOrder.slice(3,5);
-  var s = timeOrder.slice(5);
-  //console.log(h,sep,m,s);
-
-  m = Number(m);
-  m+=maxTime;
-  if(m > 59){
-    m-=60;
-    m = "0"+m;
-    h = Number(h);
-    h++;
-  }
-  return h+sep+m+s;
-}
-
 //new Date().toLocaleTimeString('en-US', { hour12: false});
