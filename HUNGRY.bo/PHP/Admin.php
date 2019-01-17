@@ -118,6 +118,31 @@
 
         break;
 
+        case 'luoghi':
+
+          $stmt = $mysqli->prepare("SELECT * FROM Luogo");
+
+          if($stmt === false){
+            $response_array['status'] = "error";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->execute();
+
+          $result = $stmt->get_result();
+
+          $output = array();
+          while($row = $result->fetch_assoc()){
+              $output[] = $row;
+          }
+          $stmt->close();
+
+          print json_encode($output);
+          die();
+
+        break;
+
         case 'modificaFornitori':
 
           if($_POST["tempoarrivocampus"] != ""){
@@ -276,19 +301,47 @@
 
           if($_POST["username"] != "" && $_POST["table"] != ""){
 
-            $usr = $_POST["username"];
-            if($_POST["table"] == "Fornitori"){
-              $table = "Fornitore";
+            if($_POST["table"] == "Fornitori" || $_POST["table"] == "Clienti"){
+
+              $usr = $_POST["username"];
+              if($_POST["table"] == "Fornitori"){
+                $table = "Fornitore";
+              } else {
+                $table = "Cliente";
+              }
+
+              $stmt = $mysqli->prepare("DELETE FROM $table WHERE Username='$usr'");
+
+              if($stmt === false){
+                $response_array['status'] = "error";
+                print json_encode($response_array);
+                die();
+              }
+
             } else {
-              $table = "Cliente";
-            }
 
-            $stmt = $mysqli->prepare("DELETE FROM $table WHERE Username='$usr'");
+              $table = $_POST["table"];
+              $usr = $_POST["username"];
 
-            if($stmt === false){
-              $response_array['status'] = "error";
-              print json_encode($response_array);
-              die();
+              if($table == "Tipologie Locali"){
+                $table = "TipologiaLocale";
+              } else if($table == "Tipologie Prodotti") {
+                $table = "TipologiaProdotto";
+              } else {
+                $table = "Luogo";
+              }
+
+              var_dump($table);
+              var_dump($usr);
+
+              $stmt = $mysqli->prepare("DELETE FROM $table WHERE Nome='$usr'");
+
+              if($stmt === false){
+                $response_array['status'] = "error";
+                print json_encode($response_array);
+                die();
+              }
+
             }
 
             $stmt->execute();
@@ -302,11 +355,43 @@
 
         break;
 
-      }
+      case 'addtipologia':
 
-      /*case 'aggiungi':
+        if($_POST["table"] != "" && $_POST["nome"] != ""){
 
-      break;*/
+          $nome = $_POST["nome"];
+          $table = $_POST["table"];
+
+          if($table == "Tipologie Locali"){
+            $table = "TipologiaLocale";
+          }else if($table == "Tipologie Prodotti"){
+            $table = "TipologiaProdotto";
+          } else {
+            $table = "Luogo";
+          }
+
+          $stmt = $mysqli->prepare("INSERT INTO $table (Nome) VALUES (?)");
+
+          $stmt->bind_param('s', $nome);
+
+          if($stmt === false){
+            $response_array['status'] = "error";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->execute();
+
+          $stmt->close();
+
+          $response_array['status'] = "success";
+          print json_encode($response_array);
+          die();
+        }
+
+      break;
+
+    }
 
       $mysqli->close();
   }

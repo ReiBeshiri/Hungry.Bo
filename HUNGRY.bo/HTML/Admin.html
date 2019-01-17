@@ -51,6 +51,11 @@
               Tipologie Prodotti
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="delivery-place">
+              Luoghi di Consegna
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item active">
@@ -158,7 +163,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="hour-title-add">Aggiungi Utente</h5>
+            <h5 class="modal-title" id="hour-title-add">Aggiungi Nuovo</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -166,17 +171,17 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                     <div class="form-group">
-                      <label>Username:
+                      <label id="usrlbl">Username:
                         <input class="form-control" type="text" name="username" id="usrUsr" required/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label>Password:
+                      <label id="pwdlbl">Password:
                         <input class="form-control" type="password" name="password" id="usrPwd" required/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label>Email:
+                      <label id="emaillbl">Email:
                         <input class="form-control" type="email" name="email" id="usrEmail" required/>
                       </label>
                     </div>
@@ -185,20 +190,25 @@
                         <input class="form-control" type="text" name="nome-locale" id="usrNomeLocale"/>
                       </label>
                     </div>
-                    <div>
+                    <div class="form-group">
                       <label id="usrIndlbl">Indirizzo:
                         <input class="form-control" type="text" name="indirizzo" id="usrInd"/>
                       </label>
                     </div>
-                    <div>
+                    <div class="form-group">
                       <label id="usrTaclbl">Tempo Arrivo al Campus:
                         <input class="form-control" type="text" name="tempoarrivocampus" min="1" max="90" id="usrTac"/>
                       </label>
                     </div>
-                    <div>
+                    <div class="form-group">
                       <label id="usrTipolbl">Tipologia Locale:
                         <select name="tipo-locale" class="form-control" style="background-color: rgba(255,255,255,0.5)" id="usrTipo">
                         </select>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label id="tipologia">Nome:
+                        <input class="form-control" type="text" name="tipologia"id="tipoAgg"/>
                       </label>
                     </div>
                 </form>
@@ -224,7 +234,6 @@
             <div class="modal-body" hidden>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger">Annulla</button>
               <button type="button" class="btn btn-primary deleteUser">Conferma</button>
             </div>
           </div>
