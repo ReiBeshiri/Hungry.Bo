@@ -274,7 +274,8 @@ function prodtype() {
         str2 += '<tr><td headers="username">'+data[i]["Nome"]+'</td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
       }
       str = str1+str2+str3;
-      $("div.admintable").append(str)
+      $("div.admintable").append(str);
+      window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -291,7 +292,8 @@ function localtype(){
         str2 += '<tr><td headers="username">'+data[i]["Nome"]+'</td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
       }
       str = str1+str2+str3;
-      $("div.admintable").append(str)
+      $("div.admintable").append(str);
+      window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -308,7 +310,8 @@ function managesup(){
         str2 += '<tr><td headers="username">'+data[i]["Username"]+'</td><td headers="indirizzo">'+data[i]["Email"]+'</td><td headers="nome-locale">'+data[i]["NomeLocale"]+'</td><td headers="modify"><span class="table-modify"><button type="button" class="btn btn-outline-info buttonModify" data-toggle="modal" data-target="#modify-from-admin">Modify</button></span></td><td headers="notify"><span class="table-modify"><button type="button" class="btn btn-outline-primary buttonNotify" data-toggle="modal" data-target="#send-notify-from-admin">Notify</button></span></td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
       }
       str = str1+str2+str3;
-      $("div.admintable").append(str)
+      $("div.admintable").append(str);
+      window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -325,7 +328,8 @@ function managecli(){
         str2 += '<tr><td headers="username">'+data[i]["Username"]+'</td><td headers="indirizzo">'+data[i]["IDCarrello"]+'</td><td headers="nome-locale">'+data[i]["Email"]+'</td><td headers="modify"><span class="table-modify"><button type="button" class="btn btn-outline-info buttonModifycli" data-toggle="modal" data-target="#modify-from-admin-cli">Modify</button></span></td><td headers="notify"><span class="table-modify"><button type="button" class="btn btn-outline-primary buttonNotify" data-toggle="modal" data-target="#send-notify-from-admin">Notify</button></span></td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
       }
       str = str1+str2+str3;
-      $("div.admintable").append(str)
+      $("div.admintable").append(str);
+      window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -342,7 +346,8 @@ function deliveryplace(){
         str2 += '<tr><td headers="username">'+data[i]["Nome"]+'</td><td headers="remove"><a data-toggle="modal" data-target="#confirm-delete-admin" class="aremove"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="delete"/></a></td></tr>';
       }
       str = str1+str2+str3;
-      $("div.admintable").append(str)
+      $("div.admintable").append(str);
+      window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
