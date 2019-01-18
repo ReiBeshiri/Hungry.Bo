@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  getRefreshed();
+
   $(window).bind("resize", function () {
     if($(this).width() <= 320){
 
@@ -61,13 +63,13 @@ $(document).ready(function(){
       $.post("../PHP/Admin.php?request=modificaFornitori", dataToSend, function(data) {
         if(data.status === "success") {
           console.log("Modifica Completata");
-          alert("Modifica Completata");
+          //alert("Modifica Completata");
         } else {
           console.log("errore");
-          alert("Errore durante la Modifica");
+          //alert("Errore durante la Modifica");
         }
       });
-      location.reload();
+      refresh(table);
     });
   });
 
@@ -86,13 +88,13 @@ $(document).ready(function(){
       $.post("../PHP/Admin.php?request=modificaClienti", dataToSend, function(data) {
         if(data.status === "success") {
           console.log("Modifica Completata");
-          alert("Modifica Completata");
+          //alert("Modifica Completata");
         } else {
           console.log("errore");
-          alert("Errore durante la Modifica");
+          //alert("Errore durante la Modifica");
         }
       });
-      location.reload();
+      refresh(table);
     });
   });
 
@@ -109,13 +111,13 @@ $(document).ready(function(){
       $.post("../PHP/Admin.php?request=notifica", dataToSend, function(data) {
         if(data.status === "success") {
           console.log("Notifica Completata");
-          alert("Notifica Completata");
+          //alert("Notifica Completata");
         } else {
           console.log("errore");
-          alert("Errore durante la Notifica");
+          //alert("Errore durante la Notifica");
         }
       });
-      location.reload();
+      refresh(table);
     });
   });
 
@@ -212,10 +214,10 @@ $(document).ready(function(){
           $.post("../PHP/register.php", dataToSend, function(data) {
             if(data.status === "success") {
               console.log("Aggiunta Utente Completata");
-              alert("Aggiunta Utente Completata");
+              //alert("Aggiunta Utente Completata");
             } else {
               console.log("errore");
-              alert("Errore durante l'aggiunta Utente");
+              //alert("Errore durante l'aggiunta Utente");
             }
           });
       } else if(table === "Tipologie Locali" || table === "Tipologie Prodotti" || table === "Luoghi di Consegna"){
@@ -227,14 +229,14 @@ $(document).ready(function(){
             $.post("../PHP/Admin.php?request=addtipologia", dataToSend, function(data) {
               if(data.status === "success") {
                 console.log("Aggiunta prodotto Completata");
-                alert("Aggiunta prodotto Completata");
+                //alert("Aggiunta prodotto Completata");
               } else {
                 console.log("errore");
-                alert("Errore durante la Aggiunta prodotto");
+                //alert("Errore durante la Aggiunta prodotto");
               }
             });
       }
-      location.reload();
+      refresh(table);
     });
   });
 
@@ -256,7 +258,7 @@ $(document).ready(function(){
             // alert("Errore durante la Rimozione");
            }
          });
-         location.reload();
+         refresh(table);
     });
   });
 });
@@ -275,7 +277,7 @@ function prodtype() {
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      window.parent.$(window.parent.document).trigger('resize');
+      //window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -293,7 +295,7 @@ function localtype(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      window.parent.$(window.parent.document).trigger('resize');
+      //window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -311,7 +313,7 @@ function managesup(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      window.parent.$(window.parent.document).trigger('resize');
+      //window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -329,7 +331,7 @@ function managecli(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      window.parent.$(window.parent.document).trigger('resize');
+      //window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -347,7 +349,7 @@ function deliveryplace(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      window.parent.$(window.parent.document).trigger('resize');
+      //window.parent.$(window.parent.document).trigger('resize');
     }
   });
 }
@@ -362,3 +364,37 @@ var url_string = window.location.href;
 var url = new URL(url_string);
 var supplier = url.searchParams.get("supplier");
 */
+
+  function refresh(table){
+    window.location = "./Admin.html?refresh="+table;
+  }
+
+  function getRefreshed(){
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var refresh = url.searchParams.get("refresh");
+
+    switch (refresh) {
+
+      case 'Fornitori':
+        managesup();
+      break;
+
+      case 'Clienti':
+        managecli();
+      break;
+
+      case 'Tipologie Locali':
+        localtype();
+      break;
+
+      case 'Tipologie Prodotti':
+        prodtype();
+      break;
+
+      case 'Luoghi di Consegna':
+        deliveryplace();
+      break;
+    }
+  }
