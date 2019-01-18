@@ -48,6 +48,7 @@ $(document).ready(function(){
 
   $("div.admintable").on('click', 'button.buttonModify', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
+    updatespan(username);
     $("button.save").click(function() {
       var table = $("strong.searchtable").text();
       var dataToSend = {
@@ -73,6 +74,7 @@ $(document).ready(function(){
 
   $("div.admintable").on('click', 'button.buttonModifycli', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
+    updatespan(username);
     $("button.savecli").click(function() {
       var table = $("strong.searchtable").text();
       var dataToSend = {
@@ -96,6 +98,7 @@ $(document).ready(function(){
 
   $("div.admintable").on('click', 'button.buttonNotify', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
+    updatespan(username);
     $("button.notificaUser").click(function() {
     var table = $("strong.searchtable").text();
     var dataToSend = {
@@ -238,8 +241,8 @@ $(document).ready(function(){
   $("div.admintable").on('click', 'a.aremove', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
     var table = $("strong.searchtable").text();
+      updatespan(username);
     $("button.deleteUser").click(function() {
-      console.log($("strong.searchtable").text());
          var dataToSend = {
            table: table,
            username: username,
@@ -344,6 +347,10 @@ function deliveryplace(){
   });
 }
 
+function updatespan(username){
+  $("span.modal-span").empty();
+  $("span.modal-span").html(username);
+}
 
 /*
 var url_string = window.location.href;
