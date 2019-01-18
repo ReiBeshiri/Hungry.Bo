@@ -2,6 +2,8 @@ $(document).ready(function(){
   var icona;
   var immagine;
 
+  $("div.alert").hide();
+
   $.getJSON("../PHP/dbRequestManager.php?request=tipologie-prodotti", function(data){
     var html_code = "";
     for(var i = 0; i < data.length; i++){
@@ -43,17 +45,25 @@ $(document).ready(function(){
   $("#gestisci-locale-submit").click(function(){
     event.preventDefault();
 
-    var dataToSend = {
-      icona: icona,
-      immagine: immagine,
-      email: $("input#mod-email").val(),
-    };
+    var email = $("input#mod-email").val();
 
-    console.log(dataToSend);
-    $.post("../PHP/supplier_home.php?request=gestisci-locale", dataToSend, function(data) {
-      console.log(data.status);
-      location.reload();
-    });
+    if(email.length == 0 || (email.length > 0 && validateEmail(email))) {
+      var dataToSend = {
+        icona: icona,
+        immagine: immagine,
+        email: email,
+      };
+
+      console.log(dataToSend);
+      $.post("../PHP/supplier_home.php?request=gestisci-locale", dataToSend, function(data) {
+        console.log(data.status);
+        location.reload();
+      });
+    } else {
+      var error = "Errore nella mail.";
+      $("div.alert").html(error);
+      $("div.alert").show();
+    }
   });
 
   $("form#modifica-orario button").click(function(){
@@ -201,4 +211,9 @@ function updateNotifyNum() {
       $("#numero-notifiche").empty();
     }
   });
+}
+
+function validateEmail(email) {
+  var regex = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+  return regex.test(email);
 }
