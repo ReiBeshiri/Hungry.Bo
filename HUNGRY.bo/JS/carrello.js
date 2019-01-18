@@ -42,8 +42,8 @@ $(document).ready(function() {
 
 	$(window).bind("resize", function() {
 			if ($(this).width() < 600) {
-					$("tfoot.footer").empty();
-					$("tfoot.footer").html('<tr><td colspan="4" class="text-center"><strong class="totalcart"></strong></td></tr> <tr><td colspan="4" class="text-center pay"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning pay">Ordina e paga</a></td></tr>');
+				$("tfoot.footer").empty();
+				$("tfoot.footer").html('<tr><td colspan="4" class="text-center"><strong class="totalcart"></strong></td></tr> <tr><td colspan="4" class="text-center pay"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning pay">Ordina e paga</a></td></tr>');
 			} else {
 				$("tfoot.footer").empty();
 				$("tfoot.footer").html('<tr><td class="dummy-column"></td><td class="align-center"><strong class="totalcart"></strong></td><td class="text-center"><a href="#" data-toggle="modal" data-target="#order-pay" class="btn btn-warning pay">Ordina e paga</a></td></tr>');
@@ -87,8 +87,11 @@ $(document).ready(function() {
 									dataType: "json",
 									data: dataToSend,
 									success: function(info_product) {
-										console.log(info_product);
-										html_code += '<tr><td class="id" headers="id'+suppliers[i].Username+'" hidden>'+products[j].ID+'</td><td headers="product'+suppliers[i].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[j].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[i].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[i].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[j].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[i].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
+										if(products[j].Descrizione.length > 1) {
+											html_code += '<tr><td class="id" headers="id'+suppliers[i].Username+'" hidden>'+products[j].ID+'</td><td headers="product'+suppliers[i].Username+'"><div class="row"><span>'+info_product[0].Nome+'<br/><span class="descrizione">('+products[j].Descrizione+')</span></span></div></td><td class="prod-price" headers="price'+suppliers[i].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[i].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[j].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[i].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
+										} else {
+											html_code += '<tr><td class="id" headers="id'+suppliers[i].Username+'" hidden>'+products[j].ID+'</td><td headers="product'+suppliers[i].Username+'"><div class="row"><span>'+info_product[0].Nome+'</div></td><td class="prod-price" headers="price'+suppliers[i].Username+'">'+info_product[0].Prezzo+'</td><td headers="qnt'+suppliers[i].Username+'"><input type="number" class="form-control text-center prod-qnt" value="'+products[j].qnta+'" min="0" max="90" name="qnt"/></td><td headers="remove'+suppliers[i].Username+'"><input class="cancel" name="cancel" type="image" src="../res/croce.png" alt="immagine croce"/></td></tr>';
+										}
 							}});
 
 						}

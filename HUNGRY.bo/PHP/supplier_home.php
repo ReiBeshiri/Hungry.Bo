@@ -203,6 +203,34 @@ if(isset($_GET["request"])) {
 
       case 'rimuovi-prodotto':
         if(isset($_POST['id'])) {
+          $stmt = $mysqli->prepare("DELETE FROM ProdottoInOrdine WHERE IDProdotto=?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('i', $_POST['id']);
+
+          $stmt->execute();
+
+          $stmt->close();
+          
+          $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE IDProdotto=?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('i', $_POST['id']);
+
+          $stmt->execute();
+
+          $stmt->close();
+
           $stmt = $mysqli->prepare("DELETE FROM Prodotto WHERE ID=?");
 
           if($stmt == false) {

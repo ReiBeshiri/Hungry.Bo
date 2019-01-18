@@ -138,7 +138,9 @@ $(document).ready(function(){
     };
     console.log(dataToSend);
     $.post("../PHP/supplier_home.php?request=rimuovi-prodotto", dataToSend, function(data){
-      location.reload();
+      if(data.status == "success") {
+        location.reload();
+      }
     });
   });
 
