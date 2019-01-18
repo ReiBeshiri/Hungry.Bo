@@ -138,9 +138,27 @@ $(document).ready(function () {
       }
     });
   });
-
 });
 
+$("#sel-mod-mail").click(function(){
+  console.log("a");
+  $("button.submitmail").click(function() {
+      var email = $("#new-mail").val();
+      var dataToSend = {
+        email: email
+      };
+      $.post("../PHP/client_home.php?request=modifica-email", dataToSend, function(data) {
+        console.log(data);
+        if(data.status === "success") {
+          console.log("email aggiornata");
+          alert("Email aggiornata");
+        } else{
+          console.log("errore email aggiornata");
+        }
+        location.reload();
+      });
+    });
+});
 
 function checkNotify() {
   updateNotifyNum();

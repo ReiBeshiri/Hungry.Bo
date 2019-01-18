@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  getRefreshed();
-
   $(window).bind("resize", function () {
     if($(this).width() <= 320){
 
@@ -68,7 +66,7 @@ $(document).ready(function(){
           alert("Errore durante la Modifica");
         }
       });
-      refresh(table);
+      location.reload();
     });
   });
 
@@ -92,7 +90,7 @@ $(document).ready(function(){
           alert("Errore durante la Modifica");
         }
       });
-      refresh(table);
+      location.reload();
     });
   });
 
@@ -114,7 +112,7 @@ $(document).ready(function(){
           alert("Errore durante la Notifica");
         }
       });
-      refresh(table);
+      location.reload();
     });
   });
 
@@ -233,7 +231,7 @@ $(document).ready(function(){
               }
             });
       }
-      refresh(table);
+      location.reload();
     });
   });
 
@@ -255,7 +253,7 @@ $(document).ready(function(){
             // alert("Errore durante la Rimozione");
            }
          });
-         refresh(table);
+         location.reload();
     });
   });
 });
@@ -346,42 +344,9 @@ function deliveryplace(){
   });
 }
 
-function refresh(table){
-  window.location = "./Admin.html?refresh="+table;
-}
 
 /*
 var url_string = window.location.href;
 var url = new URL(url_string);
 var supplier = url.searchParams.get("supplier");
 */
-
-function getRefreshed(){
-  var url_string = window.location.href;
-  var url = new URL(url_string);
-  var refresh = url.searchParams.get("refresh");
-
-  switch (refresh) {
-
-    case 'Fornitori':
-      managesup();
-    break;
-
-    case 'Clienti':
-      managecli();
-    break;
-
-    case 'Tipologie Locali':
-      localtype();
-    break;
-
-    case 'Tipologie Prodotti':
-      prodtype();
-    break;
-
-    case 'Luoghi di Consegna':
-      deliveryplace();
-    break;
-
-  }
-}

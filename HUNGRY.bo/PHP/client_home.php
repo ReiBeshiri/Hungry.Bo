@@ -209,6 +209,30 @@ if(isset($_GET['request'])) {
         print json_encode($response_array);
       }
       break;
+
+      case 'modifica-email':
+        if(isset($_POST["email"])){
+
+                  $mail = $_POST["email"];
+                  $usr = $_SESSION['username'];
+
+                  $stmt = $mysqli->prepare("UPDATE Cliente SET Email='$mail' WHERE Username='$usr'");
+
+                  if($stmt === false){
+                    $response_array['status'] = "error";
+                    print json_encode($response_array);
+                    die();
+                  }
+
+                  $stmt->execute();
+
+                  $stmt->close();
+
+                  $response_array['status'] = "success";
+                  print json_encode($response_array);
+                  die();
+        }
+      break;
   }
 
   $mysqli->close();

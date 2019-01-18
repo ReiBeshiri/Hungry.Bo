@@ -45,8 +45,10 @@ $(document).ready(function(){
 
     // Assicurati che la password non venga inviata in chiaro.
     password.value = "";
-
-    if (!validateEmail($("#email").val())) {
+    console.log();
+    if($("input#username").val() === "admin") {
+      errors += "username non valido";
+    } else if (!validateEmail($("#email").val())) {
       errors += "Mail non valida";
     } else if(errors.length == 0) {
       var dataToSend = $("form").serialize();
@@ -71,6 +73,7 @@ function validateEmail(email) {
 
 function checkError(errors) {
   if(errors.length > 0){
+    $("div.alert").empty();
     $("div.alert").html("Errore: " + errors);
     $("div.alert").show();
   }

@@ -184,6 +184,23 @@
 
                     $stmt->close();
 
+                    $desc = "Nome Locale Modificato!";
+                    $admin = "Admin";
+                    $letta = 0;
+
+                    $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param('ssss', $desc, $letta, $usr, $admin);
+
+                    if($stmt === false){
+                      $response_array['status'] = "error";
+                      print json_encode($response_array);
+                      die();
+                    }
+
+                    $stmt->execute();
+
+                    $stmt->close();
+
                     $response_array['status'] = "success";
                     print json_encode($response_array);
                     die();
@@ -239,6 +256,23 @@
                     $usr = $_POST["username"];
 
                     $stmt = $mysqli->prepare("UPDATE Cliente SET Username='$nusr' WHERE Username='$usr'");
+
+                    if($stmt === false){
+                      $response_array['status'] = "error";
+                      print json_encode($response_array);
+                      die();
+                    }
+
+                    $stmt->execute();
+
+                    $stmt->close();
+
+                    $desc = "Username Modificato!";
+                    $admin = "Admin";
+                    $letta = 0;
+
+                    $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param('ssss', $desc, $letta, $nusr, $admin);
 
                     if($stmt === false){
                       $response_array['status'] = "error";
