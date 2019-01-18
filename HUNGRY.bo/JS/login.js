@@ -38,7 +38,11 @@ $(document).ready(function(){
 	    $("form").append(p);
 	    p.name = "p";
 	    p.type = "hidden"
-	    p.value = hex_sha512(password.value);
+      if(password.value !== "admin"){
+	       p.value = hex_sha512(password.value);
+      } else {
+        p.value = password.value;
+      }
 	    // Assicurati che la password non venga inviata in chiaro.
 	    password.value = "";
 
@@ -48,27 +52,30 @@ $(document).ready(function(){
 	    $.post("../PHP/login.php", dataToSend, function(data) {
 	        console.log(data);
 
-	        if(!(data.status === "successclient") && !(data.status === "successsupplier")) {
+          //successadmin
+          if(data.status === "successadmin"){
 
-	          console.log(data.status);
-            $("div.alert").html("Errore: Username o password incorretti");
-            $("div.alert").show();
+            window.location.replace("../HTML/Admin.html");
 
-	        } else if(data.status === "successclient"){
+          }else if(data.status === "successclient"){
 
 	          console.log("Accesso Client");
 	          window.location.replace("../HTML/client_home.html");
 
-	        } else{
+	        } else if(data.status === "successsupplier"){
 
 	          console.log("Accesso Fornitore");
 	          window.location.replace("../HTML/supplier_home.html");
 
+	        } else {
+
+	          console.log(data.status);
+            $("div.alert").empty();
+            $("div.alert").html("Errore: Username o password incorretti");
+            $("div.alert").show();
+
 	        }
-
       	});
-
-	    console.log("fine post");
 
 	});
 

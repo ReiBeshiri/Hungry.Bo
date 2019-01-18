@@ -35,7 +35,7 @@ if(isset($_GET["request"])) {
 
       break;
 
-      case 'aggiungi-immagini':
+      case 'gestisci-locale':
         if(isset($_POST["icona"])) {
           $icona = $_POST["icona"];
 
@@ -70,6 +70,25 @@ if(isset($_GET["request"])) {
           $stmt->execute();
 
           $stmt->close();
+        }
+
+        if(isset($_POST["email"])) {
+          $email = $_POST["email"];
+
+          $stmt = $mysqli->prepare("UPDATE Fornitore SET Email=? WHERE Username=?");
+
+          if($stmt == false) {
+            $response_array['status'] = "Errore nella query";
+            print json_encode($response_array);
+            die();
+          }
+
+          $stmt->bind_param('ss', $email, $_SESSION['username']);
+
+          $stmt->execute();
+
+          $stmt->close();
+
         }
 
         $response_array['status'] = 'success';
@@ -320,7 +339,7 @@ if(isset($_GET["request"])) {
         break;
 
       case 'rimuovi-notifica':
-        
+
         if(isset($_POST['id'])) {
           $stmt = $mysqli->prepare("DELETE FROM Notifica WHERE ID=?");
 

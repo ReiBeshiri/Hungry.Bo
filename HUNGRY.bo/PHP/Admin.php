@@ -44,7 +44,7 @@
 
         case 'fornitori':
 
-          $stmt = $mysqli->prepare("SELECT Username,Indirizzo,NomeLocale FROM Fornitore");
+          $stmt = $mysqli->prepare("SELECT Username,Email,NomeLocale FROM Fornitore");
 
           if($stmt === false){
             $response_array['status'] = "error";
@@ -207,6 +207,23 @@
 
                     $stmt->close();
 
+                    $desc = "Email aggiornata correttamente!";
+                    $admin = "Admin";
+                    $letta = 0;
+
+                    $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param('ssss', $desc, $letta, $usr, $admin);
+
+                    if($stmt === false){
+                      $response_array['status'] = "error";
+                      print json_encode($response_array);
+                      die();
+                    }
+
+                    $stmt->execute();
+
+                    $stmt->close();
+
                     $response_array['status'] = "success";
                     print json_encode($response_array);
                     die();
@@ -244,6 +261,23 @@
                     $usr = $_POST["username"];
 
                     $stmt = $mysqli->prepare("UPDATE Cliente SET Email='$mail' WHERE Username='$usr'");
+
+                    if($stmt === false){
+                      $response_array['status'] = "error";
+                      print json_encode($response_array);
+                      die();
+                    }
+
+                    $stmt->execute();
+
+                    $stmt->close();
+
+                    $desc = "Email aggiornata correttamente!";
+                    $admin = "Admin";
+                    $letta = 0;
+
+                    $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param('ssss', $desc, $letta, $usr, $admin);
 
                     if($stmt === false){
                       $response_array['status'] = "error";
@@ -331,9 +365,6 @@
                 $table = "Luogo";
               }
 
-              var_dump($table);
-              var_dump($usr);
-
               $stmt = $mysqli->prepare("DELETE FROM $table WHERE Nome='$usr'");
 
               if($stmt === false){
@@ -395,4 +426,25 @@
 
       $mysqli->close();
   }
+
+/*function notifica($username){
+
+  $desc = "Email aggiornata!";
+  $usr = $username;
+  $admin = "Admin";
+  $letta = 0;
+
+  $stmt = $mysqli->prepare("INSERT INTO Notifica (Descrizione, Letta, Destinatario, Mittente) VALUES (?, ?, ?, ?)");
+  $stmt->bind_param('ssss', $desc, $letta, $usr, $admin);
+
+  if($stmt === false){
+    $response_array['status'] = "error";
+    print json_encode($response_array);
+    die();
+  }
+
+  $stmt->execute();
+
+  $stmt->close();
+}*/
 ?>
