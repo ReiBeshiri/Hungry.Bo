@@ -133,6 +133,10 @@ footer>p:first-child {
   float: left;
 }
 
+div.alert {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     transform: scaleX(-1);
