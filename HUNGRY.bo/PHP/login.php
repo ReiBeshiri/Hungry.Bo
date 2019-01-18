@@ -32,6 +32,14 @@
 
   		}
 
+			if($username == "admin" && $password =="admin"){
+
+				 $response_array['status'] = "successadmin";
+				 echo json_encode($response_array);
+				 die();
+
+			}
+
   		//check if is cliente
   		$stmt = $mysqli->prepare("SELECT COUNT(*) FROM $table WHERE Username = ?");
 

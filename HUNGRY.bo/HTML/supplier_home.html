@@ -75,10 +75,12 @@
     <div class="text-center" id="container">
       <div class="dumb-container">
         <div id="icon-container"></div><!--<img class="img-fluid rounded-circle local-icon" src="../res/icona.png" alt="local icon"/>-->
-        <p><span>Welcome</span> <br/>
+        <p>
           <span id="local-name"> </span> <br/>
           <span id="local-address"> </span> <br/>
-          <span id="local-time"> </span></p>
+          <span id="local-email"> </span> <br/>
+          <span id="local-time"> </span>
+        </p>
       </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -261,6 +263,11 @@
             </div>
               <form id="#gestisci-locale" action="#" method="post">
                 <div class="modal-body">
+                  <div class="form-group mb-2">
+                    <label for="insert-name-input">Modifica Email:
+                      <input class="form-control" name="nome" type="text" id="mod-email" />
+                    </label>
+                  </div>
                     <div class="custom-file mb-2">
                       <label for="custom-icon" id="icon-label" class="custom-file-label">Aggiungi icona:
                         <input type="file" class="custom-file-input" name="custom-icon" id="custom-icon"/>
