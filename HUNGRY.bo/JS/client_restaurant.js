@@ -42,7 +42,7 @@ $(document).ready(function () {
             var html_code = "";
             for(var j = 0; j < products.length; j++) {
               if(products[j].TipoProdotto === type[i].Nome) {
-                  if(type[i].Nome == "Bibita") {
+                  if(type[i].Nome == "Bibita" || products[j].Ingredienti.length === 0) {
                     html_code += '<tr><td class="id" headers="id-'+type[i].Nome+'" hidden>'+products[j].ID+'</td><td headers="product-'+type[i].Nome+'">'+products[j].Nome+'</td><td headers="price-'+type[i].Nome+'">'+products[j].Prezzo+'€</td><td headers="select-'+type[i].Nome+'"><span class="table-select"><button type="button" class="btn btn-outline-info seleziona" data-toggle="modal" data-target="#order-popup">Seleziona</button></span></td></tr>';
                   } else {
                     html_code += '<tr><td class="id" headers="id-'+type[i].Nome+'" hidden>'+products[j].ID+'</td><td headers="product-'+type[i].Nome+'">'+products[j].Nome+'<br/><span class="ingredients-in-table">('+products[j].Ingredienti+')</span></td><td headers="price-'+type[i].Nome+'">'+products[j].Prezzo+'€</td><td headers="select-'+type[i].Nome+'"><span class="table-select"><button type="button" class="btn btn-outline-info seleziona" data-toggle="modal" data-target="#order-popup">Seleziona</button></span></td></tr>';
