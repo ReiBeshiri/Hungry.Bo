@@ -151,8 +151,8 @@ $(document).ready(function(){
     });
   });
 
-  //Set 5 s of timeout for check notifications
-  setInterval(checkNotify, 5000);
+  //Set 0.5 s of timeout for check notifications
+  setInterval(checkNotify, 500);
 
   $("form#gestisci-notifiche").on('click', 'button.letta', function(){
     var span = $(this).parents("div.notifica").find("span.id-notifica");

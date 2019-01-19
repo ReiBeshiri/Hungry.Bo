@@ -211,27 +211,50 @@ if(isset($_GET['request'])) {
       break;
 
       case 'modifica-email':
-        if(isset($_POST["email"])){
+        if($_POST["email"] != "") {
 
-                  $mail = $_POST["email"];
-                  $usr = $_SESSION['username'];
+          $mail = $_POST["email"];
+          $usr = $_SESSION['username'];
 
-                  $stmt = $mysqli->prepare("UPDATE Cliente SET Email='$mail' WHERE Username='$usr'");
+          $stmt = $mysqli->prepare("UPDATE Cliente SET Email='$mail' WHERE Username='$usr'");
 
-                  if($stmt === false){
-                    $response_array['status'] = "error";
-                    print json_encode($response_array);
-                    die();
-                  }
+          if($stmt === false){
+            $response_array['status'] = "error";
+            print json_encode($response_array);
+            die();
+          }
 
-                  $stmt->execute();
+          $stmt->execute();
 
-                  $stmt->close();
+          $stmt->close();
 
-                  $response_array['status'] = "success";
-                  print json_encode($response_array);
-                  die();
+          $response_array['status'] = "success";
+          print json_encode($response_array);
+          die();
         }
+      break;
+    case "email":
+      $stmt = $mysqli->prepare("SELECT Email FROM Cliente WHERE Username = ?");
+
+      if($stmt == false) {
+        $response_array['status'] = "Errore nella query";
+        print json_encode($response_array);
+        die();
+      }
+
+      $stmt->bind_param('s', $_SESSION['username']);
+
+      $stmt->execute();
+
+      $result = $stmt->get_result();
+
+      $output = array();
+      while($row = $result->fetch_assoc()){
+          $output[] = $row;
+      }
+      $stmt->close();
+
+      print json_encode($output);
       break;
   }
 

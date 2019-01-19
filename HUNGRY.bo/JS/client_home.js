@@ -1,4 +1,5 @@
 var filters = [];
+var email;
 
 $(document).ready(function () {
 
@@ -14,27 +15,9 @@ $(document).ready(function () {
       }
   }).trigger('resize');
 
-  // $.getJSON("../PHP/client_home_suppliers.php?request=suppliers", function(data) {
-  //   if(data.status === "error") {
-  //     console.log("error");
-  //   } else{
-  //
-  //     suppliers = data;
-  //     nomilocali = suppliers.status;
-  //
-  //     for (var i = 0; i < nomilocali.length; i++) {
-  //       ///DOPO AVER FATTO LA GRIGLIA METTO I voti come faccio a piglia nomicolcali uffa
-  //       $.post("../PHP/client_home_data.php", nomilocali[i], function(data) {
-  //           if(data.status === "error") {
-  //               console.log("error");
-  //           } else{
-  //               response = data;
-  //               $("#appends").append('<div class="col-lg-4 col-md-6 mb-4 col-xl-3"><div class="card"><div class="view overlay hm-white-slight"><a href="#"><img class="img-fluid local-image" src="'+"../res/"+response.status[2]+'" alt="local imgage"/><img class="img-fluid rounded-circle icon float-left ml-3" src="../res/'+response.status[3]+'" alt="local icon"/><div class="card-body"><h6 class="card-title text-center nomilocalih6">'+response.status[0]+'</h6><p class="card-text text-muted text-center vote">Voto: <span class="avg-score">'+response.status[1]+'</span></p></div></a><div class="card-footer text-right"><small class="card-text text-muted comment"><a href="#" data-toggle="modal" data-target="#rec-popup">Scrivi una recensione</a></small></div></div></div></div>');
-  //           }
-  //       });
-  //     }
-  //   }
-  // });
+  $.getJSON("../PHP/client_home.php?request=email", function(data) {
+    email = data[0].Email;
+  });
 
   $.getJSON("../PHP/client_home.php?request=supplier-data", function(data) {
     for(var i = 0; i < data.length; i++) {
@@ -122,8 +105,8 @@ $(document).ready(function () {
     }
   });
 
-  //Set 5 s of timeout for check notifications
-  setInterval(checkNotify, 5000);
+  //Set 0.5 s of timeout for check notifications
+  setInterval(checkNotify, 500);
 
   $("form#gestisci-notifiche").on('click', 'button.letta', function(){
     var span = $(this).parents("div.notifica").find("span.id-notifica");
@@ -143,6 +126,7 @@ $(document).ready(function () {
 });
 
 $("#sel-mod-mail").click(function(){
+  $("#new-mail").val(email);
   $("button.submitmail").click(function() {
       var email = $("#new-mail").val();
       console.log(email);

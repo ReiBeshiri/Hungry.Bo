@@ -72,7 +72,7 @@ if(isset($_GET["request"])) {
           $stmt->close();
         }
 
-        if(isset($_POST["email"])) {
+        if($_POST["email"] != "") {
           $email = $_POST["email"];
 
           $stmt = $mysqli->prepare("UPDATE Fornitore SET Email=? WHERE Username=?");
@@ -216,7 +216,7 @@ if(isset($_GET["request"])) {
           $stmt->execute();
 
           $stmt->close();
-          
+
           $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE IDProdotto=?");
 
           if($stmt == false) {
