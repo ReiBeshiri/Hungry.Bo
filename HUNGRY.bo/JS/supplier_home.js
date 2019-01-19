@@ -37,9 +37,16 @@ $(document).ready(function(){
     $("span#local-name").text(data[0].NomeLocale);
     $("span#local-address").text(data[0].Indirizzo);
     $("span#local-email").text(data[0].Email);
-    $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraChiusura.slice(0,5));
+    if(data[0].OraApertura != null && data[0].OraChiusura != null) {
+      $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraChiusura.slice(0,5));
+    }
+    if(data[0].Icona != null) {
     $("#container>div.dumb-container>#icon-container").html('<img class="img-fluid rounded-circle local-icon" src="../res/'+data[0].Icona+'" alt="local icon"/>');
-    $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
+    }
+
+    if(data[0].Immagine != null) {
+      $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
+    }
   });
 
   $("#gestisci-locale-submit").click(function(){

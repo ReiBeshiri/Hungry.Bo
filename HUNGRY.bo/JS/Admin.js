@@ -195,7 +195,7 @@ $(document).ready(function(){
               sent: "true",
               type: "fornitore",
               username: $("#usrUsr").val(),
-              p: $("#usrPwd").val(),
+              p: hex_sha512($("#usrPwd").val()),
               email: $("#usrEmail").val(),
               'nome-locale': $("#usrNomeLocale").val(),
               indirizzo: $("#usrInd").val(),
@@ -207,7 +207,7 @@ $(document).ready(function(){
               sent: "true",
               type: "cliente",
               username: $("#usrUsr").val(),
-              p: $("#usrPwd").val(),
+              p: hex_sha512($("#usrPwd").val()),
               email: $("#usrEmail").val(),
             };
           }

@@ -45,7 +45,6 @@ $(document).ready(function(){
 
     // Assicurati che la password non venga inviata in chiaro.
     password.value = "";
-    console.log();
     if($("input#username").val() === "admin") {
       errors += "username non valido";
     } else if (!validateEmail($("#email").val())) {
