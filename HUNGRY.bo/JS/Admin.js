@@ -1,33 +1,13 @@
 $(document).ready(function(){
 
+  setInterval(resizable, 500);
+
   getRefreshed();
 
-  $(window).bind("resize", function () {
-    if($(this).width() <= 320){
-
-    } else if ($(this).width() <= 981) {
-      $("th#password").hide();
-      $("td[headers='indirizzo']").hide();
-      $("th#indirizzo").hide();
-      $("th#nome-locale").hide();
-      $("td[headers='nome-locale']").hide();
-      $("td[headers='modify']>span").empty();
-      $("td[headers='modify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
-      $("td[headers='notify']>span").empty();
-      $("td[headers='notify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/notify-icon.png" alt="notify" data-toggle="modal" data-target="#send-notify-from-admin"/></a>');
-    } else {
-      $("th#password").show();
-      $("td[headers='indirizzo']").show();
-      $("th#indirizzo").show();
-      $("th#nome-locale").show();
-      $("td[headers='nome-locale']").show();
-      $("td[headers='modify']>span").empty();
-      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-from-admin">Modify</button>');
-      $("td[headers='notify']>span").empty();
-      $("td[headers='notify']>span").html('<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#send-notify-from-admin">Notify</button>');
-    }
-  }).trigger('resize');
-
+  $(window).on('resize', function () {
+    resizable();
+  });
+//.trigger('resize');
   $("#manage_cli").click(function() {
     managecli();
   });
@@ -379,31 +359,26 @@ var supplier = url.searchParams.get("supplier");
 
       case 'Fornitori':
         managesup();
-        console.log($(this).width());
         $(window).trigger('resize');
       break;
 
       case 'Clienti':
         managecli();
-        console.log($(this).width());
         $(window).trigger('resize');
       break;
 
       case 'Tipologie Locali':
         localtype();
-        console.log($(this).width());
         $(window).trigger('resize');
       break;
 
       case 'Tipologie Prodotti':
         prodtype();
-        console.log($(this).width());
         $(window).trigger('resize');
       break;
 
       case 'Luoghi di Consegna':
         deliveryplace();
-        console.log($(this).width());
         $(window).trigger('resize');
       break;
 
