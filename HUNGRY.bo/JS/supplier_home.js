@@ -1,3 +1,4 @@
+var email;
 $(document).ready(function(){
   var icona;
   var immagine;
@@ -36,7 +37,10 @@ $(document).ready(function(){
   $.getJSON("../PHP/supplier_home.php?request=informazioni-locale", function(data){
     $("span#local-name").text(data[0].NomeLocale);
     $("span#local-address").text(data[0].Indirizzo);
-    $("span#local-email").text(data[0].Email);
+    if(data[0].Email !== null && data[0].Email.length > 0) {
+      $("span#local-email").text(data[0].Email);
+      email = data[0].Email;
+    }
     if(data[0].OraApertura != null && data[0].OraChiusura != null) {
       $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraChiusura.slice(0,5));
     }
@@ -47,6 +51,10 @@ $(document).ready(function(){
     if(data[0].Immagine != null) {
       $("#container").css("background-image", "url('../res/"+data[0].Immagine+"')");
     }
+  });
+
+  $("#btn-nav-gestisci-locale").click(function() {
+    $("input#mod-email").val(email);
   });
 
   $("#gestisci-locale-submit").click(function(){
