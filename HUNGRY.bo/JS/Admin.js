@@ -396,5 +396,9 @@ var supplier = url.searchParams.get("supplier");
       case 'Luoghi di Consegna':
         deliveryplace();
       break;
+
+      default:
+        managecli();
+      break;
     }
   }

@@ -372,10 +372,179 @@
             if($_POST["table"] == "Fornitori" || $_POST["table"] == "Clienti"){
 
               $usr = $_POST["username"];
+
               if($_POST["table"] == "Fornitori"){
+
                 $table = "Fornitore";
+                ///seleziono l'id dei prodotti del fornitore
+                $stmt = $mysqli->prepare("SELECT ID FROM Prodotto WHERE UsernameFornitore = ?");
+
+                if($stmt == false) {
+                  $response_array['status'] = "Errore nella di ricerca dell'ID carrello";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                $id_prodotto = array();
+                while($row = $result->fetch_assoc()){
+                    $id_prodotto[] = $row;
+                }
+                $stmt->close();
+
+                for ($i = 0; $i < count($id_prodotto); $i++) {
+                  $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE IDProdotto = ?");
+
+                  if($stmt === false){
+                    $response_array['status'] = "error";
+                    print json_encode($response_array);
+                    die();
+                  }
+
+                  $stmt->bind_param('i', $id_prodotto[$i]["ID"]);
+
+                  $stmt->execute();
+
+                  $stmt->close();
+                }
+
+                for ($i = 0; $i < count($id_prodotto); $i++) {
+                  $stmt = $mysqli->prepare("DELETE FROM Prodotto WHERE ID = ?");
+
+                  if($stmt === false){
+                    $response_array['status'] = "error";
+                    print json_encode($response_array);
+                    die();
+                  }
+
+                  $stmt->bind_param('i', $id_prodotto[$i]["ID"]);
+
+                  $stmt->execute();
+
+                  $stmt->close();
+                }
+
+                $stmt = $mysqli->prepare("DELETE FROM Recensione WHERE UsernameFornitore = ?");
+
+                if($stmt === false){
+                  $response_array['status'] = "error";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $stmt->close();
+
               } else {
                 $table = "Cliente";
+
+                $stmt = $mysqli->prepare("DELETE FROM Recensione WHERE UsernameCliente = ?");
+
+                if($stmt === false){
+                  $response_array['status'] = "error";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $stmt->close();
+                //get all id from ordine
+                $stmt = $mysqli->prepare("SELECT ID FROM Ordine WHERE UsernameCliente = ?");
+
+                if($stmt == false) {
+                  $response_array['status'] = "Errore nella di ricerca dell'ID";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                $id_ordine = array();
+                while($row = $result->fetch_assoc()){
+                    $id_ordine[] = $row;
+                }
+                $stmt->close();
+                //delete all prodotti in ordine where idordine del cliente da eliminare
+                for ($i = 0; $i < count($id_ordine); $i++) {
+                  $stmt = $mysqli->prepare("DELETE FROM ProdottoInOrdine WHERE IDOrdine = ?");
+
+                  if($stmt === false){
+                    $response_array['status'] = "error";
+                    print json_encode($response_array);
+                    die();
+                  }
+
+                  $stmt->bind_param('i', $id_ordine[$i]["ID"]);
+
+                  $stmt->execute();
+
+                  $stmt->close();
+                }
+                //delete tutti ordini con usr cli = usr cli
+                $stmt = $mysqli->prepare("DELETE FROM Ordine WHERE UsernameCliente = ?");
+
+                if($stmt === false){
+                  $response_array['status'] = "error";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $stmt->close();
+
+                //get id carrello
+                $stmt = $mysqli->prepare("SELECT IDCarrello FROM Cliente WHERE Username = ?");
+
+                if($stmt == false) {
+                  $response_array['status'] = "Errore nella di ricerca dell'ID";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('s', $usr);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                $id_carrello = array();
+                while($row = $result->fetch_assoc()){
+                    $id_carrello[] = $row;
+                }
+                $stmt->close();
+                //delete all prodotti in carrelo di un carrello
+                  $stmt = $mysqli->prepare("DELETE FROM ProdottoInCarrello WHERE IDCarrello = ?");
+
+                  if($stmt === false){
+                    $response_array['status'] = "error";
+                    print json_encode($response_array);
+                    die();
+                  }
+
+                  $stmt->bind_param('i', $id_carrello[0]["IDCarrello"]);
+
+                  $stmt->execute();
+
+                  $stmt->close();
+
               }
 
               $stmt = $mysqli->prepare("DELETE FROM $table WHERE Username='$usr'");
@@ -384,6 +553,28 @@
                 $response_array['status'] = "error";
                 print json_encode($response_array);
                 die();
+              }
+
+              $stmt->execute();
+
+              $stmt->close();
+
+
+              //delete carrello if cli
+              if($table == "Cliente"){
+                $stmt = $mysqli->prepare("DELETE FROM Carrello WHERE ID = ?");
+
+                if($stmt === false){
+                  $response_array['status'] = "error";
+                  print json_encode($response_array);
+                  die();
+                }
+
+                $stmt->bind_param('i', $id_carrello[0]["IDCarrello"]);
+
+                $stmt->execute();
+
+                $stmt->close();
               }
 
             } else {
@@ -407,11 +598,11 @@
                 die();
               }
 
+              $stmt->execute();
+
+              $stmt->close();
+
             }
-
-            $stmt->execute();
-
-            $stmt->close();
 
             $response_array['status'] = "success";
             print json_encode($response_array);
