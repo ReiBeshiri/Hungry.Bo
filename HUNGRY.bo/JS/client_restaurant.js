@@ -24,6 +24,9 @@ $(document).ready(function () {
   $.post('../PHP/client_restaurant.php?request=informazioni-locale', dataToSend, function(data) {
     console.log(data);
     $("span#local-name").text(data[0].NomeLocale);
+    if(data[0].Email !== null && data[0].Email.length > 0) {
+      $("span#local-email").text(data[0].Email);
+    }
     if(data[0].OraApertura !== null && data[0].OraChiusura !== null) {
       $("span#local-time").text(data[0].OraApertura.slice(0,5) + "-" + data[0].OraChiusura.slice(0,5));
     }
