@@ -259,6 +259,7 @@ function prodtype() {
       $("div.admintable").append(str);
       //window.parent.$(window.parent.document).trigger('resize');
     }
+    resizable();
   });
 }
 
@@ -277,6 +278,7 @@ function localtype(){
       $("div.admintable").append(str);
       //window.parent.$(window.parent.document).trigger('resize');
     }
+    resizable();
   });
 }
 
@@ -295,6 +297,7 @@ function managesup(){
       $("div.admintable").append(str);
       //window.parent.$(window.parent.document).trigger('resize');
     }
+    resizable();
   });
 }
 
@@ -313,6 +316,7 @@ function managecli(){
       $("div.admintable").append(str);
       //window.parent.$(window.parent.document).trigger('resize');
     }
+    resizable();
   });
 }
 
@@ -331,6 +335,7 @@ function deliveryplace(){
       $("div.admintable").append(str);
       //window.parent.$(window.parent.document).trigger('resize');
     }
+    resizable();
   });
 }
 
