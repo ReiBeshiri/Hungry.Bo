@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
-  setInterval(resizable, 500);
+  //setInterval(resizable, 500);
 
   getRefreshed();
 
-  $(window).on('resize', function () {
+  $(window).bind("resize", function () {
     resizable();
-  });
-//.trigger('resize');
+  }).trigger('resize');
+
   $("#manage_cli").click(function() {
     managecli();
   });
