@@ -28,11 +28,13 @@ $(document).ready(function(){
     deliveryplace();
   });
 
-  $("div.admintable").on('click', 'button.buttonModify', function() {
+  $("div.admintable").on('click', '.buttonModify', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
     updatespan(username);
+    console.log("modifisup");
+    console.log(username);
+    var table = $("strong.searchtable").text();
     $("button.save").click(function() {
-      var table = $("strong.searchtable").text();
       var dataToSend = {
         username: username,
         email: $("#enter-mail").val(),
@@ -54,9 +56,11 @@ $(document).ready(function(){
   });
 
 
-  $("div.admintable").on('click', 'button.buttonModifycli', function() {
+  $("div.admintable").on('click', '.buttonModifycli', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
     updatespan(username);
+    console.log("modificli");
+    console.log(username);
     $("button.savecli").click(function() {
       var table = $("strong.searchtable").text();
       var dataToSend = {
@@ -78,9 +82,10 @@ $(document).ready(function(){
     });
   });
 
-  $("div.admintable").on('click', 'button.buttonNotify', function() {
+  $("div.admintable").on('click', '.buttonNotify', function() {
     var username = $(this).parents("tr").children("td[headers='username']").text();
     updatespan(username);
+    console.log(username);
     $("button.notificaUser").click(function() {
     var table = $("strong.searchtable").text();
     var dataToSend = {
@@ -224,6 +229,7 @@ $(document).ready(function(){
     var username = $(this).parents("tr").children("td[headers='username']").text();
     var table = $("strong.searchtable").text();
       updatespan(username);
+      console.log(username);
     $("button.deleteUser").click(function() {
          var dataToSend = {
            table: table,
@@ -257,7 +263,6 @@ function prodtype() {
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      //window.parent.$(window.parent.document).trigger('resize');
     }
     resizable();
   });
@@ -276,7 +281,6 @@ function localtype(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      //window.parent.$(window.parent.document).trigger('resize');
     }
     resizable();
   });
@@ -295,7 +299,6 @@ function managesup(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      //window.parent.$(window.parent.document).trigger('resize');
     }
     resizable();
   });
@@ -314,7 +317,6 @@ function managecli(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      //window.parent.$(window.parent.document).trigger('resize');
     }
     resizable();
   });
@@ -333,7 +335,6 @@ function deliveryplace(){
       }
       str = str1+str2+str3;
       $("div.admintable").append(str);
-      //window.parent.$(window.parent.document).trigger('resize');
     }
     resizable();
   });
@@ -388,14 +389,17 @@ var supplier = url.searchParams.get("supplier");
       break;
 
       default:
-        managecli();
-        console.log($(this).width());
+        managesup();
         $(window).trigger('resize');
       break;
     }
   }
 
   function resizable(){
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var refresh = url.searchParams.get("refresh");
+
     if($(this).width() <= 320){
 
     } else if ($(this).width() <= 981) {
@@ -405,9 +409,9 @@ var supplier = url.searchParams.get("supplier");
       $("th#nome-locale").hide();
       $("td[headers='nome-locale']").hide();
       $("td[headers='modify']>span").empty();
-      $("td[headers='modify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
+      $("td[headers='modify']>span").html('<a href="#" class="buttonModify"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
       $("td[headers='notify']>span").empty();
-      $("td[headers='notify']>span").html('<a href="#"><img width="30px" heigth="30px" src="../res/notify-icon.png" alt="notify" data-toggle="modal" data-target="#send-notify-from-admin"/></a>');
+      $("td[headers='notify']>span").html('<a href="#" class="buttonNotify"><img width="30px" heigth="30px" src="../res/notify-icon.png" alt="notify" data-toggle="modal" data-target="#send-notify-from-admin"/></a>');
     } else {
       $("th#password").show();
       $("td[headers='indirizzo']").show();
@@ -415,8 +419,15 @@ var supplier = url.searchParams.get("supplier");
       $("th#nome-locale").show();
       $("td[headers='nome-locale']").show();
       $("td[headers='modify']>span").empty();
-      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modify-from-admin">Modify</button>');
+      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info buttonModify" data-toggle="modal" data-target="#modify-from-admin">Modify</button>');
       $("td[headers='notify']>span").empty();
-      $("td[headers='notify']>span").html('<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#send-notify-from-admin">Notify</button>');
+      $("td[headers='notify']>span").html('<button type="button" class="btn btn-outline-primary buttonNotify" data-toggle="modal" data-target="#send-notify-from-admin">Notify</button>');
+
     }
+
+    if(refresh === "Clienti"){
+      $("td[headers='modify']>span").empty();
+      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info buttonModifycli" data-toggle="modal" data-target="#modify-from-admin-cli">Modify</button>');
+      }
+
   }
