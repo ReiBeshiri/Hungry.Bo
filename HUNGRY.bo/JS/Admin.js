@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  setInterval(resizable, 100);
+  setInterval(resizable, 500);
 
   getRefreshed();
 

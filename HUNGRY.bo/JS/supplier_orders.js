@@ -74,7 +74,12 @@ $(document).ready(function () {
             data: dataToSend,
             success: function(name) {
               if(name.status == 'success') {
-                html_code += '<li>'+name.nome+' <span class="qnta"> (x'+pInOrder[i].qnta+')</span><br/>('+pInOrder[i].Descrizione+')</li>';
+                console.log(pInOrder[i].Descrizione.length);
+                if(pInOrder[i].Descrizione.length > 1) {
+                  html_code += '<li>'+name.nome+' <span class="qnta"> (x'+pInOrder[i].qnta+')</span><br/>('+pInOrder[i].Descrizione+')</li>';
+                } else {
+                  html_code += '<li>'+name.nome+' <span class="qnta"> (x'+pInOrder[i].qnta+')</span></li>';
+                }
               }
         }});
       }
