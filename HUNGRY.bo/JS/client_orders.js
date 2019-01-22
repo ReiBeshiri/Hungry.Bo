@@ -33,7 +33,7 @@ $(document).ready(function(){
         console.log(productsData);
         //console.log(ordersData[0]["ID"]);
         for (var i = 0; i < ordersData.length; i++) {
-          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="mitt">'+ordersData[i]["UsernameFornitore"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place" class="placehide">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+ordersData[i]["Ora"]+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
+          $("#tbody").append('<tr><td headers="id" hidden class="hiddentd">'+ordersData[i]["ID"]+'</td><td headers="mitt">'+ordersData[i]["UsernameFornitore"]+'</td><td headers="prod" class="order-state">'+ordersData[i]["Stato"]+'</td><td headers="place" class="placehide">'+ordersData[i]["LuogoConsegna"]+'</td><td headers="hour">'+ordersData[i]["Ora"].slice(0,5)+'</td><td headers="details"><a href="#" data-toggle="modal" data-target="#order-details" class="details">Dettagli</a></td></tr>');
           window.parent.$(window.parent.document).trigger('resize');
         }
     } else {
@@ -81,7 +81,7 @@ $(document).ready(function(){
           var str2 = '';
           var str1 = '<div class="form-group"><p><strong>Mittente: </strong><span>'+output[0]+'</span></p></div><div class="form-group"><strong>Ordine:</strong><ul>';
 
-          var str3 = '</ul></div><div class="form-group"><p><strong>Stato: </strong><span>'+spedizione+'</span></p></div><div class="form-group"><p><strong>Luogo: </strong><span>'+luogoConsegna+'</span></p></div><div class="form-group"><p><strong>Ora: </strong><span>'+oraConsegna+'</span></p></div>';
+          var str3 = '</ul></div><div class="form-group"><p><strong>Stato: </strong><span>'+spedizione+'</span></p></div><div class="form-group"><p><strong>Luogo: </strong><span>'+luogoConsegna+'</span></p></div><div class="form-group"><p><strong>Ora: </strong><span>'+oraConsegna.slice(0,5)+'</span></p></div>';
 
           for (var i = 1; i < output.length; i++) {
             if(output[i]["Descrizione"] === null){
