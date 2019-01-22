@@ -30,38 +30,38 @@
             <div class="alert alert-danger alert-php" role="alert">
             </div>
             <form action="#" method="post">
-              <label>Username: <br/>
+              <label for="username">Username: <br/>
                 <input class="form-control" type="text" name="username" id="username" required/>
               </label> <br/>
-              <label>Password: <br/>
+              <label for="password">Password: <br/>
                 <input class="form-control" type="password" name="password" id="password" required/>
               </label> <br/>
-              <label>Email: <br/>
+              <label for="email">Email: <br/>
                 <input class="form-control" type="email" name="email" id="email" required/>
               </label> <br/>
 
               <fieldset>
                 <legend hidden>Tipo:</legend>
-                <label>
+                <label for="clienti">
                   <input id="clienti" class="custom-radio" type="radio" name="type" value="cliente" checked/> Cliente
                 </label> <br/>
-                <label>
+                <label for="fornitori">
                   <input id="fornitori" class="custom-radio"  type="radio" name="type" value="fornitore"/> Fornitore
                 </label> <br/>
               </fieldset>
 
               <div id="info-fornitori">
-                <label>Nome Locale: <br/>
+                <label for="nome-locale">Nome Locale: <br/>
                   <input class="form-control" id="nome-locale" type="text" name="nome-locale" />
                 </label> <br/>
-                <label>Indirizzo: <br/>
+                <label for="indirizzo">Indirizzo: <br/>
                   <input class="form-control" id="indirizzo" type="text" name="indirizzo" />
                 </label> <br/>
-                <label>Tempo per arrivare al campus: <br/>
+                <label for="tempo">Tempo per arrivare al campus: <br/>
                   <input class="form-control" id="tempo" type="number" name="tempo" min="1" max="90" />
                 </label> <br/>
-                <label>Tipologia Locale: <br/>
-                  <select name="tipo-locale" class="form-control" style="background-color: rgba(255,255,255,0.5)">
+                <label for="select-tipo">Tipologia Locale: <br/>
+                  <select id="select-tipo" name="tipo-locale" class="form-control" style="background-color: rgba(255,255,255,0.5)">
                   </select>
                 </label>
               </div>
