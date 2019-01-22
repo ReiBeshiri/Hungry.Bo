@@ -63,7 +63,6 @@
             $response_array['status'] = "username mancante";
             print json_encode($response_array);
           }
-
           break;
 
         case 'aggiungi-al-carrello':
@@ -131,6 +130,31 @@
             print json_encode($response_array);
           }
 
+          break;
+
+        case 'recensioni-locale':
+          if(isset($_POST["usr"])){
+            $usr = $_POST["usr"];
+            $stmt = $mysqli->prepare("SELECT Descrizione,Voto,UsernameCliente FROM Recensione WHERE UsernameFornitore = ?");
+
+            $stmt->bind_param('s', $usr);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            $output = array();
+            while($row = $result->fetch_assoc()){
+                $output[] = $row;
+            }
+            $stmt->close();
+
+            print json_encode($output);
+            
+          } else {
+            $response_array['status'] = "errore nella richiesta";
+            print json_encode($response_array);
+          }
           break;
       }
 

@@ -83,7 +83,22 @@ $(document).ready(function () {
   });
 
   $("#reviews").click( function(){
-    $getJSON("../PHP/client_restaurant.php?request=lista-recensioni");
+    var dataToSend = {
+      usr: supplier
+    };
+    $.post("../PHP/client_restaurant.php?request=recensioni-locale", dataToSend, function(data){
+      if(data != null){
+        html_code = "";
+        for (var i = 0; i < data.length; i++) {
+            html_code += '<div class="card-body notifica"><h6 class="card-title mittente"><strong>'+data[i]["UsernameCliente"]+'</strong></h6><p class="card-text"><span class="id-notifica">voto:'+data[i]["Voto"]+'</span><br><span>'+data[i]["Descrizione"]+'</span></p></div>';
+        }
+        $("#pop-up-review").empty();
+        $("#pop-up-review").html(html_code);
+      } else {
+        $("#pop-up-review").empty();
+        $("#pop-up-review").html("Nessuna recensione da visualizzare");
+      }
+    });
   });
 
   //Set 5 s of timeout for check notifications
