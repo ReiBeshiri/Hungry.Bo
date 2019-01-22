@@ -90,7 +90,7 @@ $(document).ready(function () {
       if(data != null){
         html_code = "";
         for (var i = 0; i < data.length; i++) {
-            html_code += '<div class="card-body notifica"><h6 class="card-title mittente"><strong>'+data[i]["UsernameCliente"]+'</strong></h6><p class="card-text"><span class="id-notifica">voto:'+data[i]["Voto"]+'</span><br><span>'+data[i]["Descrizione"]+'</span></p></div>';
+            html_code += '<div class="card mb-2"><div class="card-body notifica"><h6 class="card-title mittente"><strong>Cliente: </strong>'+data[i]["UsernameCliente"]+'</h6><p class="card-text"><span class="id-notifica"><strong>Voto: </strong>'+data[i]["Voto"]+'</span><br><span>'+data[i]["Descrizione"]+'</span></p></div></div>';
         }
         $("#pop-up-review").empty();
         $("#pop-up-review").html(html_code);
