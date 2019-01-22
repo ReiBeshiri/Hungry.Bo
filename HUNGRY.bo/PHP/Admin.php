@@ -306,7 +306,7 @@
 
                     $stmt->close();
 
-                    $desc = "Email aggiornata correttamente!";
+                    $desc = "Email aggiornata!";
                     $admin = "Admin";
                     $letta = 0;
 
