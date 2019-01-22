@@ -48,6 +48,11 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#view-review" id="reviews">
+              Recensioni
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#manage-notify">
               Notifiche
               <em id="numero-notifiche" class="fa fa-envelope-o">
@@ -85,88 +90,6 @@
       </div>
     </div>
     <!-- END PAGE HEADER -->
-
-    <!-- TABLES -->
-<!--    <div class="row tables">
-			<div class="col-12 col-md-7">
-        <div class="table-header">
-          <p>Secondi Piatti</p>
-        </div>
-				<table class="table table-hover">
-				  <thead class="thead-dark">
-  					<tr>
-              <th id="id-t1" hidden>id</th>
-  					  <th id="product-t1">Prodotto</th>
-  					  <th id="price-t1">Prezzo</th>
-              <th id="select-t1">Seleziona</th>
-  					</tr>
-				  </thead>
-				  <tbody>
-  					<tr>
-              <td headers="id-t1" hidden>1</td>
-              <td headers="product-t1">Hamburger <br/>
-              <span class="ingredients-in-table">(Carne, Insalata, Pomodoro, Cheddar, Maionese, Ketchup ...)</span></td>
-              <td headers="price-t1">6 €</td>
-              <td headers="select-t1">
-                <span class="table-select">
-                  <button type="button" class="btn btn-outline-info select" data-toggle="modal" data-target="#order-popup">Seleziona</button>
-                </span>
-              </td>
-  					</tr>
-  					<tr>
-              <td headers="id-t1" hidden>2</td>
-              <td headers="product-t1">Panino <br/>
-              <span class="ingredients-in-table">(Prosciutto, Formaggio, Pane di sesamo ...)</span></td>
-  					  <td headers="price-t1">5 €</td>
-              <td headers="select-t1">
-                <span class="table-select">
-                  <button type="button" class="btn btn-outline-info select" data-toggle="modal" data-target="#order-popup">Seleziona</button>
-                </span>
-              </td>
-  					</tr>
-  			  </tbody>
-  			</table>
-  		</div>
-
-        <div class="col-12 col-md-5">
-          <div class="table-header">
-            <p>Bevande</p>
-          </div>
-  				<table class="table table-hover">
-  				  <thead class="thead-dark">
-  					<tr>
-              <th id="id-t2" hidden>id</th>
-  					  <th id="product-t2">Prodotto</th>
-  					  <th id="price-t2">Prezzo</th>
-              <th id="select-t2">Seleziona</th>
-  					</tr>
-  				  </thead>
-  				  <tbody>
-  					<tr>
-              <td headers="id-t2" hidden>3</td>
-              <td headers="product-t2">Coca Cola</td>
-              <td headers="price-t2">2 €</td>
-              <td headers="select-t2">
-                <span class="table-select">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
-                </span>
-              </td>
-  					</tr>
-  					<tr>
-              <td headers="id-t2" hidden>4</td>
-              <td headers="product-t2">Fanta</td>
-  					  <td headers="price-t2">3 €</td>
-              <td headers="select-t2">
-                <span class="table-select">
-                  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#order-popup">Seleziona</button>
-                </span>
-              </td>
-  					</tr>
-    			  </tbody>
-    			</table>
-    		</div>
-  	</div>-->
-    <!-- END TABLES -->
 
     <!-- TABLES -->
     <div class="row tables" >
@@ -301,6 +224,25 @@
             <div class="modal-body">
               <form id="gestisci-notifiche" method="post">
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FINE Modal Gestisci Notifiche-->
+
+      <!-- Modal Gestisci Notifiche-->
+      <div class="modal fade" id="view-review" tabindex="-1" role="dialog" aria-labelledby="notify-title" data-toggle="modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="title-review">Recensioni</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+              <div id="pop-up-review">
+              </div>
             </div>
           </div>
         </div>

@@ -400,9 +400,7 @@ var supplier = url.searchParams.get("supplier");
     var url = new URL(url_string);
     var refresh = url.searchParams.get("refresh");
 
-    if($(this).width() <= 320){
-
-    } else if ($(this).width() <= 981) {
+    if ($(this).width() <= 981) {
       $("th#password").hide();
       $("td[headers='indirizzo']").hide();
       $("th#indirizzo").hide();

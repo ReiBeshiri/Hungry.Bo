@@ -82,6 +82,10 @@ $(document).ready(function () {
 
   });
 
+  $("#reviews").click( function(){
+    $getJSON("../PHP/client_restaurant.php?request=lista-recensioni");
+  });
+
   //Set 5 s of timeout for check notifications
   setInterval(checkNotify, 5000);
 
