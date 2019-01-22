@@ -67,7 +67,14 @@ $(document).ready(function () {
     $("input#id").val(id_sel);
 
     $.post("../PHP/dbRequestManager.php?request=seleziona-prodotto", dataToSend, function(data){
-      $("label#ingredients").append(data[0].Ingredienti);
+      $("label#ingredients").empty();
+      if(data[0].Ingredienti.length <= 1) {
+        $("label#ingredients").hide();
+      } else {
+        $("label#ingredients").html("<strong>Descrizione: </strong>" + data[0].Ingredienti);
+        $("label#ingredients").show();
+
+      }
     });
   });
 
