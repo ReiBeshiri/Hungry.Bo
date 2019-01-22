@@ -29,18 +29,21 @@
             <div class="alert alert-danger alert-php" role="alert">
             </div>
             <form action="#" method="post">
-              <label>Username: <br/>
+              <label for="username">Username: <br/>
                 <input class="form-control" type="text" name="username" id="username" required/>
               </label> <br/>
-              <label>Password: <br/>
+              <label for="password">Password: <br/>
                 <input class="form-control" type="password" name="password" id="password" required/>
               </label> <br/>
-              <div class="radio">
-                <label><input type="radio" name="optradio" checked id="clienti">  Cliente</label>
-              </div>
-              <div class="radio">
-                <label><input type="radio" name="optradio" id="fornitori">  Fornitore</label>
-              </div>
+              <fieldset>
+                <legend hidden>Tipo:</legend>
+                <div class="radio">
+                  <label for="clienti"><input type="radio" name="optradio" checked id="clienti">  Cliente</label>
+                </div>
+                <div class="radio">
+                  <label for="fornitori"><input type="radio" name="optradio" id="fornitori">  Fornitore</label>
+                </div>
+              </fieldset>
               <input type="hidden" name="sent" value="true" />
               <button class="btn btn-primary mb-2" id="submit">Login</button>
             </form>

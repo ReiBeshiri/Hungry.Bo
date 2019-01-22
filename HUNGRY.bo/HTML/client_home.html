@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#change-email"id="sel-mod-mail">
+            <a class="nav-link" data-toggle="modal" data-target="#change-email" id="sel-mod-mail">
               Modifica Email
             </a>
           </li>
@@ -95,11 +95,11 @@
             <span id="username-popup" hidden></span>
             <div class="form-group">
               <div class="form-group">
-                <label>Commento:
+                <label for="comment">Commento:
                   <textarea class="form-control" rows="5" cols="55" id="comment"></textarea>
                 </label>
               </div>
-              <label>Voto:
+              <label for="score">Voto:
                 <input class="form-control" type="number" name="voto" min="1" max="10" id="score" required/>
               </label>
             </div>
@@ -146,11 +146,10 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label>Nuova Email:
+            <label for="new-mail">Nuova Email:
               <input class="form-control" type="text" name="username" id="new-mail" required/>
             </label>
           </div>
-          </form>
        </div>
        <div class="modal-footer">
          <button class="btn btn-primary footer-button submitmail" type="button" value="Invia Recensione" id="submit-mail">Salva</button>

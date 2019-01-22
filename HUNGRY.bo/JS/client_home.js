@@ -69,7 +69,7 @@ $(document).ready(function () {
     if(data.status !== 'error') {
       var html_code = "";
       for(var i = 0; i < data.length; i++) {
-        html_code += '<label> <input type="checkbox" name="'+data[i].Nome+'"/>'+data[i].Nome+'</label><br/>';
+        html_code += '<label> <input type="checkbox" name="'+data[i].Nome+'"/> '+data[i].Nome+'</label><br/>';
       }
       $("div#filter-categories form").html(html_code);
     }

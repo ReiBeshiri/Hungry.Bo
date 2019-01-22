@@ -87,7 +87,7 @@
           </div>
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
-                  <label for="insert-ingredients-prod">Descrizione:
+                  <label for="insert-notify-desc">Descrizione:
                       <textarea class="form-control" rows="5" cols="50" name="notifica-admin" id="insert-notify-desc"> </textarea>
                     </label>
                 </form>
@@ -115,7 +115,7 @@
                   <label for="enter-mail">Email:
                     <input class="form-control" type="email" name="mail" id="enter-mail"/>
                   </label>
-                  <label for="enter-name-prod">Nome locale:
+                  <label for="enter-name">Nome locale:
                     <input class="form-control" type="text" name="nomeloc" id="enter-name"/>
                   </label>
                   <label for="enter-time">Tempo di arrivo al campus:
@@ -143,10 +143,10 @@
           </div>
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
-                  <label for="enter-name-prod">Username:
+                  <label for="enter-username-cli">Username:
                     <input class="form-control" type="text" name="mail" id="enter-username-cli"/>
                   </label>
-                  <label for="enter-mail">Email:
+                  <label for="enter-mail-cli">Email:
                     <input class="form-control" type="email" name="nomeloc" id="enter-mail-cli"/>
                   </label>
                 </form>
@@ -173,44 +173,44 @@
             <div class="modal-body">
                 <form action="../PHP/supplier_home.php" method="post">
                     <div class="form-group">
-                      <label id="usrlbl">Username:
+                      <label for="usrUsr" id="usrlbl">Username:
                         <input class="form-control" type="text" name="username" id="usrUsr" required/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="pwdlbl">Password:
+                      <label for="usrPwd" id="pwdlbl">Password:
                         <input class="form-control" type="password" name="password" id="usrPwd" required/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="emaillbl">Email:
+                      <label for="usrEmail" id="emaillbl">Email:
                         <input class="form-control" type="email" name="email" id="usrEmail" required/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="usrNomeLocalelbl">Nome Locale:
+                      <label for="usrNomeLocale" id="usrNomeLocalelbl">Nome Locale:
                         <input class="form-control" type="text" name="nome-locale" id="usrNomeLocale"/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="usrIndlbl">Indirizzo:
+                      <label for="usrInd" id="usrIndlbl">Indirizzo:
                         <input class="form-control" type="text" name="indirizzo" id="usrInd"/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="usrTaclbl">Tempo Arrivo al Campus:
-                        <input class="form-control" type="text" name="tempoarrivocampus" min="1" max="90" id="usrTac"/>
+                      <label for="usrTac" id="usrTaclbl">Tempo Arrivo al Campus:
+                        <input class="form-control" type="number" name="tempoarrivocampus" min="1" max="90" id="usrTac"/>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="usrTipolbl">Tipologia Locale:
+                      <label for="usrTipo" id="usrTipolbl">Tipologia Locale:
                         <select name="tipo-locale" class="form-control" style="background-color: rgba(255,255,255,0.5)" id="usrTipo">
                         </select>
                       </label>
                     </div>
                     <div class="form-group">
-                      <label id="tipologia">Nome:
-                        <input class="form-control" type="text" name="tipologia"id="tipoAgg"/>
+                      <label for="tipoAgg" id="tipologia">Nome:
+                        <input class="form-control" type="text" name="tipologia" id="tipoAgg"/>
                       </label>
                     </div>
                 </form>
@@ -228,7 +228,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="hour-title">Confermi di eliminare <span class="modal-span">span</span>?</h5>
+            <h5 class="modal-title" id="conf-elim">Confermi di eliminare <span class="modal-span">span</span>?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

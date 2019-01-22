@@ -113,7 +113,7 @@ $(document).ready(function() {
 			ids.push($(this).text());
 		});
 
-		$("form#order-pay button").click(function() {
+		$("form#order-pay-form button").click(function() {
 			var d = new Date();
 			var pressed_minutes = d.getHours() * 60 + d.getMinutes();
 			var insetTime = $("input#delivery-hour").val();
