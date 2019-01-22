@@ -425,10 +425,10 @@ var supplier = url.searchParams.get("supplier");
 
     if(refresh === "Clienti"){
       $("td[headers='modify']>span").empty();
-      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info buttonModifycli" data-toggle="modal" data-target="#modify-from-admin-cli">Modify</button>');
+      $("td[headers='modify']>span").html('<button type="button" class="btn btn-outline-info buttonModify" data-toggle="modal" data-target="#modify-from-admin-cli">Modify</button>');
         if($(this).width() <= 981){
           $("td[headers='modify']>span").empty();
-          $("td[headers='modify']>span").html('<a href="#" class="buttonModifycli"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
+          $("td[headers='modify']>span").html('<a href="#" class="buttonModify"><img width="30px" heigth="30px" src="../res/modify-icon.png" alt="modify" data-toggle="modal" data-target="#modify-from-admin"/></a>');
         }
       }
 
