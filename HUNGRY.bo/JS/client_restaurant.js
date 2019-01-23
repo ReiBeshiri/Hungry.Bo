@@ -12,9 +12,8 @@ $(document).ready(function () {
       }
   }).trigger('resize');
 
-  var url_string = window.location.href;
-  var url = new URL(url_string);
-  var supplier = url.searchParams.get("supplier");
+  var supplier = document.cookie;
+  //document.cookie="";
 
   console.log(supplier);
   var dataToSend = {
