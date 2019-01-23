@@ -112,8 +112,8 @@ $(document).ready(function () {
     }
   });
 
-  //Set 0.5 s of timeout for check notifications
-  setInterval(checkNotify, 500);
+  //Set 1s of timeout for check notifications
+  setInterval(checkNotify, 1000);
 
   $("form#gestisci-notifiche").on('click', 'button.letta', function(){
     var span = $(this).parents("div.notifica").find("span.id-notifica");
@@ -196,8 +196,14 @@ function updateNotifyNum() {
     if(data.status == 'true') {
       //Inserire simbolo rosso di fianco a notifica. --> Da eliminare solo alla pressione.
       $("#numero-notifiche").html('<span class="badge badge-danger">'+data.count+'</span>');
+      if($(window).width() <= 981) {
+        $("span.badge-notify").text(data.count);
+      } else {
+        $("span.badge-notify").empty();
+      }
     } else {
       $("#numero-notifiche").empty();
+      $("span.badge-notify").empty();
     }
   });
 }
