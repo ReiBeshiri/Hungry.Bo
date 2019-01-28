@@ -69,7 +69,8 @@
         $tot+=$voto[$i]["Voto"];
       }
 
-      $avg = $tot / (count($voto)-1);
+      $r = $tot / (count($voto)-1);
+      $avg = number_format($r, 2, '.', '');
 
     }
 
