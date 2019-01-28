@@ -150,9 +150,32 @@
             $stmt->close();
 
             print json_encode($output);
-            
+
           } else {
             $response_array['status'] = "errore nella richiesta";
+            print json_encode($response_array);
+          }
+          break;
+        case 'rimuovi-notifica':
+
+          if(isset($_POST['id'])) {
+            $stmt = $mysqli->prepare("DELETE FROM Notifica WHERE ID=?");
+
+            if($stmt == false) {
+              $response_array['status'] = "Errore nella query";
+              print json_encode($response_array);
+              die();
+            }
+
+            $stmt->bind_param('i', $_POST['id']);
+
+            $stmt->execute();
+
+            $response_array['status'] = "success";
+
+            print json_encode($response_array);
+          } else {
+            $response_array['status'] = "ID mancante";
             print json_encode($response_array);
           }
           break;

@@ -101,6 +101,14 @@ p#local-info {
   margin-top: 10px;
 }
 
+.badge-notify{
+   position: relative;
+   top: -20px;
+   left: -20px;
+   z-index: 15;
+   font-style: italic;
+}
+
 @media screen and (max-width: 981px) {
   nav {
     display: flex;

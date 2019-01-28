@@ -107,8 +107,8 @@ $(document).ready(function () {
     });
   });
 
-  //Set 5 s of timeout for check notifications
-  setInterval(checkNotify, 5000);
+  //Set 1s of timeout for check notifications
+  setInterval(checkNotify, 1000);
 
   $("form#gestisci-notifiche").on('click', 'button.letta', function(){
     var span = $(this).parents("div.notifica").find("span.id-notifica");
@@ -129,39 +129,49 @@ $(document).ready(function () {
 
 function checkNotify() {
   updateNotifyNum();
-  $.getJSON("../PHP/client_restaurant.php?request=lista-notifiche", function(notify) {
+  $.getJSON("../PHP/client_home.php?request=lista-notifiche", function(notify) {
     var html_code = "";
     for(var i = 0; i < notify.length; i++) {
-      //Conteggio prodotti.
-      var dataToSend = {
-        id: notify[i].IDOrdine
-      };
-      $.ajax({
-          url: "../PHP/client_restaurant.php?request=ordine-notifica",
-          type: "POST",
-          async: false,
-          dataType: "json",
-          data: dataToSend,
-          success: function(order) {
-            console.log(order[0].Stato == "Altro");
-            if(order[0].Stato == "Altro") {
-              html_code += '<div class="card-body notifica"><h6 class="card-title mittente">Notifica Ordine da: <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li><li><span class="stato"><strong>Stato Ordine: </strong>'+order[0].Stato+'</span></li><li><span class="desc-ordine"><strong>Stato ordine cambiato: </strong>'+notify[i].Descrizione+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
-            } else {
-              html_code += '<div class="card-body notifica"><h6 class="card-title mittente">Notifica Ordine da: <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li><li><span class="stato"><strong>Stato Ordine: </strong>'+order[0].Stato+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div>';
-            }
-      }});
+      if(notify[i].Mittente.toUpperCase() == "ADMIN" && notify[i].IDOrdine == null) {
+          html_code+='<div class="card mb-2"><div class="card-body notifica"><h6 style="color:red;" class="card-title mittente">Hai una notifica da <strong>'+notify[i].Mittente.toUpperCase()+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="desc"><strong>Descrizione: </strong>'+notify[i].Descrizione+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div></div>';
+      } else {
+        //Conteggio prodotti.
+        var dataToSend = {
+          id: notify[i].IDOrdine
+        };
+        $.ajax({
+            url: "../PHP/client_home.php?request=ordine-notifica",
+            type: "POST",
+            async: false,
+            dataType: "json",
+            data: dataToSend,
+            success: function(order) {
+              console.log(order[0].Stato == "Altro");
+              if(order[0].Stato == "Altro") {
+                html_code += '<div class="card mb-2"><div class="card-body notifica"><h6 class="card-title mittente">Notifica Ordine da: <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li><li><span class="stato"><strong>Stato Ordine: </strong>'+order[0].Stato+'</span></li><li><span class="desc-ordine"><strong>Stato ordine cambiato: </strong>'+notify[i].Descrizione+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div></div>';
+              } else {
+                html_code += '<div class="card mb-2"><div class="card-body notifica"><h6 class="card-title mittente">Notifica Ordine da: <strong>'+notify[i].Mittente+'</strong></h6><p class="card-text"><span class="id-notifica" hidden>'+notify[i].ID+'</span><ul><li><span class="luogo"><strong>Luogo Consegna: </strong></span>'+order[0].LuogoConsegna+'</li><li><span class="ora"><strong>Ora Consegna: </strong>'+order[0].Ora.slice(0,5)+'</span></li><li><span class="stato"><strong>Stato Ordine: </strong>'+order[0].Stato+'</span></li></p></ul><div class="text-right"><button class="btn btn-primary btn-sm letta" type="button">Segnala come letta</button></div></div></div>';
+              }
+        }});
+      }
     }
     $("form#gestisci-notifiche").html(html_code);
   });
 }
 
 function updateNotifyNum() {
-  $.getJSON("../PHP/client_restaurant.php?request=controllo-notifiche", function(data) {
+  $.getJSON("../PHP/client_home.php?request=controllo-notifiche", function(data) {
     if(data.status == 'true') {
       //Inserire simbolo rosso di fianco a notifica. --> Da eliminare solo alla pressione.
       $("#numero-notifiche").html('<span class="badge badge-danger">'+data.count+'</span>');
+      if($(window).width() <= 981) {
+        $("span.badge-notify").text(data.count);
+      } else {
+        $("span.badge-notify").empty();
+      }
     } else {
       $("#numero-notifiche").empty();
+      $("span.badge-notify").empty();
     }
   });
 }
