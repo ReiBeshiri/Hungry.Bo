@@ -99,7 +99,9 @@ if(isset($_GET['request'])) {
         for($i = 0; $i < count($voto); $i++) {
           $tot+=$voto[$i]["Voto"];
         }
-        $avg = $tot / (count($voto));
+
+      $r = $tot / (count($voto)-1);
+      $avg = number_format($r, 2, '.', '');
       }
 
       print json_encode($avg);
